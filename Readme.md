@@ -1,12 +1,13 @@
 
 # NXT-Gen-Ares
 <h1>Navigation Page </h1>
+
 ![image 3](images/img3.png)
 
 
 <h1>Admin can alter changes</h1>
 
-![image 2](images/img3.png)
+![image 2](images/img1.png)
 
 
 ![image 2](images/img2.png)
