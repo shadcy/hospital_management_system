@@ -9,14 +9,18 @@
 
 
 ![image 2](images/img2.png)
+<h2>Login Details :   IIT Bombay Hospital Management System / IITB HMS</h2>
+<h5>
+  
 
-<h2>
-Login Details :   IIT Bombay Hospital Management System / IITB HMS
 
-
+<br>
 Login Details for admin : admin/Test@12345
+<br>
 Login Details for Patient: johndoe12@test.com/Test@123
+<br>
 Login Details for Doctor: anujk123@test.com/Test@123
-</h2>
+<br>
+</h5>
 
 
