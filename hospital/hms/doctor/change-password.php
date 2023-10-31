@@ -27,7 +27,8 @@ if (strlen($_SESSION['id'] == 0)) {
 	<head>
 		<title>Doctor | change Password</title>
 
-		<?php include_once("../include/head_links.php") ?>
+		<?php include_once("../include/head_links.php");
+		echo generate_head_links(); ?>
 		<script type="text/javascript">
 			function valid() {
 				if (document.chngpwd.cpass.value == "") {

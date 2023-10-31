@@ -14,8 +14,8 @@ if (strlen($_SESSION['id'] == 0)) {
 	<head>
 		<title>Admin | Manage Read Queries</title>
 
-		<?php include_once("../include/head_links.php") #1
-		?>
+		<?php include_once("../include/head_links.php");
+		echo generate_head_links("1"); ?>
 	</head>
 
 	<body>

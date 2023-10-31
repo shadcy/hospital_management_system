@@ -27,7 +27,8 @@ if (strlen($_SESSION['id'] == 0)) {
 	<head>
 		<title>Admin | About Us </title>
 
-		<?php include_once("../include/head_links.php") ?>
+		<?php include_once("../include/head_links.php");
+		echo generate_head_links(); ?>
 		<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 		<script type="text/javascript">
 			bkLib.onDomLoaded(nicEditors.allTextAreas);

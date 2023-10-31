@@ -33,8 +33,8 @@ if (strlen($_SESSION['id'] == 0)) {
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<?php include_once("../include/head_links.php") #Theme 1 
-		?>
+		<?php include_once("../include/head_links.php");
+		echo generate_head_links("1"); ?>
 		<script type="text/javascript">
 			function valid() {
 				if (document.chngpwd.cpass.value == "") {

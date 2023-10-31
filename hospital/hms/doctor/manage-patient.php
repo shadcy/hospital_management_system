@@ -13,7 +13,8 @@ if (strlen($_SESSION['id'] == 0)) {
 	<head>
 		<title>Doctor | Manage Students</title>
 
-		<?php include_once("../include/head_links.php") ?>
+		<?php include_once("../include/head_links.php");
+		echo generate_head_links(); ?>
 	</head>
 
 	<body>
