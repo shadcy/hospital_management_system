@@ -76,7 +76,7 @@
 
 							<!-- ----------------For pink slip generation----------------------- -->
 
-							<li>
+							<!-- <li>
 								<a href="./PinkSlip_Gen/PSlip.php">
 									<div class="item-content">
 										<div class="item-media">
@@ -87,12 +87,12 @@
 										</div>
 									</div>
 								</a>
-							</li>
+							</li> -->
 
 							<!-- ---------------------Pink slip format and encryption--------------------------------------------------- -->
 
-							<li>
-								<a href="PSlip2.php">
+							<!-- <li>
+								<a href="gen.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-book"></i>
@@ -103,7 +103,76 @@
 										</div>
 									</div>
 								</a>
+							</li> -->
+
+
+
+
+
+							<li>
+								<a href="javascript:void(0)">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-user"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Pink slip </span><i class="icon-arrow"></i>
+										</div>
+									</div>
+								</a>
+								<ul class="sub-menu">
+									
+									<li>
+										<a href="./PinkSlip_Gen/PSlip.php">
+											<span class="title"> Pink slip V4.2.4</span>
+										</a>
+									</li>
+									<li>
+										<a href="gen.php">
+											<span class="title">  Pink slip V4.2.5</span>
+										</a>
+									</li>
+									
+								</ul>
+								</li>
+
+
+
+
+						<!-- --------------------------------------MAIL GENERATOR-------------------------------------------------------- -->
+
+						<li>
+								<a href="mail.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-email"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> HMS Mail
+												 </span>
+										</div>
+									</div>
+								</a>
 							</li>
+
+
+
+							<li>
+								<a href="ambulance.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-car"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Ambulance
+												 </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+
+
 
 							
 

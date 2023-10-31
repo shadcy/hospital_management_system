@@ -6,7 +6,8 @@
 							<i class="ti-align-justify"></i>
 						</a>
 						<a class="navbar-brand" href="#">
-							<h2 style="padding-top:20% ">HMS</h2>
+							<h2 style="padding: 15px; font-weight: bold;
+            color: white;">IITB HMS</h2>
 						</a>
 						<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
 							<i class="ti-align-justify"></i>
@@ -22,11 +23,12 @@
 						<ul class="nav navbar-right">
 							<!-- start: MESSAGES DROPDOWN -->
 								<li  style="padding-top:2% ">
-								<h2>IIT Bombay Hospital Management System</h2>
+								<h2 style="font-weight: bold;
+            color: white;">IIT Bombay Hospital Management System</h2>
 							</li>
 						
 						
-							<li class="dropdown current-user">
+							<li class="dropdown current-user" >
 								<a href class="dropdown-toggle" data-toggle="dropdown">
 									<img src="assets/images/images.jpg"> <span class="username">
 
@@ -39,7 +41,7 @@ while($row=mysqli_fetch_array($query))
 }
 									?> <i class="ti-angle-down"></i></i></span>
 								</a>
-								<ul class="dropdown-menu dropdown-dark">
+								<ul class="dropdown-menu dropdown-dark" >
 									<li>
 										<a href="edit-profile.php">
 											My Profile

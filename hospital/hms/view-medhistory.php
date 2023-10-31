@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Users | Medical History</title>
+		<title>Students | Medical History</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -47,7 +47,7 @@ if(isset($_POST['submit']))
 		<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 	</head>
 	<body>
 		<div id="app">		
@@ -60,7 +60,7 @@ if(isset($_POST['submit']))
 <section id="page-title">
 <div class="row">
 <div class="col-sm-8">
-<h1 class="mainTitle">Users | Medical History</h1>
+<h1 class="mainTitle">Students | Medical History</h1>
 </div>
 <ol class="breadcrumb">
 <li>
@@ -88,28 +88,28 @@ while ($row=mysqli_fetch_array($ret)) {
  Patient Details</td></tr>
 
     <tr>
-    <th scope>Patient Name</th>
+    <th scope>Student Name</th>
     <td><?php  echo $row['PatientName'];?></td>
     <th scope>Patient Email</th>
     <td><?php  echo $row['PatientEmail'];?></td>
   </tr>
   <tr>
-    <th scope>Patient Mobile Number</th>
+    <th scope>Student Mobile Number</th>
     <td><?php  echo $row['PatientContno'];?></td>
-    <th>Patient Address</th>
+    <th>Student Address</th>
     <td><?php  echo $row['PatientAdd'];?></td>
   </tr>
     <tr>
-    <th>Patient Gender</th>
+    <th>Student Gender</th>
     <td><?php  echo $row['PatientGender'];?></td>
-    <th>Patient Age</th>
+    <th>Student Age</th>
     <td><?php  echo $row['PatientAge'];?></td>
   </tr>
   <tr>
     
-    <th>Patient Medical History(if any)</th>
+    <th>Student Medical History(if any)</th>
     <td><?php  echo $row['PatientMedhis'];?></td>
-     <th>Patient Reg Date</th>
+     <th>Student Reg Date</th>
     <td><?php  echo $row['CreationDate'];?></td>
   </tr>
  

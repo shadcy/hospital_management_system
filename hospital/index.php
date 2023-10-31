@@ -64,6 +64,67 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
   <link rel="preload" as="image" href="./assets/images/hero-banner.png">
   <link rel="preload" as="image" href="./assets/images/hero-bg.png">
 
+  <style>
+  :root {
+    --verdigris: #43BFC7; /* Define the --verdigris color */
+  }
+
+  .contact-us-single {
+    color: var(--verdigris); /* Set the text color to verdigris */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+  }
+
+  .cop-ck {
+    width: 100%; /* Adjust the width of the form as needed */
+    max-width: 1000px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 800px;
+    background-color:#fff;
+  }
+
+  .cf-ro {
+    margin-bottom: 15px;
+  }
+
+  .cf-ro label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .cf-ro input[type="text"],
+  .cf-ro textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid var(--verdigris);
+    border-radius: 5px;
+  }
+
+  .cf-ro textarea {
+    resize: vertical;
+  }
+
+  .cf-ro button {
+    width: 97.5%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--verdigris);
+    color: white;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .cop-ck {
+      width: 90%;
+    }
+  }
+</style>
 
 </head>
 
@@ -89,7 +150,14 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
     <div class="container">
 
       <a href="#" class="logo">
-        <img src="./assets/images/logo.svg" width="136" height="46" alt="Doclab home">
+    
+      <div style="display: flex; align-items: center;">
+    <div style="position:flex; ">
+        <img src="./assets/images/logo.svg" width="136" height="46" alt="IITB home">
+    </div>
+    <h2 style="font-weight:bold; color:white; margin-top: 0; margin-bottom: 0; ">IIT Bombay HMS</h2>
+</div>
+
       </a>
 
       <nav class="navbar" data-navbar>
@@ -97,7 +165,7 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
         <div class="navbar-top">
 
           <a href="#" class="logo">
-            <img src="./assets/images/logo.svg" width="136" height="46" alt="Doclab home">
+            <img src="./assets/images/logo.svg" width="136" height="46" alt="IITB home">
           </a>
 
           <button class="nav-close-btn" aria-label="clsoe menu" data-nav-toggler>
@@ -699,7 +767,42 @@ while ($row=mysqli_fetch_array($ret)) {
   </main>
 
 
+  <section id="contact_us" class="contact-us-single" style="color: var(--verdigris); background: linear-gradient(to bottom,#fff, var(--verdigris), var(--midnight-green));
+">
+        <div class="row no-margin">
 
+            <div  class="col-sm-12 cop-ck">
+                <form method="post">
+                <h2 style="font-weight:bold; color: var(--verdigris);">Contact Form</h2>
+                    <div class="row cf-ro">
+                        <div  class="col-sm-3"><label>Enter Name :</label></div>
+                        <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="fullname" class="form-control input-sm" required style="border-color: var(--verdigris);"></div>
+                    </div>
+                    <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Email Address :</label></div>
+                        <div class="col-sm-8"><input type="text" name="emailid" placeholder="Enter Email Address" class="form-control input-sm"  required></div>
+                    </div>
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Mobile Number:</label></div>
+                        <div class="col-sm-8"><input type="text" name="mobileno" placeholder="Enter Mobile Number" class="form-control input-sm" required ></div>
+                    </div>
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label>Enter  Message:</label></div>
+                        <div class="col-sm-8">
+                          <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="description" required style="border-color: var(--verdigris);"></textarea>
+                        </div>
+                    </div>
+                     <div  class="row cf-ro">
+                        <div  class="col-sm-3"><label></label></div>
+                        <div class="col-sm-8">
+                         <button class="btn btn-success btn-sm" type="submit" name="submit"  style="background-color: var(--verdigris);" >Send Message</button>
+                        </div>
+                </div>
+            </form>
+            </div>
+     
+        </div>
+    </section>
 
 
   <!-- 

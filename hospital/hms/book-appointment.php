@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>User | Book Appointment</title>
+	<title>Student | Book Appointment</title>
 
 	<link
 		href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 	<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
-	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+	<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 	<script>
 		function getdoctor(val) {
 			$.ajax({
@@ -89,11 +89,11 @@ if (isset($_POST['submit'])) {
 					<section id="page-title">
 						<div class="row">
 							<div class="col-sm-8">
-								<h1 class="mainTitle">User | Book Appointment</h1>
+								<h1 class="mainTitle">Student | Book Appointment</h1>
 							</div>
 							<ol class="breadcrumb">
 								<li>
-									<span>User</span>
+									<span>Student</span>
 								</li>
 								<li class="active">
 									<span>Book Appointment</span>

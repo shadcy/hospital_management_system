@@ -20,7 +20,7 @@ $msg="Your email updated Successfully";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>User | Edit Profile</title>
+		<title>Student | Edit Profile</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -35,7 +35,7 @@ $msg="Your email updated Successfully";
 		<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 
 
 	</head>
@@ -53,11 +53,11 @@ $msg="Your email updated Successfully";
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">User | Edit Profile</h1>
+									<h1 class="mainTitle">Student | Edit Profile</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>User </span>
+										<span>Student</span>
 									</li>
 									<li class="active">
 										<span>Edit Profile</span>

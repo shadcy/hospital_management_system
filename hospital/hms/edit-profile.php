@@ -39,7 +39,7 @@ $msg="Your Profile updated Successfully";
 		<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 
 
 	</head>
@@ -57,11 +57,11 @@ $msg="Your Profile updated Successfully";
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">User | Edit Profile</h1>
+									<h1 class="mainTitle">Student | Edit Profile</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>User </span>
+										<span>Student  </span>
 									</li>
 									<li class="active">
 										<span>Edit Profile</span>
@@ -133,7 +133,7 @@ while($data=mysqli_fetch_array($sql))
 
 <div class="form-group">
 									<label for="fess">
-																 User Email
+																 Student Email
 															</label>
 					<input type="email" name="uemail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['email']);?>">
 					<a href="change-emaild.php">Update your email id</a>

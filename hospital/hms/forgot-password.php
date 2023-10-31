@@ -38,13 +38,13 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 	</head>
 	<body class="login">
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.php"><h2> HMS | Patient Password Recovery</h2></a>
+				<a href="../index.php"><h2>IITB HMS | Patient Password Recovery</h2></a>
 				</div>
 
 				<div class="box-login">
@@ -87,7 +87,7 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="text-bold text-uppercase">  Hospital Management System</span>
+						&copy; <span class="text-bold text-uppercase">IITB Hospital Management System</span>
 					</div>
 			
 				</div>

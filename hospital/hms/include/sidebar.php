@@ -45,7 +45,7 @@
 									</div>
 								</a>
 							</li>
-<li>
+                          <li>
 								<a href="manage-medhistory.php">
 									<div class="item-content">
 										<div class="item-media">
@@ -57,6 +57,33 @@
 									</div>
 								</a>
 							</li>
+							<li>
+								<a href="ambulance.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-car"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Ambulance </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="mail.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-car"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Mail Prof. </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+
 
 						</ul>
 						<!-- end: CORE FEATURES -->

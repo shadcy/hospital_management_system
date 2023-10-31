@@ -38,7 +38,7 @@ header("location:user-login.php");
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>User-Login</title>
+		<title>Student-Login</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -49,13 +49,13 @@ header("location:user-login.php");
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="assets/css/themes/theme-3.css" id="skin_color" />
 	</head>
 	<body class="login">
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.php"><h2> HMS | Patient Login</h2></a>
+				<a href="../index.php"><h2>IIT Bombay HMS | Patient Login</h2></a>
 				</div>
 
 				<div class="box-login">
@@ -97,7 +97,7 @@ header("location:user-login.php");
 					</form>
 
 					<div class="copyright">
-						</span><span class="text-bold text-uppercase"> Hospital Management System</span>.
+						</span><span class="text-bold text-uppercase">IITB Hospital Management System</span>.
 					</div>
 			
 				</div>

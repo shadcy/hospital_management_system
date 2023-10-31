@@ -208,7 +208,7 @@
 									</li>
 																	<li>
 										<a href="contact.php">
-											<span class="title">Cotnact Us </span>
+											<span class="title">Contact Us </span>
 										</a>
 									</li>
 								</ul>
