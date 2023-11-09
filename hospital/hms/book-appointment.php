@@ -6,7 +6,7 @@ include('include/checklogin.php');
 check_login();
 
 if (isset($_POST['submit'])) {
-	$specilization = $_POST['Doctorspecialization'];
+	#$specilization = $_POST['Doctorspecialization'];
 	$doctorid = $_POST['doctor'];
 	$userid = $_SESSION['id'];
 	$fees = $_POST['fees'];
@@ -14,11 +14,10 @@ if (isset($_POST['submit'])) {
 	$time = $_POST['apptime'];
 	$userstatus = 1;
 	$docstatus = 1;
-	$query = mysqli_query($con, "insert into appointment(doctorSpecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
+	$query = mysqli_query($con, "insert into appointments(doctorId,patientId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
 	if ($query) {
 		echo "<script>alert('Your appointment successfully booked');</script>";
 	}
-
 }
 ?>
 <!DOCTYPE html>
@@ -27,9 +26,7 @@ if (isset($_POST['submit'])) {
 <head>
 	<title>Student | Book Appointment</title>
 
-	<link
-		href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
-		rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -48,8 +45,8 @@ if (isset($_POST['submit'])) {
 			$.ajax({
 				type: "POST",
 				url: "get_doctor.php",
-				data: 'specilizationid=' + val,
-				success: function (data) {
+				data: 'specialization_id=' + val,
+				success: function(data) {
 					$("#doctor").html(data);
 				}
 			});
@@ -62,8 +59,8 @@ if (isset($_POST['submit'])) {
 			$.ajax({
 				type: "POST",
 				url: "get_doctor.php",
-				data: 'doctor=' + val,
-				success: function (data) {
+				data: 'doctor_id=' + val,
+				success: function(data) {
 					$("#fees").html(data);
 				}
 			});
@@ -125,15 +122,13 @@ if (isset($_POST['submit'])) {
 														<label for="DoctorSpecialization">
 															Doctor Specialization
 														</label>
-														<select name="Doctorspecialization" class="form-control"
-															onChange="getdoctor(this.value);" required="required">
+														<select name="Doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
 															<option value="">Select Specialization</option>
-															<?php $ret = mysqli_query($con, "select * from doctorspecilization");
+															<?php $ret = mysqli_query($con, "select * from specializations"); #Done
 															while ($row = mysqli_fetch_array($ret)) {
-																?>
-																<option
-																	value="<?php echo htmlentities($row['specilization']); ?>">
-																	<?php echo htmlentities($row['specilization']); ?>
+															?>
+																<option value="<?php echo htmlentities($row['id']); ?>">
+																	<?php echo htmlentities($row['name']); ?>
 																</option>
 															<?php } ?>
 
@@ -147,8 +142,7 @@ if (isset($_POST['submit'])) {
 														<label for="doctor">
 															Doctors
 														</label>
-														<select name="doctor" class="form-control" id="doctor"
-															onChange="getfee(this.value);" required="required">
+														<select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);" required="required">
 															<option value="">Select Doctor</option>
 														</select>
 													</div>
@@ -170,8 +164,7 @@ if (isset($_POST['submit'])) {
 														<label for="AppointmentDate">
 															Date
 														</label>
-														<input class="form-control datepicker" name="appdate"
-															required="required" data-date-format="yyyy-mm-dd">
+														<input class="form-control datepicker" name="appdate" required="required" data-date-format="yyyy-mm-dd">
 
 													</div>
 
@@ -181,8 +174,7 @@ if (isset($_POST['submit'])) {
 															Time
 
 														</label>
-														<input class="form-control" name="apptime" id="timepicker1"
-															required="required">eg : 10:00 PM
+														<input class="form-control" name="apptime" id="timepicker1" required="required">eg : 10:00 PM
 													</div>
 
 													<button type="submit" name="submit" class="btn btn-o btn-primary">
@@ -243,7 +235,7 @@ if (isset($_POST['submit'])) {
 	<!-- start: JavaScript Event Handlers for this page -->
 	<script src="assets/js/form-elements.js"></script>
 	<script>
-		jQuery(document).ready(function () {
+		jQuery(document).ready(function() {
 			Main.init();
 			FormElements.init();
 		});

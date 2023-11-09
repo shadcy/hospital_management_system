@@ -8,19 +8,17 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
 
  Made with ♥ by SHREYASH 
   -->
-  <?php
-  include_once('hms/include/config.php');
-  if(isset($_POST['submit']))
-  {
-  $name=$_POST['fullname'];
-  $email=$_POST['emailid'];
-  $mobileno=$_POST['mobileno'];
-  $dscrption=$_POST['description'];
-  $query=mysqli_query($con,"insert into tblcontactus(fullname,email,contactno,message) value('$name','$email','$mobileno','$dscrption')");
+<?php
+include_once('hms/include/config.php');
+if (isset($_POST['submit'])) {
+  $name = $_POST['fullname'];
+  $email = $_POST['emailid'];
+  $mobileno = $_POST['mobileno'];
+  $description = $_POST['description'];
+  $query = mysqli_execute_query($con, "insert into contact_us(fullName,email,contactNumber,message) value(?,?,?,?)", [$name, $email, $mobileno, $description]); #Done2
   echo "<script>alert('Your information succesfully submitted');</script>";
   echo "<script>window.location.href = 'index.php'</script>";
-  
-  } ?>
+} ?>
 
 
 
@@ -50,8 +48,7 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
   -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- 
     - custom css link
@@ -65,66 +62,69 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
   <link rel="preload" as="image" href="./assets/images/hero-bg.png">
 
   <style>
-  :root {
-    --verdigris: #43BFC7; /* Define the --verdigris color */
-  }
-
-  .contact-us-single {
-    color: var(--verdigris); /* Set the text color to verdigris */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  
-  }
-
-  .cop-ck {
-    width: 100%; /* Adjust the width of the form as needed */
-    max-width: 1000px;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 800px;
-    background-color:#fff;
-  }
-
-  .cf-ro {
-    margin-bottom: 15px;
-  }
-
-  .cf-ro label {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .cf-ro input[type="text"],
-  .cf-ro textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid var(--verdigris);
-    border-radius: 5px;
-  }
-
-  .cf-ro textarea {
-    resize: vertical;
-  }
-
-  .cf-ro button {
-    width: 97.5%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--verdigris);
-    color: white;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    .cop-ck {
-      width: 90%;
+    :root {
+      --verdigris: #43BFC7;
+      /* Define the --verdigris color */
     }
-  }
-</style>
+
+    .contact-us-single {
+      color: var(--verdigris);
+      /* Set the text color to verdigris */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+    }
+
+    .cop-ck {
+      width: 100%;
+      /* Adjust the width of the form as needed */
+      max-width: 1000px;
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 800px;
+      background-color: #fff;
+    }
+
+    .cf-ro {
+      margin-bottom: 15px;
+    }
+
+    .cf-ro label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .cf-ro input[type="text"],
+    .cf-ro textarea {
+      width: calc(100% - 20px);
+      padding: 10px;
+      border: 1px solid var(--verdigris);
+      border-radius: 5px;
+    }
+
+    .cf-ro textarea {
+      resize: vertical;
+    }
+
+    .cf-ro button {
+      width: 97.5%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--verdigris);
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .cop-ck {
+        width: 90%;
+      }
+    }
+  </style>
 
 </head>
 
@@ -150,13 +150,13 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
     <div class="container">
 
       <a href="#" class="logo">
-    
-      <div style="display: flex; align-items: center;">
-    <div style="position:flex; ">
-        <img src="./assets/images/logo.svg" width="136" height="46" alt="IITB home">
-    </div>
-    <h2 style="font-weight:bold; color:white; margin-top: 0; margin-bottom: 0; ">IIT Bombay HMS</h2>
-</div>
+
+        <div style="display: flex; align-items: center;">
+          <div style="position:flex; ">
+            <img src="./assets/images/logo.svg" width="136" height="46" alt="IITB home">
+          </div>
+          <h2 style="font-weight:bold; color:white; margin-top: 0; margin-bottom: 0; ">IIT Bombay HMS</h2>
+        </div>
 
       </a>
 
@@ -283,11 +283,11 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
                 </div>
 
                 <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568">
-                <button class="btn has-before">
-                  <ion-icon name="search"></ion-icon>
+                  <button class="btn has-before">
+                    <ion-icon name="search"></ion-icon>
 
-                  <span class="span title-md">Find Now</span>
-                </button>
+                    <span class="span title-md">Find Now</span>
+                  </button>
                 </a>
 
               </div>
@@ -297,8 +297,7 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
           </div>
 
           <figure class="hero-banner" data-reveal="right">
-            <img src="./assets/images/hero-banner.png" width="590" height="517" loading="eager" alt="hero banner"
-              class="w-100">
+            <img src="./assets/images/hero-banner.png" width="590" height="517" loading="eager" alt="hero banner" class="w-100">
           </figure>
 
         </div>
@@ -329,16 +328,16 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
                 </h3>
 
                 <p class="card-text">
-                  NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY 
+                  NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
 
                   REGISTER/SIGN UP TO LOGIN
                 </p>
 
                 <a href="./hms/user-login.php">
 
-                <button class="btn-circle" aria-label="read more about psychiatry">
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+                  <button class="btn-circle" aria-label="read more about psychiatry">
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </button>
 
                 </a>
 
@@ -357,17 +356,17 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
                 </h3>
 
                 <p class="card-text">
-                NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY 
+                  NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
 
-REGISTER/SIGN UP TO LOGIN   
+                  REGISTER/SIGN UP TO LOGIN
                 </p>
 
                 <a href="./hms/doctor">
-                <button class="btn-circle" aria-label="read more about Gynecology">
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+                  <button class="btn-circle" aria-label="read more about Gynecology">
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </button>
                 </a>
-               
+
 
               </div>
             </li>
@@ -384,15 +383,15 @@ REGISTER/SIGN UP TO LOGIN
                 </h3>
 
                 <p class="card-text">
-                NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY 
+                  NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
 
-REGISTER/SIGN UP TO LOGIN
+                  REGISTER/SIGN UP TO LOGIN
                 </p>
 
                 <a href="./hms/admin">
-                <button class="btn-circle" aria-label="read more about Pulmonology">
-                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </button>
+                  <button class="btn-circle" aria-label="read more about Pulmonology">
+                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                  </button>
                 </a>
 
               </div>
@@ -410,9 +409,9 @@ REGISTER/SIGN UP TO LOGIN
                 </h3>
 
                 <p class="card-text">
-                NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY 
+                  NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
 
-REGISTER/SIGN UP TO LOGIN
+                  REGISTER/SIGN UP TO LOGIN
                 </p>
 
                 <button class="btn-circle" aria-label="read more about Orthopedics">
@@ -467,13 +466,12 @@ REGISTER/SIGN UP TO LOGIN
             <p class="tab-text" data-reveal="left">
             <div>
               <?php
-$ret=mysqli_query($con,"select * from tblpage where PageType='aboutus' ");
-while ($row=mysqli_fetch_array($ret)) {
-?>
-
-              <p>
-                <?php  echo $row['PageDescription'];?>.
-              </p>
+              $ret = mysqli_query($con, "select * from pages where type='about'"); #Done2
+              while ($row = mysqli_fetch_array($ret)) {
+              ?>
+                <p>
+                  <?php echo $row['description']; ?>.
+                </p>
               <?php } ?>
             </div>
             </p>
@@ -513,8 +511,7 @@ while ($row=mysqli_fetch_array($ret)) {
           </div>
 
           <figure class="about-banner" data-reveal="right">
-            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about banner"
-              class="w-100">
+            <img src="./assets/images/about-banner.png" width="554" height="678" loading="lazy" alt="about banner" class="w-100">
           </figure>
 
         </div>
@@ -769,40 +766,40 @@ while ($row=mysqli_fetch_array($ret)) {
 
   <section id="contact_us" class="contact-us-single" style="color: var(--verdigris); background: linear-gradient(to bottom,#fff, var(--verdigris), var(--midnight-green));
 ">
-        <div class="row no-margin">
+    <div class="row no-margin">
 
-            <div  class="col-sm-12 cop-ck">
-                <form method="post">
-                <h2 style="font-weight:bold; color: var(--verdigris);">Contact Form</h2>
-                    <div class="row cf-ro">
-                        <div  class="col-sm-3"><label>Enter Name :</label></div>
-                        <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="fullname" class="form-control input-sm" required style="border-color: var(--verdigris);"></div>
-                    </div>
-                    <div  class="row cf-ro">
-                        <div  class="col-sm-3"><label>Email Address :</label></div>
-                        <div class="col-sm-8"><input type="text" name="emailid" placeholder="Enter Email Address" class="form-control input-sm"  required></div>
-                    </div>
-                     <div  class="row cf-ro">
-                        <div  class="col-sm-3"><label>Mobile Number:</label></div>
-                        <div class="col-sm-8"><input type="text" name="mobileno" placeholder="Enter Mobile Number" class="form-control input-sm" required ></div>
-                    </div>
-                     <div  class="row cf-ro">
-                        <div  class="col-sm-3"><label>Enter  Message:</label></div>
-                        <div class="col-sm-8">
-                          <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="description" required style="border-color: var(--verdigris);"></textarea>
-                        </div>
-                    </div>
-                     <div  class="row cf-ro">
-                        <div  class="col-sm-3"><label></label></div>
-                        <div class="col-sm-8">
-                         <button class="btn btn-success btn-sm" type="submit" name="submit"  style="background-color: var(--verdigris);" >Send Message</button>
-                        </div>
-                </div>
-            </form>
+      <div class="col-sm-12 cop-ck">
+        <form method="post">
+          <h2 style="font-weight:bold; color: var(--verdigris);">Contact Form</h2>
+          <div class="row cf-ro">
+            <div class="col-sm-3"><label>Enter Name :</label></div>
+            <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="fullname" class="form-control input-sm" required style="border-color: var(--verdigris);"></div>
+          </div>
+          <div class="row cf-ro">
+            <div class="col-sm-3"><label>Email Address :</label></div>
+            <div class="col-sm-8"><input type="text" name="emailid" placeholder="Enter Email Address" class="form-control input-sm" required></div>
+          </div>
+          <div class="row cf-ro">
+            <div class="col-sm-3"><label>Mobile Number:</label></div>
+            <div class="col-sm-8"><input type="text" name="mobileno" placeholder="Enter Mobile Number" class="form-control input-sm" required></div>
+          </div>
+          <div class="row cf-ro">
+            <div class="col-sm-3"><label>Enter Message:</label></div>
+            <div class="col-sm-8">
+              <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="description" required style="border-color: var(--verdigris);"></textarea>
             </div>
-     
-        </div>
-    </section>
+          </div>
+          <div class="row cf-ro">
+            <div class="col-sm-3"><label></label></div>
+            <div class="col-sm-8">
+              <button class="btn btn-success btn-sm" type="submit" name="submit" style="background-color: var(--verdigris);">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
 
 
   <!-- 
@@ -971,22 +968,20 @@ while ($row=mysqli_fetch_array($ret)) {
         <address class="md-margin-bottom-40">
 
           <?php
-$ret=mysqli_query($con,"select * from tblpage where PageType='contactus' ");
-while ($row=mysqli_fetch_array($ret)) {
-?>
-
-
-          <?php  echo $row['PageDescription'];?> <br>
-          Phone:
-          <?php  echo $row['MobileNumber'];?> <br>
-          Email: <a href="mailto:<?php  echo $row['Email'];?>" class="">
-            <?php  echo $row['Email'];?>
-          </a><br>
-          Timing:
-          <?php  echo $row['OpenningTime'];?>
+          $ret = mysqli_query($con, "select * from pages where type='contact' "); #Done
+          while ($row = mysqli_fetch_array($ret)) {
+          ?>
+            <?php echo $row['description']; ?> <br>
+            Phone:
+            <?php echo $row['contactNumber']; ?> <br>
+            Email: <a href="mailto:<?php echo $row['email']; ?>" class="">
+              <?php echo $row['email']; ?>
+            </a><br>
+            Timing:
+            <?php echo $row['openingTime']; ?>
         </address>
 
-        <?php } ?>
+      <?php } ?>
 
 
 
