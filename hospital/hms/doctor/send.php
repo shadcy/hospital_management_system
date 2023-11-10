@@ -32,20 +32,30 @@ if(isset($_POST["send"])){
 
      // Check if a file is uploaded
     
-     if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
+    //  if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
+    //     $file_tmp_name = $_FILES['file']['tmp_name'];
+    //     $file_name = $_FILES['file']['name'];
+    //     $mail->addAttachment($file_tmp_name, $file_name);
+    // }
+
+    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
         $file_tmp_name = $_FILES['file']['tmp_name'];
         $file_name = $_FILES['file']['name'];
         $mail->addAttachment($file_tmp_name, $file_name);
     }
 
+  
     $mail->send();
 
     echo
     "
     <script>
     alert('Sent Successfully');
-    document.location.href = 'mail.php';
+    document.location.href = 'ux.php';
     </script> ";
+
+
+
 }
 
 

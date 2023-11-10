@@ -29,6 +29,7 @@
 						
 						
 							<li class="dropdown current-user" style="position:flex; ">
+
 								<a href class="dropdown-toggle" data-toggle="dropdown">
 									<img src="assets/images/images.jpg" > <span class="username">
 
@@ -41,6 +42,10 @@ while($row=mysqli_fetch_array($query))
 }
 									?> <i class="ti-angle-down"></i></i></span>
 								</a>
+
+                          
+
+
 								<ul class="dropdown-menu dropdown-dark">
 									<li>
 										<a href="edit-profile.php">

@@ -172,6 +172,22 @@
 							</li>
 
 
+							<li>
+								<a href="enc.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-lock"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Encryption
+												 </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+
+
 
 
 							
