@@ -6,7 +6,7 @@ include('include/checklogin.php');
 check_login();
 if (isset($_POST['submit'])) {
 	$email = $_POST['email'];
-	$sql = mysqli_query($con, "Update users set email='{$email}' where id='{$_SESSION['id']}'"); #Done
+	$sql = mysqli_execute_query($con, "Update users set email=? where id=?", [$email, $_SESSION['id']]); #Done
 	if ($sql) {
 		$msg = "Your email was updated successfully";
 	}

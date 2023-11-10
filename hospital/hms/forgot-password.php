@@ -6,7 +6,7 @@ include("include/config.php");
 if (isset($_POST['submit'])) {
 	$name = $_POST['fullname'];
 	$email = $_POST['email'];
-	$query = mysqli_query($con, "select id from users where fullName='$name' and email='$email'"); #Done
+	$query = mysqli_execute_query($con, "select id from users where fullName=? and email=?", [$name, $email]); #Done2
 	$row = mysqli_num_rows($query);
 	if ($row > 0) {
 
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-	<title>Pateint Password Recovery</title>
+	<title>Patient Password Recovery</title>
 
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">

@@ -466,7 +466,7 @@ if (isset($_POST['submit'])) {
             <p class="tab-text" data-reveal="left">
             <div>
               <?php
-              $ret = mysqli_query($con, "select * from pages where type='about'"); #Done2
+              $ret = mysqli_query($con, "select * from pages where type='about';"); #Done2
               while ($row = mysqli_fetch_array($ret)) {
               ?>
                 <p>
@@ -968,7 +968,7 @@ if (isset($_POST['submit'])) {
         <address class="md-margin-bottom-40">
 
           <?php
-          $ret = mysqli_query($con, "select * from pages where type='contact' "); #Done
+          $ret = mysqli_query($con, "select * from pages where type='contact';"); #Done
           while ($row = mysqli_fetch_array($ret)) {
           ?>
             <?php echo $row['description']; ?> <br>

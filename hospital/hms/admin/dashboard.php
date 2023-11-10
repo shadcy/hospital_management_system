@@ -56,10 +56,10 @@ if (strlen($_SESSION['id'] == 0)) {
 
 											<p class="links cl-effect-1">
 												<a href="manage-users.php" style="font-weight:bold; color: #1AA7EC;">
-													<?php $result = mysqli_query($con, "SELECT * FROM users ");
-													$num_rows = mysqli_num_rows($result); {
+													<?php $result = mysqli_query($con, "SELECT COUNT(*) as userCount FROM users;");
+													$row = mysqli_fetch_array($result); {
 													?>
-														Total Users :<?php echo htmlentities($num_rows);
+														Total Users :<?php echo htmlentities($row['userCount']);
 																	} ?>
 												</a>
 											</p>
@@ -74,10 +74,10 @@ if (strlen($_SESSION['id'] == 0)) {
 
 											<p class="cl-effect-1">
 												<a href="manage-doctors.php">
-													<?php $result1 = mysqli_query($con, "SELECT * FROM doctors ");
-													$num_rows1 = mysqli_num_rows($result1); {
+													<?php $result = mysqli_query($con, "SELECT COUNT(*) as doctorCount FROM doctors;");
+													$row = mysqli_fetch_array($result); {
 													?>
-														Total Doctors :<?php echo htmlentities($num_rows1);
+														Total Doctors :<?php echo htmlentities($row['doctorCount']);
 																	} ?>
 												</a>
 
@@ -94,10 +94,10 @@ if (strlen($_SESSION['id'] == 0)) {
 											<p class="links cl-effect-1">
 												<a href="book-appointment.php">
 													<a href="appointment-history.php">
-														<?php $sql = mysqli_query($con, "SELECT * FROM appointment");
-														$num_rows2 = mysqli_num_rows($sql); {
+														<?php $sql = mysqli_query($con, "SELECT COUNT(*) as appointmentCount FROM appointments;");
+														$row = mysqli_fetch_array($result); {
 														?>
-															Total Appointments :<?php echo htmlentities($num_rows2);
+															Total Appointments :<?php echo htmlentities($row['appointmentCount']);
 																			} ?>
 													</a>
 												</a>
@@ -114,7 +114,7 @@ if (strlen($_SESSION['id'] == 0)) {
 
 											<p class="links cl-effect-1">
 												<a href="manage-patient.php">
-													<?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
+													<?php $result = mysqli_query($con, "SELECT * FROM ");
 													$num_rows = mysqli_num_rows($result); {
 													?>
 														Total Patients :<?php echo htmlentities($num_rows);

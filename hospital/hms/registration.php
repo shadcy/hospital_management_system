@@ -3,11 +3,10 @@ include_once('include/config.php');
 if (isset($_POST['submit'])) {
 	$fname = $_POST['full_name'];
 	$address = $_POST['address'];
-	#$city = $_POST['city'];
 	$gender = $_POST['gender'];
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
-	$query = mysqli_query($con, "insert into users(fullName,address,gender,email,password) values('$fname','$address','$gender','$email','$password')"); #Done
+	$query = mysqli_execute_query($con, "insert into users(fullName,address,gender,email,password) values(?,?,?,?,?)", [$fname, $address, $gender, $email, $password]); #Done
 	if ($query) {
 		echo "<script>alert('Successfully registered. You can login now');</script>";
 		//header('location:user-login.php');

@@ -60,33 +60,31 @@ check_login();
 									<thead>
 										<tr>
 											<th class="center">#</th>
-											<th>Patient Name</th>
-											<th>Patient Contact Number</th>
-											<th>Patient Gender </th>
-											<th>Creation Date </th>
-											<th>Updation Date </th>
+											<th>Creation Date</th>
+											<th>Blood Pressure</th>
+											<th>Blood Sugar</th>
+											<th>Weight</th>
+											<th>Temperature</th>
+											<th>Medical Prescription</th>
 											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php
-										$uid = $_SESSION['id'];
-										$sql = mysqli_query($con, "select tblpatient.* from tblpatient join users on users.email=tblpatient.PatientEmail where users.id='$uid'");
+										$sql = mysqli_execute_query($con, "select * from medical_history where patientId.id=?", [$_SESSION['id']]);
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($sql)) {
 										?>
 											<tr>
 												<td class="center"><?php echo $cnt; ?>.</td>
-												<td class="hidden-xs"><?php echo $row['PatientName']; ?></td>
-												<td><?php echo $row['PatientContno']; ?></td>
-												<td><?php echo $row['PatientGender']; ?></td>
-												<td><?php echo $row['CreationDate']; ?></td>
-												<td><?php echo $row['UpdationDate']; ?>
-												</td>
+												<td><?php echo $row['creationDate']; ?></td>
+												<td><?php echo $row['bloodPressure']; ?></td>
+												<td><?php echo $row['bloodSugar']; ?></td>
+												<td><?php echo $row['weight']; ?></td>
+												<td><?php echo $row['temperature']; ?></td>
+												<td><?php echo $row['medicalPrescription']; ?></td>
 												<td>
-
-													<a href="view-medhistory.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
-
+													<a href="view-medhistory.php?viewid=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a>
 												</td>
 											</tr>
 										<?php

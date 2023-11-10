@@ -120,7 +120,7 @@
     } else {
         $doctorName = "";
         if (isset($_SESSION['id'])) {
-            $query = mysqli_query($con, "select fullName from users where id='" . $_SESSION['id'] . "'"); #Done
+            $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]); #Done
             while ($row = mysqli_fetch_array($query)) {
                 $doctorName = $row['fullName']; // storing the value in the variable
             }

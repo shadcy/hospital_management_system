@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 	#$city = $_POST['city'];
 	$gender = $_POST['gender'];
 
-	$sql = mysqli_query($con, "Update users set fullName='$fname',address='$address',gender='$gender' where id='" . $_SESSION['id'] . "'"); #Done,c: removed city
+	$sql = mysqli_execute_query($con, "Update users set fullName=?,address=?,gender=? where id=?", [$fname, $address, $gender, $_SESSION['id']]); #Done,c: removed city
 	if ($sql) {
 		$msg = "Your Profile updated Successfully";
 	}
@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
 											</div>
 											<div class="panel-body">
 												<?php
-												$sql = mysqli_query($con, "select * from users where id='" . $_SESSION['id'] . "'");
+												$sql = mysqli_execute_query($con, "select * from users where id=?", [$_SESSION['id']]);
 												while ($data = mysqli_fetch_array($sql)) {
 												?>
 													<h4><?php echo htmlentities($data['fullName']); ?>'s Profile</h4>

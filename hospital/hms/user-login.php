@@ -5,7 +5,7 @@ include("include/config.php");
 if (isset($_POST['submit'])) {
 	$puname = $_POST['username'];
 	$ppwd = md5($_POST['password']);
-	$ret = mysqli_query($con, "SELECT * FROM users WHERE email='$puname' and password='$ppwd'");
+	$ret = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=?", [$puname, $ppwd]);
 	$num = mysqli_fetch_array($ret);
 	if ($num > 0) {
 		$_SESSION['login'] = $_POST['username'];

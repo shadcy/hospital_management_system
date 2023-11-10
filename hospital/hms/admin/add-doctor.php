@@ -14,10 +14,17 @@ if (strlen($_SESSION['id'] == 0)) {
 		$doccontactno = $_POST['doccontact'];
 		$docemail = $_POST['docemail'];
 		$password = md5($_POST['npass']);
-		$sql = mysqli_query($con, "insert into doctors(specilization,doctorName,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
+		$sql = mysqli_execute_query($con, "insert into users (email,password,fullName,contactNumber,address) values(?,?,?,?,?)", [$docemail, $password, $docname, $doccontactno, $docaddress]);
+
 		if ($sql) {
-			echo "<script>alert('Doctor info added Successfully');</script>";
-			echo "<script>window.location.href ='manage-doctors.php'</script>";
+			$sql = mysqli_execute_query($con, "insert into doctors (specializationId,fees,contactNumber) values(?,?,?)", [$docspecialization, $docfees, $doccontactno]);
+			if ($sql) {
+				echo "<script>alert('Doctor info added successfully');</script>";
+				echo "<script>window.location.href ='manage-doctors.php'</script>";
+			}
+		} else {
+			echo "<script>alert('There was an issue while creating the user for the doctor.');</script>";
+			echo "<script>window.location.href ='add-doctor.php'</script>";
 		}
 	}
 ?>
@@ -102,11 +109,11 @@ if (strlen($_SESSION['id'] == 0)) {
 															</label>
 															<select name="Doctorspecialization" class="form-control" required="true">
 																<option value="">Select Specialization</option>
-																<?php $ret = mysqli_query($con, "select * from doctorspecilization");
+																<?php $ret = mysqli_query($con, "select * from specializations;");
 																while ($row = mysqli_fetch_array($ret)) {
 																?>
-																	<option value="<?php echo htmlentities($row['specilization']); ?>">
-																		<?php echo htmlentities($row['specilization']); ?>
+																	<option value="<?php echo htmlentities($row['id']); ?>">
+																		<?php echo htmlentities($row['name']); ?>
 																	</option>
 																<?php } ?>
 

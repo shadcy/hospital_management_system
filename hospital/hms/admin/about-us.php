@@ -11,7 +11,7 @@ if (strlen($_SESSION['id'] == 0)) {
 
 		$pagetitle = $_POST['pagetitle'];
 		$pagedes = $con->real_escape_string($_POST['pagedes']);
-		$query = mysqli_query($con, "update tblpage set PageTitle='$pagetitle',PageDescription='$pagedes' where  PageType='aboutus'");
+		$query = mysqli_execute_query($con, "update pages set title=?,description=? where type='about'", [$pagetitle, $pagedes]);
 		if ($query) {
 
 			echo '<script>alert("About Us has been updated.")</script>';
@@ -73,18 +73,18 @@ if (strlen($_SESSION['id'] == 0)) {
 									<form class="forms-sample" method="post">
 										<?php
 
-										$ret = mysqli_query($con, "select * from  tblpage where PageType='aboutus'");
+										$ret = mysqli_query($con, "select * from pages where pages.type='about';");
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($ret)) {
 
 										?>
 											<div class="form-group">
 												<label for="exampleInputUsername1">Page Title</label>
-												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['PageTitle']; ?>">
+												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
 											</div>
 											<div class="form-group">
 												<label for="exampleInputEmail1">Page Description</label>
-												<textarea class="form-control" name="pagedes" id="pagedes" rows="12"><?php echo $row['PageDescription']; ?></textarea>
+												<textarea class="form-control" name="pagedes" id="pagedes" rows="12"><?php echo $row['description']; ?></textarea>
 											</div>
 
 										<?php } ?>

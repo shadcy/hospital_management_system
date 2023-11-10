@@ -7,10 +7,10 @@ check_login();
 date_default_timezone_set('Asia/Kolkata'); // change according timezone
 $currentTime = date('d-m-Y h:i:s A', time());
 if (isset($_POST['submit'])) {
-	$sql = mysqli_query($con, "SELECT id FROM users where id='{$_SESSION['id']}' AND password='" . md5($_POST['cpass']) . "'"); #Done
+	$sql = mysqli_execute_query($con, "SELECT id FROM users where id=? AND password=?", [$_SESSION['id'], md5($_POST['cpass'])]); #Done2
 	$num = mysqli_num_rows($sql);
 	if ($num > 0) {
-		$ret = mysqli_query($con, "update users set password='" . md5($_POST['npass']) . "', updationDate='$currentTime' where id='" . $_SESSION['id'] . "'");
+		$ret = mysqli_execute_query($con, "update users set password=? where id=?", [md5($_POST['npass']), $_SESSION['id']]);
 		$_SESSION['msg1'] = "Password changed successfully!!";
 	} else {
 		$_SESSION['msg1'] = "Old password does not match!";
