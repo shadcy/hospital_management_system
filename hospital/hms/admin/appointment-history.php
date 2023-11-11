@@ -69,7 +69,7 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select doctors.doctorName as docname,users.fullName as pname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId join users on users.id=appointment.userId ");
+											$sql = mysqli_query($con, "select doctor_users.name as docname, users.fullName as pname, appointments.*  from appointments join users on users.id=appointment.patientId join users as doctor_users on doctor_users.id=appointment.doctorId;");#Some work needed here
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

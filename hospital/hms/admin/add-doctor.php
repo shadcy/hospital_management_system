@@ -17,7 +17,8 @@ if (strlen($_SESSION['id'] == 0)) {
 		$sql = mysqli_execute_query($con, "insert into users (email,password,fullName,contactNumber,address) values(?,?,?,?,?)", [$docemail, $password, $docname, $doccontactno, $docaddress]);
 
 		if ($sql) {
-			$sql = mysqli_execute_query($con, "insert into doctors (specializationId,fees,contactNumber) values(?,?,?)", [$docspecialization, $docfees, $doccontactno]);
+			$row = mysqli_fetch_array($sql);
+			$sql = mysqli_execute_query($con, "insert into doctors (id,specializationId,fees,contactNumber) values(?,?,?,?)", [$row['id'],$docspecialization, $docfees, $doccontactno]);
 			if ($sql) {
 				echo "<script>alert('Doctor info added successfully');</script>";
 				echo "<script>window.location.href ='manage-doctors.php'</script>";

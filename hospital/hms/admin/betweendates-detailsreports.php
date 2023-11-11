@@ -66,7 +66,7 @@ if (strlen($_SESSION['id'] == 0)) {
 										<tbody>
 											<?php
 
-											$sql = mysqli_query($con, "select * from tblpatient where date(CreationDate) between '$fdate' and '$tdate'");
+											$sql = mysqli_query($con, "select * from tblpatient where date(CreationDate) between '$fdate' and '$tdate'");#Note: Need to rework function
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

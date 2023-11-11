@@ -3,7 +3,7 @@ require_once("include/config.php");
 if(!empty($_POST["emailid"])) {
 	$email= $_POST["emailid"];
 	
-		$result =mysqli_query($con,"SELECT docEmail FROM doctors WHERE docEmail='$email'");
+		$result =mysqli_execute_query($con,"SELECT email FROM users WHERE email=?",[$email]);
 		$count=mysqli_num_rows($result);
 if($count>0)
 {

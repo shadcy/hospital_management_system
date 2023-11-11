@@ -13,7 +13,7 @@ if (strlen($_SESSION['id'] == 0)) {
 		$pagedes = $_POST['pagedes'];
 		$email = $_POST['email'];
 		$mobnum = $_POST['mobnum'];
-		$query = mysqli_query($con, "update tblpage set PageTitle='$pagetitle',PageDescription='$pagedes',Email='$email',MobileNumber='$mobnum' where  PageType='contactus'");
+		$query = mysqli_execute_query($con, "update pages set title=?,description=?,email=?, contactNumber=? where type='contact'",[$pagetitle,$pagedes,$email,$mobnum]);
 		if ($query) {
 
 			echo '<script>alert("Contact Us has been updated.")</script>';
@@ -51,14 +51,14 @@ if (strlen($_SESSION['id'] == 0)) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Update the Cotnact us Content</h1>
+									<h1 class="mainTitle">Admin | Update the Contact us Content</h1>
 								</div>
 								<ol class="breadcrumb">
 									<li>
 										<span>Admin </span>
 									</li>
 									<li class="active">
-										<span>Update the Cotnact us Content</span>
+										<span>Update the Contact us Content</span>
 									</li>
 								</ol>
 							</div>
@@ -75,26 +75,26 @@ if (strlen($_SESSION['id'] == 0)) {
 									<form class="forms-sample" method="post">
 										<?php
 
-										$ret = mysqli_query($con, "select * from  tblpage where PageType='contactus'");
+										$ret = mysqli_query($con, "select * from pages where type='contact';");
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($ret)) {
 
 										?>
 											<div class="form-group">
 												<label for="exampleInputUsername1">Page Title</label>
-												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['PageTitle']; ?>">
+												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
 											</div>
 											<div class="form-group">
 												<label for="exampleInputEmail1">Page Description</label>
-												<textarea class="form-control" name="pagedes" id="pagedes" rows="5"><?php echo $row['PageDescription']; ?></textarea>
+												<textarea class="form-control" name="pagedes" id="pagedes" rows="5"><?php echo $row['description']; ?></textarea>
 											</div>
 											<div class="form-group">
 												<label for="exampleInputUsername1">Email Addresss</label>
-												<input type="email" class="form-control" name="email" value="<?php echo $row['Email']; ?>" required='true'>
+												<input type="email" class="form-control" name="email" value="<?php echo $row['email']; ?>" required='true'>
 											</div>
 											<div class="form-group">
 												<label for="exampleInputUsername1">Mobile Number</label>
-												<input type="text" class="form-control" name="mobnum" value="<?php echo $row['MobileNumber']; ?>" required='true' maxlength="10" pattern='[0-9]+'>
+												<input type="text" class="form-control" name="mobnum" value="<?php echo $row['contactNumber']; ?>" required='true' maxlength="10" pattern='[0-9]+'>
 											</div>
 
 										<?php } ?>
