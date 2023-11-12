@@ -69,7 +69,7 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select doctor_users.name as docname, users.fullName as pname, appointments.*  from appointments join users on users.id=appointment.patientId join users as doctor_users on doctor_users.id=appointment.doctorId;");#Some work needed here
+											$sql = mysqli_query($con, "select doctor_users.name as docname, users.fullName as pname, specialization.name as doctorSpecialization, appointments.*, doctors.fees as consultancyFees from appointments join users on users.id=appointment.patientId join doctors on doctors.id=appointment.doctorId join specializations on specialization.id=doctors.specializationId join users as doctor_users on doctor_users.id=doctors.id;"); #Done2
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
@@ -80,8 +80,8 @@ if (strlen($_SESSION['id'] == 0)) {
 													<td class="hidden-xs"><?php echo $row['pname']; ?></td>
 													<td><?php echo $row['doctorSpecialization']; ?></td>
 													<td><?php echo $row['consultancyFees']; ?></td>
-													<td><?php echo $row['appointmentDate']; ?> / <?php echo
-																									$row['appointmentTime']; ?>
+													<td><?php echo $row['date']; ?> / <?php echo
+																						$row['time']; ?>
 													</td>
 													<td><?php echo $row['postingDate']; ?></td>
 													<td>

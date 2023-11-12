@@ -69,16 +69,16 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from doctorslog ");
+											$sql = mysqli_query($con, "select * from logs where isDoctor=1;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
 
 												<tr>
 													<td class="center"><?php echo $cnt; ?>.</td>
-													<td class="hidden-xs"><?php echo $row['uid']; ?></td>
+													<td class="hidden-xs"><?php echo $row['userId']; ?></td>
 													<td class="hidden-xs"><?php echo $row['username']; ?></td>
-													<td><?php echo $row['userip']; ?></td>
+													<td><?php echo $row['ip']; ?></td>
 													<td><?php echo $row['loginTime']; ?></td>
 													<td><?php echo $row['logout']; ?>
 													</td>

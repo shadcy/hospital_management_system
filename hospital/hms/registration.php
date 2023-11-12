@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
 	<script type="text/javascript">
 		function valid() {
 			if (document.registration.password.value != document.registration.password_again.value) {
-				alert("Password and Confirm Password Field do not match  !!");
+				alert("Password and Confirm Password Field do not match!!");
 				document.registration.password_again.focus();
 				return false;
 			}
