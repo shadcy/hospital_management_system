@@ -1,19 +1,19 @@
 'use strict';
-var Main = function() {
+var Main = function () {
 	var $html = $('html'), $win = $(window), wrap = $('.app-aside'), MEDIAQUERY = {}, app = $('#app');
 
 	MEDIAQUERY = {
-		desktopXL : 1200,
-		desktop : 992,
-		tablet : 768,
-		mobile : 480
+		desktopXL: 1200,
+		desktop: 992,
+		tablet: 768,
+		mobile: 480
 	};
 	$(".current-year").text((new Date()).getFullYear());
 	//sidebar
-	var sidebarHandler = function() {
+	var sidebarHandler = function () {
 		var eventObject = isTouch() ? 'click' : 'mouseenter', elem = $('#sidebar'), ul = "", menuTitle, _this, sidebarMobileToggler = $('.sidebar-mobile-toggler'), $winOffsetTop = 0, $winScrollTop = 0, $appWidth;
 
-		elem.on('click', 'a', function(e) {
+		elem.on('click', 'a', function (e) {
 
 			_this = $(this);
 			if (isSidebarClosed() && !isSmallDevice() && !_this.closest("ul").hasClass("sub-menu"))
@@ -22,7 +22,7 @@ var Main = function() {
 			_this.closest("ul").find(".open").not(".active").children("ul").not(_this.next()).slideUp(200).parent('.open').removeClass("open");
 			if (_this.next().is('ul') && _this.parent().toggleClass('open')) {
 
-				_this.next().slideToggle(200, function() {
+				_this.next().slideToggle(200, function () {
 					$win.trigger("resize");
 
 				});
@@ -33,7 +33,7 @@ var Main = function() {
 
 			}
 		});
-		elem.on(eventObject, 'a', function(e) {
+		elem.on(eventObject, 'a', function (e) {
 			if (!isSidebarClosed() || isSmallDevice())
 				return;
 			_this = $(this);
@@ -48,16 +48,16 @@ var Main = function() {
 				var offset = $("#sidebar").position().top;
 				var itemTop = isSidebarFixed() ? _this.parent().position().top + offset : (_this.parent().position().top);
 				menuTitle.css({
-					position : isSidebarFixed() ? 'fixed' : 'absolute',
-					height : _this.outerHeight(),
-					top : itemTop
+					position: isSidebarFixed() ? 'fixed' : 'absolute',
+					height: _this.outerHeight(),
+					top: itemTop
 				}).appendTo(wrap);
 				if (_this.next().is('ul')) {
 					ul = _this.next().clone(true);
 
 					ul.appendTo(wrap).css({
-						top : itemTop + _this.outerHeight(),
-						position : isSidebarFixed() ? 'fixed' : 'absolute',
+						top: itemTop + _this.outerHeight(),
+						position: isSidebarFixed() ? 'fixed' : 'absolute',
 					});
 					if (_this.parent().position().top + _this.outerHeight() + offset + ul.height() > $win.height() && isSidebarFixed()) {
 						ul.css('bottom', 0);
@@ -65,12 +65,12 @@ var Main = function() {
 						ul.css('bottom', 'auto');
 					}
 
-					wrap.children().first().scroll(function() {
+					wrap.children().first().scroll(function () {
 						if (isSidebarFixed())
 							wrapLeave();
 					});
 
-					setTimeout(function() {
+					setTimeout(function () {
 
 						if (!wrap.is(':empty')) {
 							$(document).on('click tap', wrapLeave);
@@ -84,7 +84,7 @@ var Main = function() {
 
 			}
 		});
-		wrap.on('mouseleave', function(e) {
+		wrap.on('mouseleave', function (e) {
 			$(document).off('click tap', wrapLeave);
 			$('.hover', wrap).removeClass('hover');
 			$('> .item-inner', wrap).remove();
@@ -92,8 +92,8 @@ var Main = function() {
 
 		});
 
-		sidebarMobileToggler.on('click', function() {
-			
+		sidebarMobileToggler.on('click', function () {
+
 			$winScrollTop = $winOffsetTop;
 			if (!$('#app').hasClass('app-slide-off') && !$('#app').hasClass('app-offsidebar-open')) {
 				$winOffsetTop = $win.scrollTop();
@@ -101,9 +101,9 @@ var Main = function() {
 				$('footer').hide();
 				$appWidth = $('#app .main-content').innerWidth();
 				$('#app .main-content').css({
-					position : 'absolute',
-					top : -$winOffsetTop,
-					width : $appWidth
+					position: 'absolute',
+					top: -$winOffsetTop,
+					width: $appWidth
 				});
 			} else {
 				resetSidebar();
@@ -111,21 +111,21 @@ var Main = function() {
 
 		});
 
-		$(document).on("mousedown touchstart", function(e) {
+		$(document).on("mousedown touchstart", function (e) {
 			if (elem.has(e.target).length === 0 && !elem.is(e.target) && !sidebarMobileToggler.is(e.target) && ($('#app').hasClass('app-slide-off') || $('#app').hasClass('app-offsidebar-open'))) {
 				resetSidebar();
 			}
 		});
 
-		var resetSidebar = function() {
+		var resetSidebar = function () {
 			$winScrollTop = $winOffsetTop;
-			$("#app .app-content").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+			$("#app .app-content").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
 
 				if (!$('#app').hasClass('app-slide-off') && !$('#app').hasClass('app-offsidebar-open')) {
 					$('#app .main-content').css({
-						position : 'relative',
-						top : 'auto',
-						width : 'auto'
+						position: 'relative',
+						top: 'auto',
+						width: 'auto'
 					});
 
 					window.scrollTo(0, $winScrollTop);
@@ -137,17 +137,17 @@ var Main = function() {
 		};
 	};
 	// navbar collapse
-	var navbarHandler = function() {
+	var navbarHandler = function () {
 		var navbar = $('.navbar-collapse > .nav');
 		var pageHeight = $win.innerHeight() - $('header').outerHeight();
 		var collapseButton = $('#menu-toggler');
 		if (isSmallDevice()) {
 			navbar.css({
-				height : pageHeight
+				height: pageHeight
 			});
 		} else {
 			navbar.css({
-				height : 'auto'
+				height: 'auto'
 			});
 		}
 		$(document).on("mousedown touchstart", toggleNavbar);
@@ -159,37 +159,37 @@ var Main = function() {
 
 	};
 	// tooltips handler
-	var tooltipHandler = function() {
+	var tooltipHandler = function () {
 		$('[data-toggle="tooltip"]').tooltip();
 	};
 	// popovers handler
-	var popoverHandler = function() {
+	var popoverHandler = function () {
 		$('[data-toggle="popover"]').popover();
 	};
 	// perfect scrollbar
-	var perfectScrollbarHandler = function() {
+	var perfectScrollbarHandler = function () {
 		var pScroll = $(".perfect-scrollbar");
 
 		if (!isMobile() && pScroll.length) {
 			pScroll.perfectScrollbar({
-				suppressScrollX : true
+				suppressScrollX: true
 			});
-			pScroll.on("mousemove", function() {
+			pScroll.on("mousemove", function () {
 				$(this).perfectScrollbar('update');
 			});
 
 		}
 	};
 	//toggle class
-	var toggleClassOnElement = function() {
+	var toggleClassOnElement = function () {
 		var toggleAttribute = $('*[data-toggle-class]');
-		toggleAttribute.each(function() {
+		toggleAttribute.each(function () {
 			var _this = $(this);
 			var toggleClass = _this.attr('data-toggle-class');
 			var outsideElement;
 			var toggleElement;
 			typeof _this.attr('data-toggle-target') !== 'undefined' ? toggleElement = $(_this.attr('data-toggle-target')) : toggleElement = _this;
-			_this.on("click", function(e) {
+			_this.on("click", function (e) {
 				if (_this.attr('data-toggle-type') !== 'undefined' && _this.attr('data-toggle-type') == "on") {
 					toggleElement.addClass(toggleClass);
 				} else if (_this.attr('data-toggle-type') !== 'undefined' && _this.attr('data-toggle-type') == "off") {
@@ -207,7 +207,7 @@ var Main = function() {
 
 			});
 
-			var toggleOutside = function(e) {
+			var toggleOutside = function (e) {
 				if (outsideElement.has(e.target).length === 0 && !outsideElement.is(e.target) && !toggleAttribute.is(e.target) && toggleElement.hasClass(toggleClass)) {
 					toggleElement.removeClass(toggleClass);
 					$(document).off("mousedown touchstart", toggleOutside);
@@ -217,29 +217,29 @@ var Main = function() {
 		});
 	};
 	//switchery
-	var switcheryHandler = function() {
+	var switcheryHandler = function () {
 		var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
-		elems.forEach(function(html) {
+		elems.forEach(function (html) {
 			var switchery = new Switchery(html);
 		});
 	};
 	//search form
-	var searchHandler = function() {
+	var searchHandler = function () {
 		var elem = $('.search-form');
 		var searchForm = elem.children('form');
 		var formWrap = elem.parent();
 
-		$(".s-open").on('click', function(e) {
+		$(".s-open").on('click', function (e) {
 			searchForm.prependTo(wrap);
 			e.preventDefault();
 			$(document).on("mousedown touchstart", closeForm);
 		});
-		$(".s-remove").on('click', function(e) {
+		$(".s-remove").on('click', function (e) {
 			searchForm.appendTo(elem);
 			e.preventDefault();
 		});
-		var closeForm = function(e) {
+		var closeForm = function (e) {
 			if (!searchForm.is(e.target) && searchForm.has(e.target).length === 0) {
 				$(".s-remove").trigger('click');
 				$(document).off("mousedown touchstart", closeForm);
@@ -247,14 +247,14 @@ var Main = function() {
 		};
 	};
 	// settings
-	var settingsHandler = function() {
+	var settingsHandler = function () {
 		var clipSetting = {}, appSetting = {};
 		clipSetting = {
-			fixedHeader : true,
-			fixedSidebar : true,
-			closedSidebar : false,
-			fixedFooter : false,
-			theme : 'theme-1'
+			fixedHeader: true,
+			fixedSidebar: true,
+			closedSidebar: false,
+			fixedFooter: false,
+			theme: 'theme-1'
 		};
 		if ($.cookie) {
 			if ($.cookie("clip-setting")) {
@@ -272,37 +272,37 @@ var Main = function() {
 		app.hasClass("app-sidebar-fixed") ? $('#fixed-sidebar').prop('checked', true) : $('#fixed-sidebar').prop('checked', false);
 		app.hasClass("app-sidebar-closed") ? $('#closed-sidebar').prop('checked', true) : $('#closed-sidebar').prop('checked', false);
 		app.hasClass("app-footer-fixed") ? $('#fixed-footer').prop('checked', true) : $('#fixed-footer').prop('checked', false);
-		$('#skin_color').attr("href", "assets/css/themes/" + appSetting.theme + ".css");
-		$('input[name="setting-theme"]').each(function() {
+		$('#skin_color').attr("href", "/assets/css/themes/" + appSetting.theme + ".css");
+		$('input[name="setting-theme"]').each(function () {
 			$(this).val() == appSetting.theme ? $(this).prop('checked', true) : $(this).prop('checked', false);
 		});
 		switchLogo(appSetting.theme);
 
-		$('input[name="setting-theme"]').change(function() {
+		$('input[name="setting-theme"]').change(function () {
 			var selectedTheme = $(this).val();
-			$('#skin_color').attr("href", "assets/css/themes/" + selectedTheme + ".css");
+			$('#skin_color').attr("href", "/assets/css/themes/" + selectedTheme + ".css");
 			switchLogo(selectedTheme);
 			appSetting.theme = selectedTheme;
 			$.cookie("clip-setting", JSON.stringify(appSetting));
 
 		});
 
-		$('#fixed-header').change(function() {
+		$('#fixed-header').change(function () {
 			$(this).is(":checked") ? app.addClass("app-navbar-fixed") : app.removeClass("app-navbar-fixed");
 			appSetting.fixedHeader = $(this).is(":checked");
 			$.cookie("clip-setting", JSON.stringify(appSetting));
 		});
-		$('#fixed-sidebar').change(function() {
+		$('#fixed-sidebar').change(function () {
 			$(this).is(":checked") ? app.addClass("app-sidebar-fixed") : app.removeClass("app-sidebar-fixed");
 			appSetting.fixedSidebar = $(this).is(":checked");
 			$.cookie("clip-setting", JSON.stringify(appSetting));
 		});
-		$('#closed-sidebar').change(function() {
+		$('#closed-sidebar').change(function () {
 			$(this).is(":checked") ? app.addClass("app-sidebar-closed") : app.removeClass("app-sidebar-closed");
 			appSetting.closedSidebar = $(this).is(":checked");
 			$.cookie("clip-setting", JSON.stringify(appSetting));
 		});
-		$('#fixed-footer').change(function() {
+		$('#fixed-footer').change(function () {
 			$(this).is(":checked") ? app.addClass("app-footer-fixed") : app.removeClass("app-footer-fixed");
 			appSetting.fixedFooter = $(this).is(":checked");
 			$.cookie("clip-setting", JSON.stringify(appSetting));
@@ -327,16 +327,16 @@ var Main = function() {
 			$('#fixed-sidebar').prop('checked', true);
 			$('#closed-sidebar').prop('checked', false);
 			$('#fixed-footer').prop('checked', false);
-			$('#skin_color').attr("href", "assets/css/themes/theme-1.css");
+			$('#skin_color').attr("href", "/assets/css/themes/theme-1.css");
 			$(".navbar-brand img").attr("src", "assets/images/logo.png");
 
 		}
 
 	};
 	// function to allow a button or a link to open a tab
-	var showTabHandler = function(e) {
+	var showTabHandler = function (e) {
 		if ($(".show-tab").length) {
-			$('.show-tab').on('click', function(e) {
+			$('.show-tab').on('click', function (e) {
 				e.preventDefault();
 				var tabToShow = $(this).attr("href");
 				if ($(tabToShow).length) {
@@ -346,26 +346,26 @@ var Main = function() {
 		}
 	};
 	// function to enable panel scroll with perfectScrollbar
-	var panelScrollHandler = function() {
+	var panelScrollHandler = function () {
 		var panelScroll = $(".panel-scroll");
 		if (panelScroll.length && !isMobile()) {
 			panelScroll.perfectScrollbar({
-				suppressScrollX : true
+				suppressScrollX: true
 			});
 		}
 	};
 	//function to activate the panel tools
-	var panelToolsHandler = function() {
+	var panelToolsHandler = function () {
 
 		// panel close
-		$('body').on('click', '.panel-close', function(e) {
+		$('body').on('click', '.panel-close', function (e) {
 			var panel = $(this).closest('.panel');
 
 			destroyPanel();
 
 			function destroyPanel() {
 				var col = panel.parent();
-				panel.fadeOut(300, function() {
+				panel.fadeOut(300, function () {
 					$(this).remove();
 					if (col.is('[class*="col-"]') && col.children('*').length === 0) {
 						col.remove();
@@ -377,22 +377,22 @@ var Main = function() {
 			e.preventDefault();
 		});
 		// panel refresh
-		$('body').on('click', '.panel-refresh', function(e) {
+		$('body').on('click', '.panel-refresh', function (e) {
 			var $this = $(this), csspinnerClass = 'csspinner', panel = $this.parents('.panel').eq(0), spinner = $this.data('spinner') || "load1";
 			panel.addClass(csspinnerClass + ' ' + spinner);
 
-			window.setTimeout(function() {
+			window.setTimeout(function () {
 				panel.removeClass(csspinnerClass);
 			}, 1000);
 			e.preventDefault();
 		});
 		// panel collapse
-		$('body').on('click', '.panel-collapse', function(e) {
+		$('body').on('click', '.panel-collapse', function (e) {
 			e.preventDefault();
 			var el = $(this);
 			var panel = $(this).closest(".panel");
 			var bodyPanel = panel.children(".panel-body");
-			bodyPanel.slideToggle(200, function() {
+			bodyPanel.slideToggle(200, function () {
 				panel.toggleClass("collapses");
 			});
 
@@ -400,28 +400,28 @@ var Main = function() {
 
 	};
 	// function to activate the Go-Top button
-	var goTopHandler = function(e) {
-		$('.go-top').on('click', function(e) {
+	var goTopHandler = function (e) {
+		$('.go-top').on('click', function (e) {
 			$("html, body").animate({
-				scrollTop : 0
+				scrollTop: 0
 			}, "slow");
 			e.preventDefault();
 		});
 	};
-	var customSelectHandler = function() {
-		[].slice.call(document.querySelectorAll('select.cs-select')).forEach(function(el) {
+	var customSelectHandler = function () {
+		[].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
 			new SelectFx(el);
 		});
 	};
 	// Window Resize Function
-	var resizeHandler = function(func, threshold, execAsap) {
-		$(window).resize(function() {
+	var resizeHandler = function (func, threshold, execAsap) {
+		$(window).resize(function () {
 			navbarHandler();
 			if (isLargeDevice()) {
 				$('#app .main-content').css({
-					position : 'relative',
-					top : 'auto',
-					width : 'auto'
+					position: 'relative',
+					top: 'auto',
+					width: 'auto'
 				});
 				$('footer').show();
 			}
@@ -460,7 +460,7 @@ var Main = function() {
 	}
 
 	return {
-		init : function() {
+		init: function () {
 			settingsHandler();
 			sidebarHandler();
 			toggleClassOnElement();
