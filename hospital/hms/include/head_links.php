@@ -17,9 +17,9 @@ function generate_head_links($theme_code = "3", $short = false)
 			<link href="/vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">';
 	}
 
-	$out .= "<link rel=\"stylesheet\" href=\"assets/css/styles.css\">
-		<link rel=\"stylesheet\" href=\"assets/css/plugins.css\">
-		<link rel=\"stylesheet\" href=\"assets/css/themes/theme-{$theme_code}.css\" id=\"skin_color\" />";
+	$out .= "<link rel=\"stylesheet\" href=\"/assets/css/styles.css\">
+		<link rel=\"stylesheet\" href=\"/assets/css/plugins.css\">
+		<link rel=\"stylesheet\" href=\"/assets/css/themes/theme-{$theme_code}.css\" id=\"skin_color\" />";
 
 	return $out;
 }

@@ -1,5 +1,2 @@
 # Disable directory browsing
 Options -Indexes
-
-# Deny access to all files in this folder
-Require all denied

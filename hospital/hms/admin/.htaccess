@@ -7,7 +7,7 @@ Options -Indexes
 </IfModule>
 
 # Allow access to top-level files
-<FilesMatch "^[^/]+$">
+<FilesMatch "^[^/]*$">
     <IfModule mod_authz_core.c>
         Require all granted
     </IfModule>
