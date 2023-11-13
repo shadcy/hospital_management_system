@@ -1,0 +1,14 @@
+# Disable directory browsing
+Options -Indexes
+
+# Deny access to sub-directories
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+
+# Allow access to top-level files
+<FilesMatch "^[^/]+$">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</FilesMatch>

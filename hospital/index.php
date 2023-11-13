@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 
   <!-- 
     - preload images
@@ -1054,7 +1054,7 @@ if (isset($_POST['submit'])) {
   <!-- 
     - custom js link
   -->
-  <script src="script.js"></script>
+  <script src="./assets/js/script.js"></script>
 
   <!-- 
     - ionicon link
