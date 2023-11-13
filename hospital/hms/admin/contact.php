@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 	//Code for Update the Content
 
@@ -13,7 +20,7 @@ if (strlen($_SESSION['id'] == 0)) {
 		$pagedes = $_POST['pagedes'];
 		$email = $_POST['email'];
 		$mobnum = $_POST['mobnum'];
-		$query = mysqli_execute_query($con, "update pages set title=?,description=?,email=?, contactNumber=? where type='contact'",[$pagetitle,$pagedes,$email,$mobnum]);
+		$query = mysqli_execute_query($con, "update pages set title=?,description=?,email=?, contactNumber=? where type='contact'", [$pagetitle, $pagedes, $email, $mobnum]);
 		if ($query) {
 
 			echo '<script>alert("Contact Us has been updated.")</script>';
@@ -43,7 +50,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<div class="app-content">
 
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
 					<div class="wrap-content container" id="container">
@@ -111,11 +118,11 @@ if (strlen($_SESSION['id'] == 0)) {
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<?php include('include/footer.php'); ?>
+			<?php include('../include/footer.php'); ?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-			<?php include('include/setting.php'); ?>
+			<?php include('../include/setting.php'); ?>
 
 			<!-- end: SETTINGS -->
 		</div>

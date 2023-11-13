@@ -97,12 +97,12 @@
         <h1 class="error-code">404</h1>
         <p class="error-message">Oops! The page you are looking for does not exist.</p>
         <div class="button-container">
-           
-            <a href="./hms/user-login.php">  <button class="button" onclick="window.location.href='student_login.html'">Student Login</button></a>
-            <a href="./hms/doctor">      <button class="button" onclick="window.location.href='doctor_login.html'">Doctor Login</button></a>
+
+            <a href="./hms/patient"> <button class="button" onclick="window.location.href='student_login.html'">Student Login</button></a>
+            <a href="./hms/doctor"> <button class="button" onclick="window.location.href='doctor_login.html'">Doctor Login</button></a>
             <a href="./hms/admin"> <button class="button" onclick="window.location.href='admin_login.html'">Admin Login</button></a>
-          
-            
+
+
         </div>
     </div>
 

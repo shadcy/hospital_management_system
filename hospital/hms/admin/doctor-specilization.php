@@ -1,20 +1,27 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 	if (isset($_POST['submit'])) {
 		$doctorspecialization = $_POST['doctorspecilization'];
-		$sql = mysqli_execute_query($con, "insert into specilizations(name) values(?)", [$doctorspecialization]);
+		$sql = mysqli_execute_query($con, "insert into specializations(name) values(?)", [$doctorspecialization]);
 		$_SESSION['msg'] = "Doctor Specialization added successfully !!";
 	}
 	//Code Deletion
 	if (isset($_GET['del'])) {
 		$sid = $_GET['id'];
-		$sql = mysqli_execute_query($con, "delete from specilizations where id = ?", [$sid]);
+		$sql = mysqli_execute_query($con, "delete from specializations where id = ?", [$sid]);
 		if ($sql) {
 			$_SESSION['msg'] = "data deleted !!";
 		} else {
@@ -37,7 +44,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -183,11 +190,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 
 		<!-- end: SETTINGS -->
 		</div>

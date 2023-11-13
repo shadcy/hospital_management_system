@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Doctor->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 	if (isset($_POST['submit'])) {
 		$docspecialization = $_POST['Doctorspecialization'];
@@ -12,10 +19,23 @@ if (strlen($_SESSION['id'] == 0)) {
 		$docfees = $_POST['docfees'];
 		$doccontactno = $_POST['doccontact'];
 		$docemail = $_POST['docemail'];
-		$sql = mysqli_query($con, "Update doctors set specilization='$docspecialization',doctorName='$docname',address='$docaddress',docFees='$docfees',contactno='$doccontactno' where id='" . $_SESSION['id'] . "'");
+
+		mysqli_begin_transaction($con);
+		try {
+			mysqli_execute_query($con, "Update doctors set specilizationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
+			mysqli_execute_query($con, "Update users set address=?,name=?,contactNumber=? where id=?", [$docaddress, $docname, $personalcontactno, $did]);
+
+			/* If code reaches this point without errors then commit the data in the database */
+			mysqli_commit($con);
+			$msg = "Doctor Details updated Successfully";
+		} catch (mysqli_sql_exception $exception) {
+			mysqli_rollback($con);
+			$msg = "There was an issue with the changes. Please try again.";
+		}
+		/* $sql = mysqli_query($con, "Update doctors set specilization='$docspecialization',doctorName='$docname',address='$docaddress',docFees='$docfees',contactno='$doccontactno' where id='" . $_SESSION['id'] . "'");
 		if ($sql) {
 			echo "<script>alert('Doctor Details updated Successfully');</script>";
-		}
+		} */
 	}
 ?>
 	<!DOCTYPE html>
@@ -34,7 +54,7 @@ if (strlen($_SESSION['id'] == 0)) {
 		<div id="app">
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 				<div class="main-content">
 					<div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
@@ -67,11 +87,11 @@ if (strlen($_SESSION['id'] == 0)) {
 												</div>
 												<div class="panel-body">
 													<?php
-													$did = $_SESSION['dlogin'];
-													$sql = mysqli_query($con, "select * from doctors where docEmail='$did'");
+													$did = $_SESSION['id'];
+													$sql = mysqli_execute_query($con, "select doctors.*, specializations.name as specName, users.name, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
 													while ($data = mysqli_fetch_array($sql)) {
 													?>
-														<h4><?php echo htmlentities($data['doctorName']); ?>'s Profile</h4>
+														<h4><?php echo htmlentities($data['name']); ?>'s Profile</h4>
 														<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
 														<?php if ($data['updationDate']) { ?>
 															<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
@@ -83,13 +103,13 @@ if (strlen($_SESSION['id'] == 0)) {
 																	Doctor Specialization
 																</label>
 																<select name="Doctorspecialization" class="form-control" required="required">
-																	<option value="<?php echo htmlentities($data['specilization']); ?>">
-																		<?php echo htmlentities($data['specilization']); ?></option>
-																	<?php $ret = mysqli_query($con, "select * from doctorspecilization");
+																	<option value="<?php echo htmlentities($data['specializationId']); ?>">
+																		<?php echo htmlentities($data['specName']); ?></option>
+																	<?php $ret = mysqli_query($con, "select * from specializations;");
 																	while ($row = mysqli_fetch_array($ret)) {
 																	?>
-																		<option value="<?php echo htmlentities($row['specilization']); ?>">
-																			<?php echo htmlentities($row['specilization']); ?>
+																		<option value="<?php echo htmlentities($row['id']); ?>">
+																			<?php echo htmlentities($row['name']); ?>
 																		</option>
 																	<?php } ?>
 
@@ -100,7 +120,7 @@ if (strlen($_SESSION['id'] == 0)) {
 																<label for="doctorname">
 																	Doctor Name
 																</label>
-																<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']); ?>">
+																<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['name']); ?>">
 															</div>
 
 
@@ -114,21 +134,28 @@ if (strlen($_SESSION['id'] == 0)) {
 																<label for="fess">
 																	Doctor Consultancy Fees
 																</label>
-																<input type="text" name="docfees" class="form-control" required="required" value="<?php echo htmlentities($data['docFees']); ?>">
+																<input type="text" name="docfees" class="form-control" required="required" value="<?php echo htmlentities($data['fees']); ?>">
 															</div>
 
 															<div class="form-group">
 																<label for="fess">
 																	Doctor Contact no
 																</label>
-																<input type="text" name="doccontact" class="form-control" required="required" value="<?php echo htmlentities($data['contactno']); ?>">
+																<input type="text" name="doccontact" class="form-control" required="required" value="<?php echo htmlentities($data['contactNumber']); ?>">
+															</div>
+
+															<div class="form-group">
+																<label for="fess">
+																	Personal Contact no
+																</label>
+																<input type="text" name="personalcontact" class="form-control" required="required" value="<?php echo htmlentities($data['personalNumber']); ?>">
 															</div>
 
 															<div class="form-group">
 																<label for="fess">
 																	Doctor Email
 																</label>
-																<input type="email" name="docemail" class="form-control" readonly="readonly" value="<?php echo htmlentities($data['docEmail']); ?>">
+																<input type="email" name="docemail" class="form-control" readonly="readonly" value="<?php echo htmlentities($data['email']); ?>">
 															</div>
 
 
@@ -163,11 +190,11 @@ if (strlen($_SESSION['id'] == 0)) {
 					</div>
 				</div>
 				<!-- start: FOOTER -->
-				<?php include('include/footer.php'); ?>
+				<?php include('../include/footer.php'); ?>
 				<!-- end: FOOTER -->
 
 				<!-- start: SETTINGS -->
-				<?php include('include/setting.php'); ?>
+				<?php include('../include/setting.php'); ?>
 				<!-- end: SETTINGS -->
 			</div>
 			<?php include_once("../include/body_scripts.php") ?>

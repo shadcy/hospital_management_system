@@ -1,7 +1,11 @@
 <?php
 session_start();
-//error_reporting(0);
-include("include/config.php");
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
+include("../include/config.php");
 // Code for updating Password
 if (isset($_POST['change'])) {
 	$cno = $_SESSION['cnumber'];

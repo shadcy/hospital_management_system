@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 10, 2023 at 09:16 PM
+-- Host: localhost
+-- Generation Time: Nov 13, 2023 at 05:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -66,7 +66,7 @@ CREATE TABLE `contact_us` (
 
 CREATE TABLE `doctors` (
   `id` int(11) NOT NULL,
-  `specilizationId` int(11) DEFAULT NULL,
+  `specializationId` int(11) DEFAULT NULL,
   `fees` varchar(255) DEFAULT NULL,
   `contactNumber` varchar(15) DEFAULT NULL,
   `creationDate` timestamp NULL DEFAULT current_timestamp(),
@@ -81,8 +81,8 @@ CREATE TABLE `doctors` (
 
 CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  `isDoctor` tinyint(1) DEFAULT 0,
+  `userId` int(11) DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT 0,
   `username` varchar(255) DEFAULT NULL,
   `ip` binary(16) DEFAULT NULL,
   `loginTime` timestamp NULL DEFAULT current_timestamp(),
@@ -154,7 +154,7 @@ CREATE TABLE `users` (
   `registrationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `updationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `isAdmin` tinyint(1) NOT NULL DEFAULT 0,
-  `isStaff` tinyint(1) NOT NULL DEFAULT 0,
+  `type` tinyint(2) NOT NULL DEFAULT 0,
   `isActive` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -181,7 +181,7 @@ ALTER TABLE `contact_us`
 --
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `specilizationId` (`specilizationId`);
+  ADD KEY `specilizationId` (`specializationId`);
 
 --
 -- Indexes for table `logs`
@@ -277,7 +277,7 @@ ALTER TABLE `appointments`
 -- Constraints for table `doctors`
 --
 ALTER TABLE `doctors`
-  ADD CONSTRAINT `fk_doctors_doctorspecilization1` FOREIGN KEY (`specilizationId`) REFERENCES `specializations` (`id`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_doctors_doctorspecilization1` FOREIGN KEY (`specializationId`) REFERENCES `specializations` (`id`) ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_doctors_users` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --

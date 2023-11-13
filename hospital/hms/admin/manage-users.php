@@ -1,15 +1,26 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 	if (isset($_GET['del'])) {
 		$uid = $_GET['id'];
-		mysqli_query($con, "delete from users where id ='$uid'");
-		$_SESSION['msg'] = "data deleted !!";
+		if ($uid == $_SESSION['id']) {
+			$_SESSION['msg'] = "Cannot delete yourself!";
+		} else {
+			mysqli_execute_query($con, "Update users set isActive=0 where id =?", [$uid]);
+			$_SESSION['msg'] = "data deleted !!";
+		}
 	}
 ?>
 	<!DOCTYPE html>
@@ -27,7 +38,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -64,7 +75,6 @@ if (strlen($_SESSION['id'] == 0)) {
 												<th class="center">#</th>
 												<th>Full Name</th>
 												<th class="hidden-xs">Adress</th>
-												<th>City</th>
 												<th>Gender </th>
 												<th>Email </th>
 												<th>Creation Date </th>
@@ -75,7 +85,7 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from users");
+											$sql = mysqli_query($con, "select * from users where isActive=1;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
@@ -84,11 +94,9 @@ if (strlen($_SESSION['id'] == 0)) {
 													<td class="center"><?php echo $cnt; ?>.</td>
 													<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
 													<td><?php echo $row['address']; ?></td>
-													<td><?php echo $row['city']; ?>
-													</td>
 													<td><?php echo $row['gender']; ?></td>
 													<td><?php echo $row['email']; ?></td>
-													<td><?php echo $row['regDate']; ?></td>
+													<td><?php echo $row['registrationDate']; ?></td>
 													<td><?php echo $row['updationDate']; ?>
 													</td>
 													<td>
@@ -143,11 +151,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 
 		<!-- end: SETTINGS -->
 		</div>

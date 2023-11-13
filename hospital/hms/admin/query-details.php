@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 	//updating Admin Remark
@@ -11,7 +18,7 @@ if (strlen($_SESSION['id'] == 0)) {
 		$qid = intval($_GET['id']);
 		$adminremark = $_POST['adminremark'];
 		$isread = 1;
-		$query = mysqli_query($con, "update tblcontactus set  AdminRemark='$adminremark',IsRead='$isread' where id='$qid'");
+		$query = mysqli_execute_query($con, "update contact_us set adminRemark=?,isRead=? where id=?", [$adminremark, $isread, $qid]);
 		if ($query) {
 			echo "<script>alert('Admin Remark updated successfully.');</script>";
 			echo "<script>window.location.href ='read-query.php'</script>";
@@ -33,7 +40,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -69,14 +76,14 @@ if (strlen($_SESSION['id'] == 0)) {
 										<tbody>
 											<?php
 											$qid = intval($_GET['id']);
-											$sql = mysqli_query($con, "select * from tblcontactus where id='$qid'");
+											$sql = mysqli_execute_query($con, "select * from contact_us where id=?", [$qid]);
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
 
 												<tr>
 													<th>Full Name</th>
-													<td><?php echo $row['fullname']; ?></td>
+													<td><?php echo $row['fullName']; ?></td>
 												</tr>
 
 												<tr>
@@ -85,7 +92,7 @@ if (strlen($_SESSION['id'] == 0)) {
 												</tr>
 												<tr>
 													<th>Conatact Numner</th>
-													<td><?php echo $row['contactno']; ?></td>
+													<td><?php echo $row['contactNumber']; ?></td>
 												</tr>
 												<tr>
 													<th>Message</th>
@@ -94,10 +101,10 @@ if (strlen($_SESSION['id'] == 0)) {
 
 												<tr>
 													<th>Query Date</th>
-													<td><?php echo $row['PostingDate']; ?></td>
+													<td><?php echo $row['postingDate']; ?></td>
 												</tr>
 
-												<?php if ($row['AdminRemark'] == "") { ?>
+												<?php if ($row['adminRemark'] == "") { ?>
 													<form name="query" method="post">
 														<tr>
 															<th>Admin Remark</th>
@@ -118,12 +125,12 @@ if (strlen($_SESSION['id'] == 0)) {
 
 													<tr>
 														<th>Admin Remark</th>
-														<td><?php echo $row['AdminRemark']; ?></td>
+														<td><?php echo $row['adminRemark']; ?></td>
 													</tr>
 
 													<tr>
 														<th>Last Updatation Date</th>
-														<td><?php echo $row['LastupdationDate']; ?></td>
+														<td><?php echo $row['updationDate']; ?></td>
 													</tr>
 
 											<?php
@@ -145,11 +152,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 
 		<!-- end: SETTINGS -->
 		</div>

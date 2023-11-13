@@ -1,15 +1,22 @@
 <?php
 session_start();
-error_reporting(0);
-include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
-} else {
 
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
+include('../include/config.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
+} else {
 
 	if (isset($_GET['del'])) {
 		$docid = $_GET['id'];
-		mysqli_query($con, "delete from doctors where id ='$docid'");
+		mysqli_execute_query($con, "delete from doctors where id =?;", [$docid]);
+		mysqli_execute_query($con, "update users set isActive=0 where id =?;", [$docid]);
 		$_SESSION['msg'] = "data deleted !!";
 	}
 ?>
@@ -28,7 +35,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -72,15 +79,15 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from doctors");
+											$sql = mysqli_query($con, "select doctors.*,users.fullName, specializations.name as specialization from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
 
 												<tr>
 													<td class="center"><?php echo $cnt; ?>.</td>
-													<td class="hidden-xs"><?php echo $row['specilization']; ?></td>
-													<td><?php echo $row['doctorName']; ?></td>
+													<td class="hidden-xs"><?php echo $row['specialization']; ?></td>
+													<td><?php echo $row['fullName']; ?></td>
 													<td><?php echo $row['creationDate']; ?>
 													</td>
 
@@ -136,11 +143,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 
 		<!-- end: SETTINGS -->
 		</div>

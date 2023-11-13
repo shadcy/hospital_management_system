@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 
@@ -24,7 +31,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -68,18 +75,18 @@ if (strlen($_SESSION['id'] == 0)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from tblcontactus where IsRead is null");
+											$sql = mysqli_query($con, "select * from contact_us where isRead=0;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>
 
 												<tr>
 													<td class="center"><?php echo $cnt; ?>.</td>
-													<td class="hidden-xs"><?php echo $row['fullname']; ?></td>
+													<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
 													<td><?php echo $row['email']; ?></td>
-													<td><?php echo $row['contactno']; ?></td>
+													<td><?php echo $row['contactNumber']; ?></td>
 													<td><?php echo $row['message']; ?></td>
-													<td><?php echo $row['PostingDate']; ?></td>
+													<td><?php echo $row['postingDate']; ?></td>
 
 													<td>
 														<div class="visible-md visible-lg hidden-sm hidden-xs">
@@ -131,11 +138,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 
 		<!-- end: SETTINGS -->
 		</div>

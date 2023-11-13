@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 
@@ -23,7 +30,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content">
@@ -94,11 +101,11 @@ if (strlen($_SESSION['id'] == 0)) {
 											<p class="links cl-effect-1">
 												<a href="book-appointment.php">
 													<a href="appointment-history.php">
-														<?php $sql = mysqli_query($con, "SELECT COUNT(*) as appointmentCount FROM appointments;");
-														$row = mysqli_fetch_array($result); {
+														<?php
+														$sql = mysqli_query($con, "SELECT COUNT(*) as appointmentCount FROM appointments;");
+														$row = mysqli_fetch_array($sql);
 														?>
-															Total Appointments :<?php echo htmlentities($row['appointmentCount']);
-																			} ?>
+														Total Appointments :<?php echo htmlentities($row['appointmentCount']); ?>
 													</a>
 												</a>
 											</p>
@@ -113,14 +120,13 @@ if (strlen($_SESSION['id'] == 0)) {
 											<h2 class="StepTitle"> New Queries</h2>
 
 											<p class="links cl-effect-1">
-												<a href="book-appointment.php">
-													<a href="unread-queries.php">
-														<?php
-														$sql = mysqli_query($con, "SELECT COUNT(*) as queryCount FROM contact_us where isRead is 0;");
-														$row = mysqli_fetch_array($result);
-														?>
-														Total New Queries :<?php echo htmlentities($row['queryCount']);   ?>
-													</a>
+												<a href="unread-queries.php">
+													<?php
+													$sql = mysqli_query($con, "SELECT COUNT(*) as queryCount FROM contact_us where isRead = 0;");
+													$row = mysqli_fetch_array($sql);
+													?>
+													Total New Queries :<?php echo htmlentities($row['queryCount']);   ?>
+
 												</a>
 											</p>
 										</div>
@@ -326,15 +332,15 @@ if (strlen($_SESSION['id'] == 0)) {
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<?php include('include/footer.php'); ?>
+			<?php include('../include/footer.php'); ?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-			<?php include('include/setting.php'); ?>
+			<?php include('../include/setting.php'); ?>
 
 			<!-- end: SETTINGS -->
 		</div>
-		<?php include_once("../include/body_scripts.php") ?>
+		<?php include("../include/body_scripts.php") ?>
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();

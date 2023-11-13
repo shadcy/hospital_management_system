@@ -1,239 +1,75 @@
-<div class="sidebar app-aside" id="sidebar">
-				<div class="sidebar-container perfect-scrollbar">
+<?php $items = [
+	[
+		'name' => 'Dashboard',
+		'href' => 'dashboard.php',
+		'icon' => 'home',
+	],
+	[
+		'name' => 'Doctors',
+		'icon' => 'user',
+		'subitems' => [
+			['name' => 'Doctor Specialization', 'href' => 'doctor-specilization.php'],
+			['name' => 'Add Doctor', 'href' => 'add-doctor.php'],
+			['name' => 'Manage Doctors', 'href' => 'Manage-doctors.php'],
+		],
+	],
+	[
+		'name' => 'Users',
+		'icon' => 'user',
+		'subitems' => [
+			['name' => 'Manage Users', 'href' => 'manage-users.php'],
+		],
+	],
+	[
+		'name' => 'Patients',
+		'icon' => 'user',
+		'subitems' => [
+			['name' => 'Manage Patients', 'href' => 'manage-patient.php'],
+		],
+	],
+	[
+		'name' => 'Appointment History',
+		'href' => 'appointment-history.php',
+		'icon' => 'file',
+	],
+	[
+		'name' => 'Contactus Queries',
+		'icon' => 'files',
+		'subitems' => [
+			['name' => 'Unread Query', 'href' => 'unread-queries.php'],
+			['name' => 'Read Query', 'href' => 'read-query.php'],
+		],
+	],
+	[
+		'name' => 'Doctor Session Logs',
+		'href' => 'doctor-logs.php',
+		'icon' => 'list',
+	],
+	[
+		'name' => 'User Session Logs',
+		'href' => 'user-logs.php',
+		'icon' => 'list',
+	],
+	[
+		'name' => 'Reports',
+		'icon' => 'files',
+		'subitems' => [
+			['name' => 'B/w dates reports', 'href' => 'between-dates-reports.php'],
+		],
+	],
+	[
+		'name' => 'Pages',
+		'icon' => 'file',
+		'subitems' => [
+			['name' => 'About Us', 'href' => 'about-us.php'],
+			['name' => 'Contact Us', 'href' => 'contact.php'],
+		],
+	],
+	[
+		'name' => 'Patient Search',
+		'href' => 'patient-search.php',
+		'icon' => 'search',
+	],
+];
 
-<nav>
-						
-						<!-- start: MAIN NAVIGATION MENU -->
-						<div class="navbar-title">
-							<span>Main Navigation</span>
-						</div>
-						<ul class="main-navigation-menu">
-							<li>
-								<a href="dashboard.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-home"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Dashboard </span>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-user"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Doctors </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									<li>
-										<a href="doctor-specilization.php">
-											<span class="title"> Doctor Specialization </span>
-										</a>
-									</li>
-									<li>
-										<a href="add-doctor.php">
-											<span class="title"> Add Doctor</span>
-										</a>
-									</li>
-									<li>
-										<a href="Manage-doctors.php">
-											<span class="title"> Manage Doctors </span>
-										</a>
-									</li>
-									
-								</ul>
-								</li>
-
-				<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-user"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Users </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									
-									<li>
-										<a href="manage-users.php">
-											<span class="title"> Manage Users </span>
-										</a>
-									</li>
-									
-								</ul>
-								</li>
-								<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-user"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Patients </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									
-									<li>
-										<a href="manage-patient.php">
-											<span class="title"> Manage Patients </span>
-										</a>
-									</li>
-									
-								</ul>
-								</li>	
-
-<li>
-								<a href="appointment-history.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-file"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Appointment History </span>
-										</div>
-									</div>
-								</a>
-							</li>
-
-
-
-				<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-files"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Conatctus Queries </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									
-									<li>
-										<a href="unread-queries.php">
-											<span class="title"> Unread Query </span>
-										</a>
-									</li>
-
-									<li>
-										<a href="read-query.php">
-											<span class="title"> Read Query </span>
-										</a>
-									</li>
-									
-								</ul>
-								</li>
-
-
-
-	<li>
-								<a href="doctor-logs.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-list"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Doctor Session Logs </span>
-										</div>
-									</div>
-								</a>
-							</li>		
-
-
-
-							<li>
-								<a href="user-logs.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-list"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> User Session Logs </span>
-										</div>
-									</div>
-								</a>
-							</li>						
-				<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-files"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Reports </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									
-									<li>
-										<a href="between-dates-reports.php">
-											<span class="title">B/w dates reports </span>
-										</a>
-									</li>
-								</ul>
-							</li>
-
-<!--- Pages---->
-				<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-file"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Pages </span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									
-									<li>
-										<a href="about-us.php">
-											<span class="title">About Us </span>
-										</a>
-									</li>
-																	<li>
-										<a href="contact.php">
-											<span class="title">Contact Us </span>
-										</a>
-									</li>
-								</ul>
-							</li>
-
-
-
-
-								<li>
-								<a href="patient-search.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-search"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title"> Patient Search </span>
-										</div>
-									</div>
-								</a>
-							</li>
-							
-
-						</ul>
-						<!-- end: CORE FEATURES -->
-						
-					</nav>
-					</div>
-			</div>
+include_once("../include/sidebar.php");

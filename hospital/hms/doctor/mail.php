@@ -113,10 +113,17 @@
 
  <?php
     session_start();
-    error_reporting(0);
+
+    if (getenv('ENVIRONMENT') !== "development") {
+        error_reporting(0);
+    }
+
     include('../include/config.php');
-    if (strlen($_SESSION['id'] == 0)) {
-        header('location:logout.php');
+    $userType = UserTypeEnum::Doctor->value;
+
+    include_once("../include/check_login_and_perms.php");
+    if (!check_login_and_perms($userType)) {
+        exit;
     } else {
 
     ?>
@@ -242,7 +249,7 @@
              <?php include('include/sidebar.php'); ?>
              <div class="app-content">
 
-                 <?php include('include/header.php'); ?>
+                 <?php include('../include/header.php'); ?>
 
                  <!-- end: TOP NAVBAR -->
                  <div class="main-content">
@@ -360,11 +367,11 @@
                  </div>
              </div>
              <!-- start: FOOTER -->
-             <?php include('include/footer.php'); ?>
+             <?php include('../include/footer.php'); ?>
              <!-- end: FOOTER -->
 
              <!-- start: SETTINGS -->
-             <?php include('include/setting.php'); ?>
+             <?php include('../include/setting.php'); ?>
 
              <!-- end: SETTINGS -->
          </div>

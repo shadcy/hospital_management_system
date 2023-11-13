@@ -1,5 +1,5 @@
 <?php
-include_once('include/config.php');
+include_once('../include/config.php');
 if (isset($_POST['submit'])) {
 	$fname = $_POST['full_name'];
 	$address = $_POST['address'];
@@ -7,9 +7,9 @@ if (isset($_POST['submit'])) {
 	$gender = $_POST['gender'];
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
-	$query = mysqli_query($con, "insert into users(fullname,address,city,gender,email,password) values('$fname','$address','$city','$gender','$email','$password')");
+	$query = mysqli_execute_query($con, "insert into users(fullName,address,gender,email,password) values(?,?,?,?,?)", [$fname, $address, $gender, $email, $password]);
 	if ($query) {
-		echo "<script>alert('Successfully Registered. You can login now');</script>";
+		echo "<script>alert('Successfully Registered. User can login now in.');</script>";
 	}
 }
 ?>

@@ -1,9 +1,16 @@
 <?php
 session_start();
-error_reporting(0);
+
+if (getenv('ENVIRONMENT') !== "development") {
+	error_reporting(0);
+}
+
 include('../include/config.php');
-if (strlen($_SESSION['id'] == 0)) {
-	header('location:logout.php');
+$userType = UserTypeEnum::Admin->value;
+
+include_once("../include/check_login_and_perms.php");
+if (!check_login_and_perms($userType)) {
+	exit;
 } else {
 
 	$did = intval($_GET['id']); // get doctor id
@@ -13,10 +20,20 @@ if (strlen($_SESSION['id'] == 0)) {
 		$docaddress = $_POST['clinicaddress'];
 		$docfees = $_POST['docfees'];
 		$doccontactno = $_POST['doccontact'];
+		$personalcontactno = $_POST['personalcontact'];
 		$docemail = $_POST['docemail']; #Not allowing email to be changed atm, add back if needed
-		$sql = mysqli_execute_query($con, "Update doctors set specilizationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
-		if ($sql) {
+
+		mysqli_begin_transaction($con);
+		try {
+			mysqli_execute_query($con, "Update doctors set specilizationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
+			mysqli_execute_query($con, "Update users set address=?,name=?,contactNumber=? where id=?", [$docaddress, $docname, $personalcontactno, $did]);
+
+			/* If code reaches this point without errors then commit the data in the database */
+			mysqli_commit($con);
 			$msg = "Doctor Details updated Successfully";
+		} catch (mysqli_sql_exception $exception) {
+			mysqli_rollback($con);
+			$msg = "There was an issue with the changes. Please try again.";
 		}
 	}
 ?>
@@ -35,7 +52,7 @@ if (strlen($_SESSION['id'] == 0)) {
 			<?php include('include/sidebar.php'); ?>
 			<div class="app-content">
 
-				<?php include('include/header.php'); ?>
+				<?php include('../include/header.php'); ?>
 				<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
 
 				<!-- end: TOP NAVBAR -->
@@ -73,7 +90,7 @@ if (strlen($_SESSION['id'] == 0)) {
 													<h5 class="panel-title">Edit Doctor info</h5>
 												</div>
 												<div class="panel-body">
-													<?php $sql = mysqli_execute_query($con, "select doctors.*,specialization.name as specName, users.name, users.email, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
+													<?php $sql = mysqli_execute_query($con, "select doctors.*,specializations.name as specName, users.name, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
 													while ($data = mysqli_fetch_array($sql)) {
 													?>
 														<h4><?php echo htmlentities($data['name']); ?>'s Profile</h4>
@@ -182,11 +199,11 @@ if (strlen($_SESSION['id'] == 0)) {
 		</div>
 		</div>
 		<!-- start: FOOTER -->
-		<?php include('include/footer.php'); ?>
+		<?php include('../include/footer.php'); ?>
 		<!-- end: FOOTER -->
 
 		<!-- start: SETTINGS -->
-		<?php include('include/setting.php'); ?>
+		<?php include('../include/setting.php'); ?>
 		<>
 			<!-- end: SETTINGS -->
 			</div>
