@@ -177,7 +177,7 @@ if (isset($_POST['submit'])) {
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="./ERR404.PHP" class="navbar-link title-md">Home</a>
+            <a href="./" class="navbar-link title-md">Home</a>
           </li>
 
           <li class="navbar-item">
@@ -193,7 +193,7 @@ if (isset($_POST['submit'])) {
           </li>
 
           <li class="navbar-item">
-            <a href="./ERR404.PHP" class="navbar-link title-md">Contact Us</a>
+            <a href="#contact_us" class="navbar-link title-md">Contact Us</a>
           </li>
 
         </ul>
@@ -238,7 +238,7 @@ if (isset($_POST['submit'])) {
         <ion-icon name="menu-outline"></ion-icon>
       </button>
 
-      <a href="./hms/user-login.php" class="btn has-before title-md">Make Appointment</a>
+      <a href="./hms/patient/" class="btn has-before title-md">Make Appointment</a>
 
       <div class="overlay" data-nav-toggler data-overlay></div>
 
@@ -324,7 +324,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
                 <h3 class="headline-sm card-title">
-                  <a href="./hms/user-login.php">Student's Login</a>
+                  <a href="./hms/patient/">Student's Login</a>
                 </h3>
 
                 <p class="card-text">
@@ -333,7 +333,7 @@ if (isset($_POST['submit'])) {
                   REGISTER/SIGN UP TO LOGIN
                 </p>
 
-                <a href="./hms/user-login.php">
+                <a href="./hms/patient/">
 
                   <button class="btn-circle" aria-label="read more about psychiatry">
                     <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
@@ -864,10 +864,8 @@ if (isset($_POST['submit'])) {
           <p class="headline-sm footer-list-title">About Us</p>
 
           <p class="text">
-            IIT Bombay Hospital is located at Near Canara Bank, IIT Bombay, Powai, IIT Area, Powai, Mumbai, Maharashtra
-            400076, भारत, near this place are: Care & Cure Maternity & Nursing Home (714 m), देंतार्त्ज़ डेंटल क्लीनिक
-            (722 meter), पवई सर्वचिकीत्सालय आणि दवाखाना (779 m), निहाल नर्सिंग होम (780 m), Dr.L.H.Hiranandani Hospital
-            (1 km).
+            IIT Bombay Hospital is located near Canara Bank, IIT Bombay, Powai, IIT Area, Powai, Mumbai, Maharashtra
+            400076, भारत
           </p>
 
           <address class="address">
@@ -875,8 +873,7 @@ if (isset($_POST['submit'])) {
 
             <span class="text">
               Near Canara Bank, IIT Bombay, Powai, IIT Area, Powai, Mumbai, Maharashtra
-              400076, भारत, near this place are: Care & Cure Maternity & Nursing Home (714 m) <br>
-              Tampa, FL 33634
+              400076, भारत
             </span>
           </address>
 
