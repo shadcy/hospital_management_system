@@ -20,9 +20,8 @@ if (!check_login_and_perms($userType)) {
 		$pagedes = $_POST['pagedes'];
 		$email = $_POST['email'];
 		$mobnum = $_POST['mobnum'];
-		$query = mysqli_execute_query($con, "update pages set title=?,description=?,email=?, contactNumber=? where type='contact'", [$pagetitle, $pagedes, $email, $mobnum]);
+		$query = mysqli_execute_query($con, "INSERT into pages(type,title,description,email,contactNumber) values('contact',?,?,?,?) ON DUPLICATE KEY UPDATE title=?,description=?,email=?,contactNumber=?", [$pagetitle, $pagedes, $email, $mobnum, $pagetitle, $pagedes, $email, $mobnum]);
 		if ($query) {
-
 			echo '<script>alert("Contact Us has been updated.")</script>';
 		} else {
 			echo '<script>alert("Something Went Wrong. Please try again.")</script>';
@@ -83,28 +82,32 @@ if (!check_login_and_perms($userType)) {
 										<?php
 
 										$ret = mysqli_query($con, "select * from pages where type='contact';");
-										$cnt = 1;
-										while ($row = mysqli_fetch_array($ret)) {
+
+										if (mysqli_num_rows($ret) === 0) {
+											$row = ['title' => "", 'description' => "", 'email' => "", 'contactNumber' => ""];
+										} else {
+											$row = mysqli_fetch_array($ret);
+										}
 
 										?>
-											<div class="form-group">
-												<label for="exampleInputUsername1">Page Title</label>
-												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
-											</div>
-											<div class="form-group">
-												<label for="exampleInputEmail1">Page Description</label>
-												<textarea class="form-control" name="pagedes" id="pagedes" rows="5"><?php echo $row['description']; ?></textarea>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputUsername1">Email Addresss</label>
-												<input type="email" class="form-control" name="email" value="<?php echo $row['email']; ?>" required='true'>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputUsername1">Mobile Number</label>
-												<input type="text" class="form-control" name="mobnum" value="<?php echo $row['contactNumber']; ?>" required='true' maxlength="10" pattern='[0-9]+'>
-											</div>
+										<div class="form-group">
+											<label for="exampleInputUsername1">Page Title</label>
+											<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">Page Description</label>
+											<textarea class="form-control" name="pagedes" id="pagedes" rows="5"><?php echo $row['description']; ?></textarea>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputUsername1">Email Addresss</label>
+											<input type="email" class="form-control" name="email" value="<?php echo $row['email']; ?>" required='true'>
+										</div>
+										<div class="form-group">
+											<label for="exampleInputUsername1">Mobile Number</label>
+											<input type="text" class="form-control" name="mobnum" value="<?php echo $row['contactNumber']; ?>" required='true' maxlength="10" pattern='[0-9]+'>
+										</div>
 
-										<?php } ?>
+
 										<button type="submit" class="btn btn-primary mr-2" name="submit">Update</button>
 									</form>
 								</div>

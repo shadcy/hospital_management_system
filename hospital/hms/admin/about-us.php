@@ -17,9 +17,8 @@ if (!check_login_and_perms($userType)) {
 
 		$pagetitle = $_POST['pagetitle'];
 		$pagedes = $con->real_escape_string($_POST['pagedes']);
-		$query = mysqli_execute_query($con, "update pages set title=?,description=? where type='about'", [$pagetitle, $pagedes]);
+		$query = mysqli_execute_query($con, "INSERT into pages(type, title, description) values('about',?,?) ON DUPLICATE KEY UPDATE title=?, description=?", [$pagetitle, $pagedes, $pagetitle, $pagedes]);
 		if ($query) {
-
 			echo '<script>alert("About Us has been updated.")</script>';
 		} else {
 			echo '<script>alert("Something Went Wrong. Please try again.")</script>';
@@ -79,21 +78,25 @@ if (!check_login_and_perms($userType)) {
 									<form class="forms-sample" method="post">
 										<?php
 
-										$ret = mysqli_query($con, "select * from pages where pages.type='about';");
-										$cnt = 1;
-										while ($row = mysqli_fetch_array($ret)) {
+										$ret = mysqli_query($con, "select * from pages where type='about';");
+
+										if (mysqli_num_rows($ret) === 0) {
+											$row = ['title' => "", 'description' => ""];
+										} else {
+											$row = mysqli_fetch_array($ret);
+										}
 
 										?>
-											<div class="form-group">
-												<label for="exampleInputUsername1">Page Title</label>
-												<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
-											</div>
-											<div class="form-group">
-												<label for="exampleInputEmail1">Page Description</label>
-												<textarea class="form-control" name="pagedes" id="pagedes" rows="12"><?php echo $row['description']; ?></textarea>
-											</div>
+										<div class="form-group">
+											<label for="exampleInputUsername1">Page Title</label>
+											<input id="pagetitle" name="pagetitle" type="text" class="form-control" required="true" value="<?php echo $row['title']; ?>">
+										</div>
+										<div class="form-group">
+											<label for="exampleInputEmail1">Page Description</label>
+											<textarea class="form-control" name="pagedes" id="pagedes" rows="12"><?php echo $row['description']; ?></textarea>
+										</div>
 
-										<?php } ?>
+										<?php ?>
 										<button type="submit" class="btn btn-primary mr-2" name="submit">Submit</button>
 									</form>
 								</div>
