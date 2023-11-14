@@ -9,7 +9,7 @@ include("../include/config.php");
 
 $userType = UserTypeEnum::Patient->value;
 
-if (strlen($_SESSION['login']) != 0 && $_SESSION['userType'] === $userType) {
+if (isset($_SESSION['id']) && $_SESSION['userType'] === $userType) {
 	header("location:dashboard.php");
 	exit;
 }

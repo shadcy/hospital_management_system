@@ -19,7 +19,7 @@ if (!check_login_and_perms($userType)) {
 		$cpass = md5($_POST['cpass']);
 		$did = $_SESSION['id'];
 		$sql = mysqli_execute_query($con, "SELECT 1 FROM users where password=? && id=?", [$cpass, $did]);
-		$num = mysqli_fetch_array($sql);
+		$num = mysqli_num_rows($sql);
 		if ($num > 0) {
 			$npass = md5($_POST['npass']);
 			$con = mysqli_execute_query($con, "update users set password=? where id=?", [$npass, $did]);

@@ -74,7 +74,7 @@ if (!check_login_and_perms($userType)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from contact_us where isRead = 0;");
+											$sql = mysqli_query($con, "select * from contact_us where isRead = 1;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

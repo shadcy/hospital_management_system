@@ -23,7 +23,7 @@ if (!check_login_and_perms($userType)) {
 		mysqli_begin_transaction($con);
 		try {
 			mysqli_execute_query($con, "Update doctors set specilizationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
-			mysqli_execute_query($con, "Update users set address=?,name=?,contactNumber=? where id=?", [$docaddress, $docname, $personalcontactno, $did]);
+			mysqli_execute_query($con, "Update users set address=?,fullName=?,contactNumber=? where id=?", [$docaddress, $docname, $personalcontactno, $did]);
 
 			/* If code reaches this point without errors then commit the data in the database */
 			mysqli_commit($con);
@@ -88,10 +88,10 @@ if (!check_login_and_perms($userType)) {
 												<div class="panel-body">
 													<?php
 													$did = $_SESSION['id'];
-													$sql = mysqli_execute_query($con, "select doctors.*, specializations.name as specName, users.name, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
+													$sql = mysqli_execute_query($con, "select doctors.*, specializations.name as specName, users.fullName, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
 													while ($data = mysqli_fetch_array($sql)) {
 													?>
-														<h4><?php echo htmlentities($data['name']); ?>'s Profile</h4>
+														<h4><?php echo htmlentities($data['fullName']); ?>'s Profile</h4>
 														<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
 														<?php if ($data['updationDate']) { ?>
 															<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
@@ -120,7 +120,7 @@ if (!check_login_and_perms($userType)) {
 																<label for="doctorname">
 																	Doctor Name
 																</label>
-																<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['name']); ?>">
+																<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['fullName']); ?>">
 															</div>
 
 

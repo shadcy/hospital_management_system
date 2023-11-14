@@ -18,7 +18,7 @@ if (!check_login_and_perms($userType)) {
 	$currentTime = date('d-m-Y h:i:s A', time());
 
 	if (isset($_POST['submit'])) {
-		$sql = mysqli_execute_query($con, "SELECT id FROM users where id=? AND password=?", [$_SESSION['id'], md5($_POST['cpass'])]); #Done2
+		$sql = mysqli_execute_query($con, "SELECT 1 FROM users where id=? AND password=?", [$_SESSION['id'], md5($_POST['cpass'])]); #Done2
 		$num = mysqli_num_rows($sql);
 		if ($num > 0) {
 			$ret = mysqli_execute_query($con, "update users set password=? where id=?", [md5($_POST['npass']), $_SESSION['id']]);

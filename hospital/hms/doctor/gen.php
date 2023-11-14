@@ -14,9 +14,9 @@ if (!check_login_and_perms($userType)) {
 } else {
 	$doctorName = "";
 	if (isset($_SESSION['id'])) {
-		$query = mysqli_execute_query($con, "select name from users where id=?", [$_SESSION['id']]);
+		$query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
 		while ($row = mysqli_fetch_array($query)) {
-			$doctorName = $row['name']; // storing the value in the variable
+			$doctorName = $row['fullName']; // storing the value in the variable
 		}
 	}
 ?>

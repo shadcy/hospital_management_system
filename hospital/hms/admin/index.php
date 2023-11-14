@@ -9,7 +9,7 @@ include("../include/config.php");
 
 $userType = UserTypeEnum::Admin->value;
 
-if (strlen($_SESSION['login']) != 0 && $_SESSION['userType'] === $userType) {
+if (isset($_SESSION['id']) && $_SESSION['userType'] === $userType) {
 	header("location:dashboard.php");
 	exit;
 }
@@ -17,7 +17,7 @@ if (strlen($_SESSION['login']) != 0 && $_SESSION['userType'] === $userType) {
 if (isset($_POST['submit'])) {
 	$puname = $_POST['username'];
 	$ppwd = md5($_POST['password']);
-	$ret = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=? and type = ? and isAdmin = 1 and isActive = 1;", [$puname, $ppwd, $userType]);
+	$ret = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=? and type=? and isAdmin = 1 and isActive = 1;", [$puname, $ppwd, $userType]);
 	$num = mysqli_fetch_array($ret);
 	if ($num > 0) {
 		$_SESSION['login'] = $_POST['username'];

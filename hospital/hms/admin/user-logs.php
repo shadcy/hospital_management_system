@@ -75,7 +75,8 @@ if (!check_login_and_perms($userType)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from logs where type=0;");
+											$patientUserType = UserTypeEnum::Doctor->value;
+											$sql = mysqli_query($con, "select * from logs where type={$patientUserType};");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

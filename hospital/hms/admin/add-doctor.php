@@ -24,9 +24,9 @@ if (!check_login_and_perms($userType)) {
 		$doccontactno = $_POST['doccontact'];
 		$docemail = $_POST['docemail'];
 		$password = md5($_POST['npass']);
-
+		$newUserType = UserTypeEnum::Doctor->value;
 		try {
-			$sql = mysqli_execute_query($con, "insert into users (email,password,fullName,contactNumber,address) values(?,?,?,?,?)", [$docemail, $password, $docname, $doccontactno, $docaddress]);
+			$sql = mysqli_execute_query($con, "insert into users (type,email,password,fullName,contactNumber,address) values({$newUserType},?,?,?,?,?)", [$docemail, $password, $docname, $doccontactno, $docaddress]);
 
 			if ($sql) {
 				$sql = mysqli_execute_query($con, "insert into doctors (id,specializationId,fees,contactNumber) values(?,?,?,?)", [mysqli_insert_id($con), $docspecialization, $docfees, $doccontactno]);

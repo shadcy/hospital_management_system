@@ -10,10 +10,10 @@ include("../include/config.php");
 if (isset($_POST['submit'])) {
 	$contactno = $_POST['contactno'];
 	$email = $_POST['email'];
-	$query = mysqli_query($con, "select id from  doctors where contactno='$contactno' and docEmail='$email'"); #Not worked on
+	$query = mysqli_execute_query($con, "select id from users where contactNumber=? and email=?", [$contactno, $email]); #Not worked on
 	$row = mysqli_num_rows($query);
-	if ($row > 0) {
 
+	if ($row > 0) {
 		$_SESSION['cnumber'] = $contactno;
 		$_SESSION['email'] = $email;
 		header('location:reset-password.php');

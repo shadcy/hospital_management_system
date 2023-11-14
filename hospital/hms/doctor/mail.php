@@ -125,32 +125,15 @@
     if (!check_login_and_perms($userType)) {
         exit;
     } else {
-
-    ?>
-
-
-
-     <?php
-        session_start();
-        // Establish a database connection
-        $con = mysqli_connect("localhost", "root", "", "hms");
-
-        if (mysqli_connect_errno()) {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
-
         $doctorName = "";
         if (isset($_SESSION['id'])) {
-            $query = mysqli_query($con, "select doctorName from doctors where id='" . $_SESSION['id'] . "'");
+            $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
+            $doctorName = "";
             while ($row = mysqli_fetch_array($query)) {
-                $doctorName = $row['doctorName']; // storing the value in the variable
+                $doctorName = $row['fullName']; // storing the value in the variable
             }
         }
-        ?>
-
-
-
-
+    ?>
 
      <!DOCTYPE html>
      <html lang="en">
