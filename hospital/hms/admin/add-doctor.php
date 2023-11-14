@@ -195,7 +195,7 @@ if (!check_login_and_perms($userType)) {
 
 
 
-														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary" disabled>
 															Submit
 														</button>
 													</form>

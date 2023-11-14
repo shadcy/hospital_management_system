@@ -22,9 +22,10 @@ if (isset($_POST['submit'])) {
 	$time = $_POST['apptime'];
 	$userstatus = 1;
 	$docstatus = 1;
-	$query = mysqli_execute_query($con, "insert into appointments(doctorId,patientId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values(?,?,?,?,?,?,?)", [$doctorid, $userid, $fees, $appdate, $time, $userstatus, $docstatus]);
+	$query = mysqli_execute_query($con, "insert into appointments(doctorId,patientId,consultancyFees,date,time) values(?,?,?,?,?)", [$doctorid, $userid, $fees, $appdate, $time]);
 	if ($query) {
 		echo "<script>alert('Your appointment successfully booked');</script>";
+		echo "<script>window.location.href ='appointment-history.php'</script>";
 	}
 }
 ?>

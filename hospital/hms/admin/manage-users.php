@@ -12,13 +12,13 @@ include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
 	exit;
 } else {
-
+	$patientUserType = UserTypeEnum::Patient->value;
 	if (isset($_GET['del'])) {
 		$uid = $_GET['id'];
 		if ($uid == $_SESSION['id']) {
 			$_SESSION['msg'] = "Cannot delete yourself!";
 		} else {
-			mysqli_execute_query($con, "Update users set isActive=0 where id =?", [$uid]);
+			mysqli_execute_query($con, "Update users set isActive=0 where id =? and type={$patientUserType}", [$uid]);
 			$_SESSION['msg'] = "data deleted !!";
 		}
 	}
@@ -85,7 +85,7 @@ if (!check_login_and_perms($userType)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_query($con, "select * from users where isActive=1;");
+											$sql = mysqli_query($con, "select * from users where type ={$patientUserType} and isActive=1;");
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

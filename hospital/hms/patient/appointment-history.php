@@ -79,7 +79,7 @@ if (!check_login_and_perms($userType)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_execute_query($con, "select users.fullName as docname, appointments.*  from appointments join doctors on doctors.id=appointment.doctorId join users on users.id=doctors.id where appointments.patientId = ?", [$_SESSION['id']]); #Done2
+											$sql = mysqli_execute_query($con, "select users.fullName as docname, appointments.*  from appointments join doctors on doctors.id=appointments.doctorId join users on users.id=doctors.id where appointments.patientId = ?", [$_SESSION['id']]); #Done2
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

@@ -80,7 +80,7 @@ if (!check_login_and_perms($userType)) {
 										</thead>
 										<tbody>
 											<?php
-											$sql = mysqli_execute_query($con, "select users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.patientId where appointment.doctorId=?", [$_SESSION['id']]);
+											$sql = mysqli_execute_query($con, "select users.fullName as fname,appointments.*  from appointments join users on users.id=appointments.patientId where appointments.doctorId=?", [$_SESSION['id']]);
 											$cnt = 1;
 											while ($row = mysqli_fetch_array($sql)) {
 											?>

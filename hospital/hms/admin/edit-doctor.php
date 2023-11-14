@@ -23,17 +23,19 @@ if (!check_login_and_perms($userType)) {
 		$personalcontactno = $_POST['personalcontact'];
 		$docemail = $_POST['docemail']; #Not allowing email to be changed atm, add back if needed
 
+		$msg = "Doctor Details updated Successfully";
+
 		mysqli_begin_transaction($con);
 		try {
-			mysqli_execute_query($con, "Update doctors set specilizationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
+			mysqli_execute_query($con, "Update doctors set specializationId=?,fees=?,contactNumber=? where id=?", [$docspecialization, $docfees, $doccontactno, $did]);
 			mysqli_execute_query($con, "Update users set address=?,fullName=?,contactNumber=? where id=?", [$docaddress, $docname, $personalcontactno, $did]);
 
 			/* If code reaches this point without errors then commit the data in the database */
 			mysqli_commit($con);
-			$msg = "Doctor Details updated Successfully";
 		} catch (mysqli_sql_exception $exception) {
 			mysqli_rollback($con);
 			$msg = "There was an issue with the changes. Please try again.";
+			throw $exception;
 		}
 	}
 ?>
@@ -90,7 +92,7 @@ if (!check_login_and_perms($userType)) {
 													<h5 class="panel-title">Edit Doctor info</h5>
 												</div>
 												<div class="panel-body">
-													<?php $sql = mysqli_execute_query($con, "select doctors.*,specializations.name as specName, users.fullName, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where id=?", [$did]);
+													<?php $sql = mysqli_execute_query($con, "select doctors.*,specializations.name as specName, users.fullName, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where doctors.id=?", [$did]);
 													while ($data = mysqli_fetch_array($sql)) {
 													?>
 														<h4><?php echo htmlentities($data['fullName']); ?>'s Profile</h4>
