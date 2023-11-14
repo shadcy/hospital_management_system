@@ -40,5 +40,10 @@
 		'href' => 'ambulance.php',
 		'icon' => 'car',
 	],
+	[
+		'name' => 'Encryption',
+		'href' => 'enc.php',
+		'icon' => 'key',
+	],
 ];
 include_once("../include/sidebar.php");

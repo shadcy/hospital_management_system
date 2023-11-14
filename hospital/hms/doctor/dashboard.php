@@ -192,12 +192,11 @@ if (!check_login_and_perms($userType)) {
 								<div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center" style="border: 2px solid #1AA7EC;">
 										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-exclamation fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Log Out </h2>
-
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-lock fa-stack-1x fa-inverse"></i> </span>
+											<h2 class="StepTitle">Encryption</h2>
 											<p class="links cl-effect-1">
-												<a href="logout.php">
-													Log Out
+												<a href="enc.php">
+													Encryption
 												</a>
 											</p>
 										</div>
