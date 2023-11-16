@@ -29,7 +29,7 @@ if (!check_login_and_perms($userType)) {
 			$sql = mysqli_execute_query($con, "insert into users (type,email,password,fullName,contactNumber,address) values({$newUserType},?,?,?,?,?)", [$docemail, $password, $docname, $doccontactno, $docaddress]);
 
 			if ($sql) {
-				$sql = mysqli_execute_query($con, "insert into doctors (id,specializationId,fees,contactNumber) values(?,?,?,?)", [mysqli_insert_id($con), $docspecialization, $docfees, $doccontactno]);
+				$sql = mysqli_execute_query($con, "insert into doctors (id,specializationId,fees,contactNumber,nonce) values(?,?,?,?,?)", [mysqli_insert_id($con), $docspecialization, $docfees, $doccontactno, random_bytes(48)]);
 				if ($sql) {
 					echo "<script>alert('Doctor info added successfully');</script>";
 					echo "<script>window.location.href ='manage-doctors.php'</script>";

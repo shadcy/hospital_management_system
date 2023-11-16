@@ -42,7 +42,7 @@
 	],
 	[
 		'name' => 'Encryption',
-		'href' => 'enc.php',
+		'href' => 'encrypt.php',
 		'icon' => 'key',
 	],
 ];

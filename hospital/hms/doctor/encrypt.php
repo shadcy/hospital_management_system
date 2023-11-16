@@ -139,9 +139,6 @@ if (!check_login_and_perms($userType)) {
                                                     <p class="drag-drop-text" id="drag-text"> <br><br></p>
                                                     <input type="file" id="image" onchange="previewImage()" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
                                                 </div>
-                                                <br>
-                                                Password: <input type="password" id="password">
-                                                <br>
                                                 <button onclick="encryptImage()">Encrypt</button>
                                                 <button onclick="decryptImage()">Decrypt</button>
                                                 <br>

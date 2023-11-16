@@ -195,7 +195,7 @@ if (!check_login_and_perms($userType)) {
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-lock fa-stack-1x fa-inverse"></i> </span>
 											<h2 class="StepTitle">Encryption</h2>
 											<p class="links cl-effect-1">
-												<a href="enc.php">
+												<a href="encrypt.php">
 													Encryption
 												</a>
 											</p>
