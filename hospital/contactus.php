@@ -415,32 +415,7 @@ if (isset($_POST['submit'])) {
                             Hospital Portal
                         </h1>
 
-                        <!-- <div class="hero-card login-card" data-reveal="left">
 
-                            <p class="title-lg card-text">
-                                Enter your credentials to access the portal.``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-                            </p>
-
-                            <div class="wrapper">
-
-                                <div class="input-wrapper title-lg">
-                                    <input type="text" name="username" placeholder="Username" class="input-field">
-                                    <ion-icon name="person-outline"></ion-icon>
-                                </div>
-
-                                <div class="input-wrapper title-lg">
-                                    <input type="password" name="password" placeholder="Password" class="input-field">
-                                    <ion-icon name="lock-closed-outline"></ion-icon>
-                                </div>
-
-                                <button class="btn has-before">
-                                    <ion-icon name="log-in-outline"></ion-icon>
-                                    <span class="span title-md">Login</span>
-                                </button>
-
-                            </div>
-
-                        </div> -->
 
                     </div>
 
@@ -451,52 +426,47 @@ if (isset($_POST['submit'])) {
 
 
 
-            <div class="container main-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h1>Verification</h1>
-                            <h2>Select an image file to verify if it is a valid pink-slip.</h2>
-                            <div class="drag-drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                <p class="drag-drop-text" id="drag-text"> <br><br></p>
-                                <!-- <input type="file" id="image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"> -->
-
-                                <label id="image-label" for="image">Choose an image:</label>
-
-                                <!-- Custom-styled file input -->
-                                <label class="custom-file-upload" for="image">
-                                    Browse
-                                    <input type="file" id="image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                </label> <br>
-                                <!-- Display the file name after selection (optional) -->
-                                <span id="file-name"></span>
-                                <br>
 
 
 
 
+
+            <section id="contact_us" class="contact-us-single" style="color: var(--verdigris); background: linear-gradient(to bottom,#fff, var(--verdigris), var(--midnight-green));
+">
+                <div class="row no-margin">
+
+                    <div class="col-sm-12 cop-ck">
+                        <form method="post">
+                            <h2 style="font-weight:bold; color: var(--verdigris);">Contact Form</h2>
+                            <div class="row cf-ro">
+                                <div class="col-sm-3"><label>Enter Name :</label></div>
+                                <div class="col-sm-8"><input type="text" placeholder="Enter Name" name="fullname" class="form-control input-sm" required style="border-color: var(--verdigris);"></div>
                             </div>
-                            <button onclick="decryptImage()" class="btn btn-primary">Verify</button>
-                            <br>
-                            <img id="decrypted-image" style="display:none;">
-                            <a id="decrypted-link" download="decrypted.png" class="download-btn" style="display:none;">Download decrypted image</a>
-                        </div>
+                            <div class="row cf-ro">
+                                <div class="col-sm-3"><label>Email Address :</label></div>
+                                <div class="col-sm-8"><input type="text" name="emailid" placeholder="Enter Email Address" class="form-control input-sm" required></div>
+                            </div>
+                            <div class="row cf-ro">
+                                <div class="col-sm-3"><label>Mobile Number:</label></div>
+                                <div class="col-sm-8"><input type="text" name="mobileno" placeholder="Enter Mobile Number" class="form-control input-sm" required></div>
+                            </div>
+                            <div class="row cf-ro">
+                                <div class="col-sm-3"><label>Enter Message:</label></div>
+                                <div class="col-sm-8">
+                                    <textarea rows="5" placeholder="Enter Your Message" class="form-control input-sm" name="description" required style="border-color: var(--verdigris);"></textarea>
+                                </div>
+                            </div>
+                            <div class="row cf-ro">
+                                <div class="col-sm-3"><label></label></div>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-success btn-sm" type="submit" name="submit" style="background-color: var(--verdigris);">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h1>Pink Slip</h1>
-                            <h4 name="decryption-metadata"></h4>
-                            <img id="pinkslip" style="display:none; " alt="Pink Slip Image">
-                        </div>
-                    </div>
                 </div>
-            </div>
-
-            <!-- Bootstrap JS (Assuming Bootstrap is used, adjust the path if needed) -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+            </section>
 
 
 

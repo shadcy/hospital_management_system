@@ -182,102 +182,11 @@ if (isset($_POST['submit'])) {
             color: #555;
             /* Darker color on hover */
         }
-
-        .containerx {
-            height: 300px;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-            gap: 5px;
-            background-color: rgba(0, 110, 255, 0.041);
-        }
-
-        .headerx {
-            flex: 1;
-            width: 100%;
-            border: 2px dashed royalblue;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .headerx svg {
-            height: 100px;
-        }
-
-        .headerx p {
-            text-align: center;
-            color: black;
-        }
-
-        .footerx {
-            background-color: rgba(0, 110, 255, 0.075);
-            width: 100%;
-            height: 40px;
-            padding: 8px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            color: black;
-            border: none;
-        }
-
-        .footerx svg {
-            height: 130%;
-            fill: royalblue;
-            background-color: rgba(70, 66, 66, 0.103);
-            border-radius: 50%;
-            padding: 2px;
-            cursor: pointer;
-            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
-        }
-
-        .footerx p {
-            flex: 1;
-            text-align: center;
-        }
-
-        #file {
-            display: none;
-        }
-    </style>
-
-    <style>
-        #image {
-            display: none;
-            /* Hide the default file input button */
-        }
-
-        .custom-file-upload {
-            border: 2px solid #ccc;
-            display: inline-block;
-            padding: 8px 12px;
-            cursor: pointer;
-        }
-
-        .custom-file-upload:hover {
-            background-color: #f5f5f5;
-        }
-
-        #image-label {
-            display: inline-block;
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
     </style>
 
 </head>
 
-<body id="top" style="background-color: aliceblue;">
+<body id="top">
 
     <!-- 
     - #PRELOADER
@@ -342,7 +251,7 @@ if (isset($_POST['submit'])) {
                     </li>
 
                     <li class="navbar-item">
-                        <a href="#contact_us" class="navbar-link title-md">Contact Us</a>
+                        <a href="contactus.php" class="navbar-link title-md">Contact Us</a>
                     </li>
 
                 </ul>
@@ -401,48 +310,75 @@ if (isset($_POST['submit'])) {
     <main>
         <article>
 
+            <!-- 
+        - #HERO
+      -->
 
-
-
-
-            <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="verification">
+            <!-- <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="home">
                 <div class="container">
 
                     <div class="hero-content">
 
+                        <p class="hero-subtitle has-before" data-reveal="left">Welcome To Our Webpage</p>
+
                         <h1 class="headline-lg hero-title" data-reveal="left">
-                            Pink Slip Verification <br>
-                            Hospital Portal
+                            IIT Bombay <br>
+                            Hospital.
                         </h1>
 
-                        <!-- <div class="hero-card login-card" data-reveal="left">
+                        <div class="hero-card" data-reveal="left">
 
                             <p class="title-lg card-text">
-                                Enter your credentials to access the portal.``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+                                Get location of hospital.
                             </p>
 
                             <div class="wrapper">
 
                                 <div class="input-wrapper title-lg">
-                                    <input type="text" name="username" placeholder="Username" class="input-field">
-                                    <ion-icon name="person-outline"></ion-icon>
+                                    <input type="text" name="location" placeholder="IIT Bombay Hospital" class="input-field">
+
+                                    <ion-icon name="location"></ion-icon>
                                 </div>
 
-                                <div class="input-wrapper title-lg">
-                                    <input type="password" name="password" placeholder="Password" class="input-field">
-                                    <ion-icon name="lock-closed-outline"></ion-icon>
-                                </div>
+                                <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568">
+                                    <button class="btn has-before">
+                                        <ion-icon name="search"></ion-icon>
 
-                                <button class="btn has-before">
-                                    <ion-icon name="log-in-outline"></ion-icon>
-                                    <span class="span title-md">Login</span>
-                                </button>
+                                        <span class="span title-md">Find Now</span>
+                                    </button>
+                                </a>
 
                             </div>
 
-                        </div> -->
+                        </div>
 
                     </div>
+
+                    <figure class="hero-banner" data-reveal="right">
+                        <img src="./assets/images/hero-banner.png" width="590" height="517" loading="eager" alt="hero banner" class="w-100">
+                    </figure>
+
+                </div>
+            </section> -->
+
+
+            <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="login">
+                <div class="container">
+
+                    <div class="hero-content">
+
+                        <!-- <h1 class="headline-lg hero-title" data-reveal="left">
+                            Login to IIT Bombay <br>
+                            Hospital Portal
+                        </h1> -->
+
+
+
+                    </div>
+
+                    <!-- <figure class="hero-banner" data-reveal="right">
+                        <img src="image.png" width="590" height="517" class="w-100">
+                    </figure> -->
 
                 </div>
             </section>
@@ -451,59 +387,124 @@ if (isset($_POST['submit'])) {
 
 
 
-            <div class="container main-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h1>Verification</h1>
-                            <h2>Select an image file to verify if it is a valid pink-slip.</h2>
-                            <div class="drag-drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                <p class="drag-drop-text" id="drag-text"> <br><br></p>
-                                <!-- <input type="file" id="image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)"> -->
-
-                                <label id="image-label" for="image">Choose an image:</label>
-
-                                <!-- Custom-styled file input -->
-                                <label class="custom-file-upload" for="image">
-                                    Browse
-                                    <input type="file" id="image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                </label> <br>
-                                <!-- Display the file name after selection (optional) -->
-                                <span id="file-name"></span>
-                                <br>
-
-
-
-
-                            </div>
-                            <button onclick="decryptImage()" class="btn btn-primary">Verify</button>
-                            <br>
-                            <img id="decrypted-image" style="display:none;">
-                            <a id="decrypted-link" download="decrypted.png" class="download-btn" style="display:none;">Download decrypted image</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card">
-                            <h1>Pink Slip</h1>
-                            <h4 name="decryption-metadata"></h4>
-                            <img id="pinkslip" style="display:none; " alt="Pink Slip Image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bootstrap JS (Assuming Bootstrap is used, adjust the path if needed) -->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-
             <!-- 
         - #SERVICE
       -->
 
+            <section class="service" aria-label="service">
+                <div class="container">
+
+                    <ul class="service-list">
+
+                        <li>
+                            <div class="service-card" data-reveal="bottom">
+
+                                <div class="card-icon">
+                                    <img src="./assets/images/icon-1.png" width="71" height="71" loading="lazy" alt="icon">
+                                </div>
+
+                                <h3 class="headline-sm card-title">
+                                    <a href="./hms/patient/">Student's Login</a>
+                                </h3>
+
+                                <p class="card-text">
+                                    NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
+
+                                    REGISTER/SIGN UP TO LOGIN
+                                </p>
+
+                                <a href="./hms/patient/">
+
+                                    <button class="btn-circle" aria-label="read more about psychiatry">
+                                        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                    </button>
+
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="service-card" data-reveal="bottom">
+
+                                <div class="card-icon">
+                                    <img src="./assets/images/icon-2.png" width="71" height="71" loading="lazy" alt="icon">
+                                </div>
+
+                                <h3 class="headline-sm card-title">
+                                    <a href="./hms/doctor">Doctor's Login</a>
+                                </h3>
+
+                                <p class="card-text">
+                                    NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
+
+                                    REGISTER/SIGN UP TO LOGIN
+                                </p>
+
+                                <a href="./hms/doctor">
+                                    <button class="btn-circle" aria-label="read more about Gynecology">
+                                        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                    </button>
+                                </a>
+
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="service-card" data-reveal="bottom">
+
+                                <div class="card-icon">
+                                    <img src="./assets/images/icon-3.png" width="71" height="71" loading="lazy" alt="icon">
+                                </div>
+
+                                <h3 class="headline-sm card-title">
+                                    <a href="./hms/admin">Admin's Login</a>
+                                </h3>
+
+                                <p class="card-text">
+                                    NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
+
+                                    REGISTER/SIGN UP TO LOGIN
+                                </p>
+
+                                <a href="./hms/admin">
+                                    <button class="btn-circle" aria-label="read more about Pulmonology">
+                                        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                    </button>
+                                </a>
+
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="service-card" data-reveal="bottom">
+
+                                <div class="card-icon">
+                                    <img src="./assets/images/icon-4.png" width="71" height="71" loading="lazy" alt="icon">
+                                </div>
+
+                                <h3 class="headline-sm card-title">
+                                    <a href="#">Staff's Login</a>
+                                </h3>
+
+                                <p class="card-text">
+                                    NO VPN REQUIRED FOR OUTSIDE IIT BOMBAY
+
+                                    REGISTER/SIGN UP TO LOGIN
+                                </p>
+
+                                <button class="btn-circle" aria-label="read more about Orthopedics">
+                                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                </button>
+
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </section>
 
 
             </div>
@@ -580,12 +581,7 @@ if (isset($_POST['submit'])) {
   -->
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-            <script>
-                // JavaScript to display the selected file name
-                document.getElementById('image').addEventListener('change', function() {
-                    document.getElementById('file-name').textContent = this.value.split('\\').pop();
-                });
-            </script>
+
 </body>
 
 </html>

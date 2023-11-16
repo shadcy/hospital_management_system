@@ -80,10 +80,10 @@ if (isset($_POST['submit'])) {
     .cop-ck {
       width: 100%;
       /* Adjust the width of the form as needed */
-      max-width: 1000px;
-      padding: 20px;
-      border: 1px solid black;
-      border-radius: 5px;
+      /* max-width: 1000px; */
+      padding: 40px;
+      /* border: 1px solid black;
+      border-radius: 5px; */
       width: 800px;
       background-color: #fff;
     }
@@ -119,9 +119,10 @@ if (isset($_POST['submit'])) {
       cursor: pointer;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 800px) {
       .cop-ck {
-        width: 90%;
+        padding: 40px;
+        width: 120%;
       }
     }
   </style>
@@ -139,12 +140,6 @@ if (isset($_POST['submit'])) {
   </div>
 
 
-
-
-
-  <!-- 
-    - #HEADER
-  -->
 
   <header class="header" data-header>
     <div class="container">
@@ -181,15 +176,15 @@ if (isset($_POST['submit'])) {
           </li>
 
           <li class="navbar-item">
-            <a href="./ERR404.PHP" class="navbar-link title-md">Doctors</a>
+            <a href="./logins.php" class="navbar-link title-md">Doctors</a>
           </li>
 
           <li class="navbar-item">
-            <a href="./ERR404.PHP" class="navbar-link title-md">Logins</a>
+            <a href="./logins.php" class="navbar-link title-md">Logins</a>
           </li>
 
           <li class="navbar-item">
-            <a href="./ERR404.PHP" class="navbar-link title-md">Timings</a>
+            <a href="./verification.php" class="navbar-link title-md">Auth</a>
           </li>
 
           <li class="navbar-item">
@@ -546,7 +541,7 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Psychiatry</h3>
 
-                  <p class="card-text">Porta velit</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
@@ -562,7 +557,7 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Gynecology</h3>
 
-                  <p class="card-text">Mattis augue</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
@@ -578,10 +573,11 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Pulmonology</h3>
 
-                  <p class="card-text">Mauris laoreet</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
+
             </li>
 
             <li>
@@ -594,7 +590,7 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Orthopedics</h3>
 
-                  <p class="card-text">Convallis vulputate</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
@@ -610,7 +606,7 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Pediatrics</h3>
 
-                  <p class="card-text">Posuere maecenas</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
@@ -626,7 +622,7 @@ if (isset($_POST['submit'])) {
                 <div>
                   <h3 class="headline-sm card-title">Osteology</h3>
 
-                  <p class="card-text">Nisi nullam</p>
+                  <p class="card-text"></p>
                 </div>
 
               </div>
