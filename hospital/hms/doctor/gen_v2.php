@@ -268,7 +268,7 @@ if (!check_login_and_perms($userType)) {
                                         </div>
                                     </div>
                                     <div class="button-container">
-                                        <button type="button" onclick="generateCertificate()">Generate Certificate</button>
+                                        <button type="button" onclick="generateCertificate()">Preview Certificate</button>
                                         <div class="format-selector">
                                             <label for="format">Download Format:</label>
                                             <select id="format">
@@ -277,7 +277,7 @@ if (!check_login_and_perms($userType)) {
                                                 <option value="jpeg">JPEG</option>
                                             </select>
                                         </div>
-                                        <button id="downloadButton" type="button" onclick="downloadCertificate()">Download
+                                        <button id="downloadButton" type="button" onclick="downloadCertificate()">Generate
                                             Certificate</button>
                                     </div>
                                 </form>

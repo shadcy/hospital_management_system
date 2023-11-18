@@ -161,7 +161,7 @@ async function generateCertificate() {
 
   ctx.drawImage(
     signatureCanvas,
-    canvas.width / 6,
+    canvas.width / 6 + 5,
     (2 * canvas.height) / 3 + 10,
     200,
     100
