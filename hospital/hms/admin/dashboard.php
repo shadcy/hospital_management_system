@@ -49,8 +49,8 @@ $dashItems = [
 		},
 	],
 	[
-		'icon' => 'files',
-		'title' => 'New Queries',
+		'icon' => 'file',
+		'title' => 'Unread Queries',
 		'href' => 'unread-queries.php',
 		'linkFunction' => function () {
 			global $con;
@@ -60,20 +60,8 @@ $dashItems = [
 		},
 	],
 	[
-		'icon' => 'user',
-		'title' => 'Appointment History',
-		'href' => 'appointment-history.php',
-		'linkText' => 'History',
-	],
-	[
-		'icon' => 'file',
-		'title' => 'Unread Query',
-		'href' => 'unread-queries.php',
-		'linkText' => 'Check',
-	],
-	[
 		'icon' => 'book',
-		'title' => 'Read Query',
+		'title' => 'Read Queries',
 		'href' => 'read-query.php',
 		'linkText' => 'Read',
 	],
@@ -113,12 +101,12 @@ $dashItems = [
 		'href' => 'contact.php',
 		'linkText' => 'Check',
 	],
-	[
-		'icon' => 'user',
-		'title' => 'Admin Profile',
-		'href' => 'logout.php',
-		'linkText' => 'Check',
-	],
+	// [
+	// 	'icon' => 'user',
+	// 	'title' => 'Admin Profile',
+	// 	'href' => 'logout.php',
+	// 	'linkText' => 'Check',
+	// ],
 	// Add more items as needed
 ];
 

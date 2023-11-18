@@ -26,7 +26,7 @@
 		'name' => 'Pink slip',
 		'icon' => 'user',
 		'subitems' => [
-			['name' => 'Pink slip V4.2.4', 'href' => './PinkSlip_Gen/PSlip.php'],
+			['name' => 'Pink slip V5', 'href' => 'gen_v2.php'],
 			['name' => 'Pink slip V4.2.5', 'href' => 'gen.php'],
 		],
 	],
