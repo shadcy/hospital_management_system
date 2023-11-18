@@ -254,7 +254,7 @@ async function downloadAsImage(format) {
 
   backgroundImage.onload = async function () {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-    ctx.drawImage(overlayCanvas, 20, 20);
+    ctx.drawImage(overlayCanvas, 0, 0);
 
     let image;
     if (format === "png") {

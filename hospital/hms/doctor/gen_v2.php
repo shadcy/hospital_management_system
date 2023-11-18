@@ -87,7 +87,7 @@ if (!check_login_and_perms($userType)) {
 
             #pinkslip {
                 display: block;
-                margin: 100px auto;
+                margin: 50px auto;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
