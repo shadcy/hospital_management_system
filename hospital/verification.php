@@ -293,7 +293,7 @@ include('hms/include/config.php');
                     </li>
 
                     <li class="navbar-item">
-                        <a href="#contact_us" class="navbar-link title-md">Contact Us</a>
+                        <a href="contactus.php" class="navbar-link title-md">Contact Us</a>
                     </li>
 
                 </ul>

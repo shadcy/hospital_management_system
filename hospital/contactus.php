@@ -411,8 +411,8 @@ if (isset($_POST['submit'])) {
                     <div class="hero-content">
 
                         <h1 class="headline-lg hero-title" data-reveal="left">
-                            Pink Slip Verification <br>
-                            Hospital Portal
+                            Contact Us <br>
+
                         </h1>
 
 
