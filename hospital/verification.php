@@ -8,65 +8,17 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
 
  Made with ♥ by SHREYASH 
   -->
-<!-- <?php
-        include_once('hms/include/config.php');
-        if (isset($_POST['submit'])) {
-            $name = $_POST['fullname'];
-            $email = $_POST['emailid'];
-            $mobileno = $_POST['mobileno'];
-            $description = $_POST['description'];
-            $query = mysqli_execute_query($con, "insert into contact_us(fullName,email,contactNumber,message) value(?,?,?,?)", [$name, $email, $mobileno, $description]); #Done2
-            echo "<script>alert('Your information succesfully submitted');</script>";
-            echo "<script>window.location.href = 'index.php'</script>";
-        } ?> -->
 <?php
+
 session_start();
 
 if (getenv('ENVIRONMENT') !== "development") {
     error_reporting(0);
 }
 
-include("../include/config.php");
-
-$userType = UserTypeEnum::Patient->value;
-
-if (isset($_SESSION['id']) && $_SESSION['userType'] === $userType) {
-    header("location:dashboard.php");
-    exit;
-}
-
-if (isset($_POST['submit'])) {
-    $puname = $_POST['username'];
-    $ppwd = md5($_POST['password']);
-    $ret = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=? and type = ? and isActive = 1;", [$puname, $ppwd, $userType]);
-    $num = mysqli_fetch_array($ret);
-    if ($num > 0) {
-        $_SESSION['login'] = $_POST['username'];
-        $_SESSION['id'] = $num['id'];
-        $_SESSION['userType'] = $userType;
-        $_SESSION['name'] = $num['fullName'];
-        $pid = $num['id'];
-        $host = $_SERVER['HTTP_HOST'];
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 1;
-        // For stroing log if user login successfull
-        mysqli_execute_query($con, "insert into logs(userId,username,ip,status,type) values(?,?,?,?,?)", [$pid, $puname, $uip, $status, $userType]);
-        header("location:dashboard.php");
-    } else {
-        // For stroing log if user login unsuccessfull
-        $_SESSION['login'] = $_POST['username'];
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 0;
-        mysqli_execute_query($con, "insert into logs(username,ip,status,type) values(?,?,?,?)", [$puname, $uip, $status, $userType]);
-        $_SESSION['errmsg'] = "Invalid username or password";
-
-        header("location:");
-    }
-}
+include('hms/include/config.php');
 ?>
 
-
-<?php include_once("../templates/login.php"); ?>
 
 
 
@@ -105,7 +57,6 @@ if (isset($_POST['submit'])) {
     <!-- 
     - preload images
   -->
-    <link rel="preload" as="image" href="./assets/images/hero-banner.png">
     <link rel="preload" as="image" href="./assets/images/hero-bg.png">
 
     <style>
@@ -405,57 +356,21 @@ if (isset($_POST['submit'])) {
 
 
 
-            <section class="section hero" style="background-image: url('./assets/images/hero-bg.png')" aria-label="verification">
+            <section class="section hero-thin" style="background-image: url('./assets/images/hero-bg.png')" aria-label="verification">
                 <div class="container">
-
                     <div class="hero-content">
-
                         <h1 class="headline-lg hero-title" data-reveal="left">
-                            Pink Slip Verification <br>
-                            Hospital Portal
+                            Pink Slip Verification
                         </h1>
-
-                        <!-- <div class="hero-card login-card" data-reveal="left">
-
-                            <p class="title-lg card-text">
-                                Enter your credentials to access the portal.``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-                            </p>
-
-                            <div class="wrapper">
-
-                                <div class="input-wrapper title-lg">
-                                    <input type="text" name="username" placeholder="Username" class="input-field">
-                                    <ion-icon name="person-outline"></ion-icon>
-                                </div>
-
-                                <div class="input-wrapper title-lg">
-                                    <input type="password" name="password" placeholder="Password" class="input-field">
-                                    <ion-icon name="lock-closed-outline"></ion-icon>
-                                </div>
-
-                                <button class="btn has-before">
-                                    <ion-icon name="log-in-outline"></ion-icon>
-                                    <span class="span title-md">Login</span>
-                                </button>
-
-                            </div>
-
-                        </div> -->
-
                     </div>
-
                 </div>
             </section>
-
-
-
-
 
             <div class="container main-content">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <h1>Verification</h1>
+                            <!-- <h1>Verification</h1> -->
                             <h2>Select an image file to verify if it is a valid pink-slip.</h2>
                             <div class="drag-drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
                                 <p class="drag-drop-text" id="drag-text"> <br><br></p>
@@ -497,9 +412,6 @@ if (isset($_POST['submit'])) {
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
-
             <!-- 
         - #SERVICE
       -->
@@ -573,7 +485,9 @@ if (isset($_POST['submit'])) {
             <!-- 
     - custom js link
   -->
+            <script src="/vendor/jquery/jquery.min.js"></script>
             <script src="./assets/js/script.js"></script>
+            <script src="./assets/js/verification.js"></script>
 
             <!-- 
     - ionicon link

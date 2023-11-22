@@ -503,6 +503,13 @@ body.nav-active {
   background-size: cover;
 }
 
+.hero-thin {
+  background-color: var(--midnight-green);
+  --section-padding: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .hero-subtitle {
   color: var(--white);
   font-weight: var(--fw-500);
