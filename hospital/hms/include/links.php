@@ -17,8 +17,13 @@
 <script src="./assets2/vendor/libs/apex-charts/apexcharts.js"></script>
 
 
+
 <!-- Page JS -->
 <script src="./assets2/js/dashboards-analytics.js"></script>
+
+
+<script src="./assets2/js/main.js"></script>
+
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>

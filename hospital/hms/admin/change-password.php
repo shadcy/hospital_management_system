@@ -30,24 +30,19 @@ if (!check_login_and_perms($userType)) {
 ?>
 
 
+
+
+
+
+
+	<?php $userTypeString = UserTypeAsString[$userType] ?>
 	<!DOCTYPE html>
 
 
 	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="./assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title> Admin | Change Password</title>
-
-
-
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-
-		<meta name="description" content="" />
-		<?php include('../include/links.php'); ?>
-		<?php include_once("../include/head_links.php");
-		echo generate_head_links("1"); ?>
+		<title> <?php echo $userTypeString; ?> | Dashboard</title>
 		<script type="text/javascript">
 			function valid() {
 				if (document.chngpwd.cpass.value == "") {
@@ -70,6 +65,14 @@ if (!check_login_and_perms($userType)) {
 				return true;
 			}
 		</script>
+
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+		<meta name="description" content="" />
+		<?php include('../include/csslinks.php'); ?>
 
 	</head>
 
@@ -94,24 +97,30 @@ if (!check_login_and_perms($userType)) {
 					<!-- Content wrapper -->
 					<div class="content-wrapper">
 						<!-- Content -->
+						<div class="container-xxl flex-grow-1 container-p-y">
+							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>Change Password</h4>
+
+
+							<?php include_once("../templates/change-password.php") ?>
+
+							<div class="row">
 
 
 
-
-
-
-
-
-
-
-						<?php include_once("../templates/change-password.php"); ?>
+								<div class="content-backdrop fade"></div>
+							</div>
+							<!-- Content wrapper -->
+						</div>
 						<!-- / Layout page -->
 					</div>
 
 					<!-- Overlay -->
 					<div class="layout-overlay layout-menu-toggle"></div>
 				</div>
+				<!-- Main JS -->
+
 				<?php include('../include/links.php'); ?>
+
 				<?php include_once("../include/body_scripts.php") ?>
 				<script>
 					jQuery(document).ready(function() {
@@ -120,7 +129,10 @@ if (!check_login_and_perms($userType)) {
 					});
 				</script>
 
+
 	</body>
+
+
 
 	</html>
 
