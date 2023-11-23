@@ -28,17 +28,24 @@ if (!check_login_and_perms($userType)) {
 		}
 	}
 ?>
+
+
 	<!DOCTYPE html>
-	<html lang="en">
+
+
+	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="./assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title>Admin | Change Password</title>
+		<title> Admin | Change Password</title>
+
+
+
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<meta content="" name="description" />
-		<meta content="" name="author" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+		<meta name="description" content="" />
+		<?php include('../include/links.php'); ?>
 		<?php include_once("../include/head_links.php");
 		echo generate_head_links("1"); ?>
 		<script type="text/javascript">
@@ -67,37 +74,54 @@ if (!check_login_and_perms($userType)) {
 	</head>
 
 	<body>
-		<div id="app">
-			<?php include('include/sidebar.php'); ?>
-			<div class="app-content">
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<?php include('../include/counter.php'); ?>
+				<?php include('../include/nav.php'); ?>
 
-				<?php include('../include/header.php'); ?>
+				<!-- / Menu -->
 
-				<!-- end: TOP NAVBAR -->
-				<?php include_once("../templates/change-password.php"); ?>
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
 
-			</div>
-		</div>
-		</div>
-		<!-- start: FOOTER -->
-		<?php include('../include/footer.php'); ?>
-		<!-- end: FOOTER -->
+					<?php include('../include/navbar.php'); ?>
 
-		<!-- start: SETTINGS -->
-		<?php include('../include/setting.php'); ?>
+					<!-- / Navbar -->
 
-		<!-- end: SETTINGS -->
-		</div>
-		<?php include_once("../include/body_scripts.php") ?>
-		<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				FormElements.init();
-			});
-		</script>
-		<!-- end: JavaScript Event Handlers for this page -->
-		<!-- end: CLIP-TWO JAVASCRIPTS -->
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+						<!-- Content -->
+
+
+
+
+
+
+
+
+
+
+						<?php include_once("../templates/change-password.php"); ?>
+						<!-- / Layout page -->
+					</div>
+
+					<!-- Overlay -->
+					<div class="layout-overlay layout-menu-toggle"></div>
+				</div>
+				<?php include('../include/links.php'); ?>
+				<?php include_once("../include/body_scripts.php") ?>
+				<script>
+					jQuery(document).ready(function() {
+						Main.init();
+						FormElements.init();
+					});
+				</script>
+
 	</body>
 
 	</html>
+
 <?php } ?>

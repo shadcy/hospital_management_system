@@ -5,7 +5,7 @@ if (getenv('ENVIRONMENT') !== "development") {
 	error_reporting(0);
 }
 
-include('../include/config.php');
+include_once('../include/config.php');
 $userType = UserTypeEnum::Admin->value;
 
 include_once("../include/check_login_and_perms.php");
