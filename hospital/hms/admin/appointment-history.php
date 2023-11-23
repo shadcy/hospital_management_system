@@ -93,14 +93,13 @@ if (!check_login_and_perms($userType)) {
 														</td>
 														<td><?php echo $row['postingDate']; ?></td>
 														<td>
-															<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
+															<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) {
 																echo "Active";
 															}
-															if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) {
+															if (($row['patientStatus'] == 0) && ($row['doctorStatus'] == 1)) {
 																echo "Cancel by Patient";
 															}
-
-															if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0)) {
+															if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 0)) {
 																echo "Cancel by Doctor";
 															}
 
@@ -109,7 +108,7 @@ if (!check_login_and_perms($userType)) {
 															?></td>
 														<td>
 															<div class="visible-md visible-lg hidden-sm hidden-xs">
-																<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
+																<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) {
 
 
 																	echo "No Action yet";

@@ -8,67 +8,14 @@ LINKEDIN : https://www.linkedin.com/in/shreyashwanjari/
 
  Made with ♥ by SHREYASH 
   -->
-<!-- <?php
-        include_once('hms/include/config.php');
-        if (isset($_POST['submit'])) {
-            $name = $_POST['fullname'];
-            $email = $_POST['emailid'];
-            $mobileno = $_POST['mobileno'];
-            $description = $_POST['description'];
-            $query = mysqli_execute_query($con, "insert into contact_us(fullName,email,contactNumber,message) value(?,?,?,?)", [$name, $email, $mobileno, $description]); #Done2
-            echo "<script>alert('Your information succesfully submitted');</script>";
-            echo "<script>window.location.href = 'index.php'</script>";
-        } ?> -->
+<!-- 
 <?php
-session_start();
-
 if (getenv('ENVIRONMENT') !== "development") {
     error_reporting(0);
 }
 
-include("../include/config.php");
-
-$userType = UserTypeEnum::Patient->value;
-
-if (isset($_SESSION['id']) && $_SESSION['userType'] === $userType) {
-    header("location:dashboard.php");
-    exit;
-}
-
-if (isset($_POST['submit'])) {
-    $puname = $_POST['username'];
-    $ppwd = md5($_POST['password']);
-    $ret = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=? and type = ? and isActive = 1;", [$puname, $ppwd, $userType]);
-    $num = mysqli_fetch_array($ret);
-    if ($num > 0) {
-        $_SESSION['login'] = $_POST['username'];
-        $_SESSION['id'] = $num['id'];
-        $_SESSION['userType'] = $userType;
-        $_SESSION['name'] = $num['fullName'];
-        $pid = $num['id'];
-        $host = $_SERVER['HTTP_HOST'];
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 1;
-        // For stroing log if user login successfull
-        mysqli_execute_query($con, "insert into logs(userId,username,ip,status,type) values(?,?,?,?,?)", [$pid, $puname, $uip, $status, $userType]);
-        header("location:dashboard.php");
-    } else {
-        // For stroing log if user login unsuccessfull
-        $_SESSION['login'] = $_POST['username'];
-        $uip = $_SERVER['REMOTE_ADDR'];
-        $status = 0;
-        mysqli_execute_query($con, "insert into logs(username,ip,status,type) values(?,?,?,?)", [$puname, $uip, $status, $userType]);
-        $_SESSION['errmsg'] = "Invalid username or password";
-
-        header("location:");
-    }
-}
+include_once('hms/include/config.php');
 ?>
-
-
-<?php include_once("../templates/login.php"); ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,108 +28,108 @@ if (isset($_POST['submit'])) {
     <!-- 
     - primary meta tags
   -->
-    <title>IITB HMS</title>
-    <meta name="title" content="Doclab - home">
-    <meta name="description" content="This is a madical html template made by codewithsadee">
+<title>IITB HMS</title>
+<meta name="title" content="Doclab - home">
+<meta name="description" content="This is a madical html template made by codewithsadee">
 
-    <!-- 
+<!-- 
     - favicon
   -->
-    <link rel="shortcut icon" href="./assets/images/favicon.svg" type="image/svg+xml">
+<link rel="shortcut icon" href="./assets/images/favicon.svg" type="image/svg+xml">
 
-    <!-- 
+<!-- 
     - google font link
   -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- 
+<!-- 
     - custom css link
   -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+<link rel="stylesheet" href="./assets/css/style.css">
 
-    <!-- 
+<!-- 
     - preload images
   -->
-    <link rel="preload" as="image" href="./assets/images/hero-banner.png">
-    <link rel="preload" as="image" href="./assets/images/hero-bg.png">
+<link rel="preload" as="image" href="./assets/images/hero-banner.png">
+<link rel="preload" as="image" href="./assets/images/hero-bg.png">
 
-    <style>
-        :root {
-            --verdigris: #43BFC7;
-            /* Define the --verdigris color */
-        }
+<style>
+    :root {
+        --verdigris: #43BFC7;
+        /* Define the --verdigris color */
+    }
 
-        .contact-us-single {
-            color: var(--verdigris);
-            /* Set the text color to verdigris */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    .contact-us-single {
+        color: var(--verdigris);
+        /* Set the text color to verdigris */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
 
-        }
+    }
 
+    .cop-ck {
+        width: 100%;
+        /* Adjust the width of the form as needed */
+        max-width: 1000px;
+        padding: 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 800px;
+        background-color: #fff;
+    }
+
+    .cf-ro {
+        margin-bottom: 15px;
+    }
+
+    .cf-ro label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .cf-ro input[type="text"],
+    .cf-ro textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border: 1px solid var(--verdigris);
+        border-radius: 5px;
+    }
+
+    .cf-ro textarea {
+        resize: vertical;
+    }
+
+    .cf-ro button {
+        width: 97.5%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--verdigris);
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
         .cop-ck {
-            width: 100%;
-            /* Adjust the width of the form as needed */
-            max-width: 1000px;
-            padding: 20px;
-            border: 1px solid black;
-            border-radius: 5px;
-            width: 800px;
-            background-color: #fff;
+            width: 90%;
         }
+    }
 
-        .cf-ro {
-            margin-bottom: 15px;
-        }
+    .social-link {
+        color: #333;
+        /* Dark color for the social icons */
+    }
 
-        .cf-ro label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .cf-ro input[type="text"],
-        .cf-ro textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            border: 1px solid var(--verdigris);
-            border-radius: 5px;
-        }
-
-        .cf-ro textarea {
-            resize: vertical;
-        }
-
-        .cf-ro button {
-            width: 97.5%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: var(--verdigris);
-            color: white;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .cop-ck {
-                width: 90%;
-            }
-        }
-
-        .social-link {
-            color: #333;
-            /* Dark color for the social icons */
-        }
-
-        /* Add this if you want to change the color on hover */
-        .social-link:hover {
-            color: #555;
-            /* Darker color on hover */
-        }
-    </style>
+    /* Add this if you want to change the color on hover */
+    .social-link:hover {
+        color: #555;
+        /* Darker color on hover */
+    }
+</style>
 
 </head>
 

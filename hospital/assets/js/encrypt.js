@@ -17,7 +17,7 @@ function encryptImage() {
     // Make an AJAX call to encrypt.php
     $.ajax({
       type: "POST",
-      url: "crypt_api.php",
+      url: "/api/encryption/crypt_api.php",
       data: { method: "enc", image: imageBinaryString },
       dataType: "json",
       success: function (response) {
@@ -43,7 +43,7 @@ function decryptImage() {
     // Make an AJAX call to decrypt.php
     $.ajax({
       type: "POST",
-      url: "crypt_api.php",
+      url: "/api/encryption/crypt_api.php",
       data: { method: "dec", image: encryptedBinaryString },
       dataType: "json",
       success: function (response) {

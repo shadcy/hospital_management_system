@@ -27,15 +27,14 @@ function decryptImage() {
     // Make an AJAX call to decrypt.php
     $.ajax({
       type: "POST",
-      url: "hms/decryption_api.php",
+      url: "/api/encryption/decryption_api.php",
       data: { image: encryptedBinaryString },
       dataType: "json",
       success: function (response) {
         // If response data is empty, password was invalid
         let decryptedDataURL = fileType + "," + response.imageData;
-        let dataString = `Doctor Name: <b>${
-          response.doctor
-        }</b><br>Generated at: ${formatTimestamp(response.timestamp)}`;
+        let dataString = `Doctor Name: <b>${response.doctor
+          }</b><br>Generated at: ${formatTimestamp(response.timestamp)}`;
 
         // Update UI with decrypted data
         updateUI("pinkslip", "decrypted-link", decryptedDataURL, dataString);
