@@ -421,3 +421,7 @@ header .dropdown-off-sidebar {
   border-top-color: #c8c7cc !important;
   color: #777;
 }
+
+h2.theme-text {
+  color: #2c2f3b !important;
+}

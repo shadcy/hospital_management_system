@@ -9,6 +9,7 @@ include('../include/config.php');
 include_once("../include/check_login_and_perms.php");
 
 $userType = UserTypeEnum::Doctor->value;
+$pageHref = basename(__FILE__);
 
 if (!check_login_and_perms($userType)) {
     exit;

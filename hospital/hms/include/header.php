@@ -10,8 +10,7 @@ if (getenv('ENVIRONMENT') !== "development") {
 			<i class="ti-align-justify"></i>
 		</a>
 		<a class="navbar-brand" href="#">
-			<h2 style="padding:15px ; font-weight: bold;
-            color: white;">IITB HMS</h2>
+			<h2 style="padding:15px ; font-weight: bold;">IITB HMS</h2>
 		</a>
 		<a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
 			<i class="ti-align-justify"></i>
@@ -27,8 +26,7 @@ if (getenv('ENVIRONMENT') !== "development") {
 		<ul class="nav navbar-right">
 			<!-- start: MESSAGES DROPDOWN -->
 			<li style="padding-top:2% ">
-				<h2 style="font-weight: bold;
-            color: white;">IIT Bombay Hospital Management System</h2>
+				<h2 class="hidden-xs hidden-sm hidden-md visible-lg theme-text" style="font-weight: bold;">IIT Bombay Hospital Management System</h2>
 			</li>
 
 

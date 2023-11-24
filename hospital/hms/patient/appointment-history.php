@@ -7,6 +7,7 @@ if (getenv('ENVIRONMENT') !== "development") {
 
 include('../include/config.php');
 $userType = UserTypeEnum::Patient->value;
+$pageHref = basename(__FILE__);
 
 include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {

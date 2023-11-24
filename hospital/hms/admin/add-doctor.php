@@ -9,6 +9,7 @@ include('../include/config.php');
 include_once("../include/check_login_and_perms.php");
 
 $userType = UserTypeEnum::Admin->value;
+$pageHref = basename(__FILE__);
 
 include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {

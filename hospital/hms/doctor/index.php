@@ -8,6 +8,7 @@ if (getenv('ENVIRONMENT') !== "development") {
 include("../include/config.php");
 
 $userType = UserTypeEnum::Doctor->value;
+$pageHref = basename(__FILE__);
 
 if (isset($_SESSION['id']) && $_SESSION['userType'] === $userType) {
 	header("location:dashboard.php");

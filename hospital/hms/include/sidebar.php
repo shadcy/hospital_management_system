@@ -8,7 +8,10 @@
             <ul class="main-navigation-menu">
                 <?php foreach ($items as $item) {
                     if (isset($item['href'])) { ?>
-                        <li>
+                        <li <?php if ($pageHref === $item['href']) {
+                                echo 'class="active"';
+                            }
+                            ?>>
                             <a href="<?= $item['href'] ?>">
                                 <div class="item-content">
                                     <div class="item-media">
@@ -21,7 +24,12 @@
                             </a>
                         </li>
                     <?php } else { ?>
-                        <li>
+                        <li <?php $filteredArray = array_filter($item['subitems'], function ($subitem) use ($pageHref) {
+                                return $pageHref === $subitem['href'];
+                            });
+                            if (!empty($filteredArray)) {
+                                echo 'class="active"';
+                            } ?>>
                             <a href="javascript:void(0)">
                                 <div class="item-content">
                                     <div class="item-media">
@@ -34,7 +42,9 @@
                             </a>
                             <ul class="sub-menu">
                                 <?php foreach ($item['subitems'] as $subitem) {  ?>
-                                    <li>
+                                    <li <?php if ($pageHref === $subitem['href']) {
+                                            echo 'class="active"';
+                                        } ?>>
                                         <a href="<?= $subitem['href'] ?>">
                                             <span class="title"> <?= $subitem['name'] ?> </span>
                                         </a>

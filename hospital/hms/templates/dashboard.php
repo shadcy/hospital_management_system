@@ -7,9 +7,7 @@
 
     <?php include_once("../include/head_links.php");
     echo generate_head_links(); ?>
-
-
-
+    <>
 </head>
 
 <body>
@@ -41,13 +39,13 @@
                     <!-- end: PAGE TITLE -->
                     <!-- start: BASIC EXAMPLE -->
                     <div class="container-fluid container-fullw bg-white">
-                        <div class="row">
+                        <div class="row" style="align-items: stretch;">
                             <?php foreach ($dashItems as $dashItem) { ?>
-                                <div class="col-sm-4">
+                                <div class="col-md-4 col-sm-6 col-12" style="text-overflow:ellipsis;">
                                     <div class="panel panel-white no-radius text-center" style="border: 2px solid #1AA7EC;">
                                         <div class="panel-body">
                                             <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-<?= $dashItem['icon'] ?> fa-stack-1x fa-inverse"></i> </span>
-                                            <h2 class="StepTitle"><?= $dashItem['title'] ?></h2>
+                                            <h2 class="StepTitle" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><?= $dashItem['title'] ?></h2>
 
                                             <p class="links cl-effect-1">
                                                 <a href="<?= $dashItem['href'] ?>">
