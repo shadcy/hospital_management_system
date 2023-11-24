@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="./assets2/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
 <head>
     <title> <?php echo $userTypeString; ?> | Dashboard</title>
@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="col-sm-5 text-center text-sm-left">
                                             <div class="card-body pb-0 px-0 px-md-4">
-                                                <img src="./assets2/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                                <img src="/assets2/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" />
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +73,7 @@
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="./assets2/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                                                        <img src="/assets2/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                                                     </div>
                                                     <div class="dropdown">
                                                         <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,7 +96,7 @@
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="./assets2/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
+                                                        <img src="/assets2/img/icons/unicons/chart-success.png" alt="chart success" class="rounded" />
                                                     </div>
                                                     <div class="dropdown">
                                                         <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -174,7 +174,7 @@
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="./assets2/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
+                                                        <img src="/assets2/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
                                                     </div>
                                                     <div class="dropdown">
                                                         <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -197,7 +197,7 @@
                                             <div class="card-body">
                                                 <div class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="./assets2/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                                        <img src="/assets2/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
                                                     </div>
                                                     <div class="dropdown">
                                                         <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
