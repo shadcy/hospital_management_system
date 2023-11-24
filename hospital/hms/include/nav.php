@@ -48,7 +48,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+            <a href="dashboard.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -63,17 +63,17 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
-                        <div data-i18n="Without menu">Pink Slip V2.2.1</div>
+                    <a href="maintenance.php" class="menu-link">
+                        <div data-i18n="Without menu">Verification</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="maintenance.php" class="menu-link">
                         <div data-i18n="Without navbar">Pink Slip V2.2.2</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-container.html" class="menu-link">
+                    <a href="maintenance.php" class="menu-link">
                         <div data-i18n="Container">Format</div>
                     </a>
                 </li>
@@ -91,12 +91,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-account-settings-account.html" class="menu-link">
+                    <a href="add-doctor.php" class="menu-link">
                         <div data-i18n="Account">Add Doctor</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                    <a href="manage-doctors.php" class="menu-link">
                         <div data-i18n="Notifications">Manage Doctor</div>
                     </a>
                 </li>
@@ -110,12 +110,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                    <a href="doctor-logs.php" class="menu-link">
                         <div data-i18n="Basic">Doctor Session Logs</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                    <a href="doctor-logs.php" class="menu-link">
                         <div data-i18n="Basic">Attendence</div>
                     </a>
                 </li>
@@ -123,13 +123,13 @@
             </ul>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                 <div data-i18n="Misc">Specialization</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="pages-misc-error.html" class="menu-link">
+                    <a href="doctor-specilization.php" class="menu-link">
                         <div data-i18n="Error">Add Specialization</div>
                     </a>
                 </li>
@@ -144,7 +144,7 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Patients</span></li>
         <!-- Cards -->
         <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="patient-search.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">Patient Search</div>
             </a>
@@ -153,14 +153,20 @@
         <li class="menu-item">
             <a href="javascript:void(0)" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-lock"></i>
-                <div data-i18n="User interface">Authentications</div>
+                <div data-i18n="User interface">Appointments & Logs</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="ui-accordion.html" class="menu-link">
+                    <a href="user-logs.php" class="menu-link">
                         <div data-i18n="Accordion">Patient Session Logs</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href=" appointment-history.php" class="menu-link">
+                        <div data-i18n="Accordion">Appointment History</div>
+                    </a>
+                </li>
+
 
             </ul>
         </li>
@@ -173,7 +179,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="extended-ui-perfect-scrollbar.html" class="menu-link">
+                    <a href="between-dates-reports.php" class="menu-link">
                         <div data-i18n="Perfect Scrollbar">Date B/W Reports</div>
                     </a>
                 </li>
@@ -193,12 +199,12 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="forms-basic-inputs.html" class="menu-link">
+                    <a href="about-us.php" class="menu-link">
                         <div data-i18n="Basic Inputs">About Us</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="forms-input-groups.html" class="menu-link">
+                    <a href="contact.php" class="menu-link">
                         <div data-i18n="Input groups">Contact Us</div>
                     </a>
                 </li>
@@ -207,24 +213,25 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-book"></i>
-                <div data-i18n="Form Layouts">Web Mail</div>
+                <div data-i18n="Form Layouts">Read Queries</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="form-layouts-vertical.html" class="menu-link">
-                        <div data-i18n="Vertical Form">Proff.</div>
+                    <a href="read-query.php" class="menu-link">
+                        <div data-i18n="Vertical Form">Read Queries</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="form-layouts-horizontal.html" class="menu-link">
-                        <div data-i18n="Horizontal Form">Doctor</div>
+                    <a href="unread-queries.php" class="menu-link">
+                        <div data-i18n="Horizontal Form">New Queries</div>
                     </a>
                 </li>
+
             </ul>
         </li>
         <!-- Tables -->
         <li class="menu-item">
-            <a href="tables-basic.html" class="menu-link">
+            <a href="maintenance.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-car"></i>
                 <div data-i18n="Tables">Ambulance</div>
             </a>
@@ -232,13 +239,13 @@
         <!-- Misc -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Website</span></li>
         <li class="menu-item">
-            <a href="#" target="_blank" class="menu-link">
+            <a href="http://nxt.nxtdevelopers.xyz/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-support"></i>
                 <div data-i18n="Support">Support</div>
             </a>
         </li>
         <li class="menu-item">
-            <a href="" target="_blank" class="menu-link">
+            <a href="documentation.php" target="_blank" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Documentation">Documentation</div>
             </a>

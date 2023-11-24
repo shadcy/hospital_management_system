@@ -39,186 +39,88 @@ if (!check_login_and_perms($userType)) {
 		}
 	}
 ?>
+
+	<?php $userTypeString = UserTypeAsString[$userType] ?>
 	<!DOCTYPE html>
-	<html lang="en">
+
+
+	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="./assets2/" data-template="vertical-menu-template-free">
+
 
 	<head>
-		<title>Admin | Edit Doctor Details</title>
+		<title> <?php echo $userTypeString; ?> | Edit Doctor</title>
 
-		<?php include_once("../include/head_links.php");
-		echo generate_head_links("1"); ?>
+
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+		<meta name="description" content="" />
+		<?php include('../include/csslinks.php'); ?>
+
 	</head>
 
 	<body>
-		<div id="app">
-			<?php include('include/sidebar.php'); ?>
-			<div class="app-content">
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<?php include('../include/counter.php'); ?>
+				<?php include('../include/nav.php'); ?>
 
-				<?php include('../include/header.php'); ?>
-				<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
+				<!-- / Menu -->
 
-				<!-- end: TOP NAVBAR -->
-				<div class="main-content">
-					<div class="wrap-content container" id="container">
-						<!-- start: PAGE TITLE -->
-						<section id="page-title">
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
+
+					<?php include('../include/navbar.php'); ?>
+
+					<!-- / Navbar -->
+
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+						<!-- Content -->
+						<div class="container-xxl flex-grow-1 container-p-y">
+							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>Edit Doctor</h4>
+
+
+
+
 							<div class="row">
-								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Edit Doctor Details</h1>
-								</div>
-								<ol class="breadcrumb">
-									<li>
-										<span>Admin</span>
-									</li>
-									<li class="active">
-										<span>Edit Doctor Details</span>
-									</li>
-								</ol>
+
+
+								<?php include_once("../templates/edit-doctor.php") ?>
+
+
+								<div class="content-backdrop fade"></div>
 							</div>
-						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
-						<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-md-12">
-									<h5 style="color: green; font-size:18px; ">
-										<?php if ($msg) {
-											echo htmlentities($msg);
-										} ?> </h5>
-									<div class="row margin-top-30">
-										<div class="col-lg-8 col-md-12">
-											<div class="panel panel-white">
-												<div class="panel-heading">
-													<h5 class="panel-title">Edit Doctor info</h5>
-												</div>
-												<div class="panel-body">
-													<?php $sql = mysqli_execute_query($con, "select doctors.*,specializations.name as specName, users.fullName, users.email, users.address, users.contactNumber as personalNumber from doctors join users on users.id = doctors.id join specializations on specializations.id = doctors.specializationId where doctors.id=?", [$did]);
-													while ($data = mysqli_fetch_array($sql)) {
-													?>
-														<h4><?php echo htmlentities($data['fullName']); ?>'s Profile</h4>
-														<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
-														<?php if ($data['updationDate']) { ?>
-															<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
-														<?php } ?>
-														<hr />
-														<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-															<div class="form-group">
-																<label for="DoctorSpecialization">
-																	Doctor Specialization
-																</label>
-																<select name="Doctorspecialization" class="form-control" required="required">
-																	<option value="<?php echo htmlentities($data['specializationId']); ?>">
-																		<?php echo htmlentities($data['specName']); ?></option>
-																	<?php $ret = mysqli_query($con, "select * from specializations;");
-																	while ($row = mysqli_fetch_array($ret)) {
-																	?>
-																		<option value="<?php echo htmlentities($row['id']); ?>">
-																			<?php echo htmlentities($row['name']); ?>
-																		</option>
-																	<?php } ?>
-
-																</select>
-															</div>
-
-															<div class="form-group">
-																<label for="doctorname">
-																	Doctor Name
-																</label>
-																<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['fullName']); ?>">
-															</div>
-
-
-															<div class="form-group">
-																<label for="address">
-																	Doctor Clinic Address
-																</label>
-																<textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
-															</div>
-															<div class="form-group">
-																<label for="fess">
-																	Doctor Consultancy Fees
-																</label>
-																<input type="text" name="docfees" class="form-control" required="required" value="<?php echo htmlentities($data['fees']); ?>">
-															</div>
-
-															<div class="form-group">
-																<label for="fess">
-																	Doctor Contact no
-																</label>
-																<input type="text" name="doccontact" class="form-control" required="required" value="<?php echo htmlentities($data['contactNumber']); ?>">
-															</div>
-
-															<div class="form-group">
-																<label for="fess">
-																	Personal Contact no
-																</label>
-																<input type="text" name="personalcontact" class="form-control" required="required" value="<?php echo htmlentities($data['personalNumber']); ?>">
-															</div>
-
-															<div class="form-group">
-																<label for="fess">
-																	Doctor Email
-																</label>
-																<input type="email" name="docemail" class="form-control" readonly="readonly" value="<?php echo htmlentities($data['email']); ?>">
-															</div>
-
-
-
-
-														<?php } ?>
-
-
-														<button type="submit" name="submit" class="btn btn-o btn-primary">
-															Update
-														</button>
-														</form>
-												</div>
-											</div>
-										</div>
-
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12">
-									<div class="panel panel-white">
-
-
-									</div>
-								</div>
-							</div>
+							<!-- Content wrapper -->
 						</div>
+						<!-- / Layout page -->
 					</div>
+
+					<!-- Overlay -->
+					<div class="layout-overlay layout-menu-toggle"></div>
 				</div>
-				<!-- end: BASIC EXAMPLE -->
+				<!-- Main JS -->
+
+				<?php include('../include/links.php'); ?>
+
+				<?php include_once("../include/body_scripts.php") ?>
+				<script>
+					jQuery(document).ready(function() {
+						Main.init();
+						FormElements.init();
+					});
+				</script>
 
 
-
-
-
-
-				<!-- end: SELECT BOXES -->
-
-			</div>
-		</div>
-		</div>
-		<!-- start: FOOTER -->
-		<?php include('../include/footer.php'); ?>
-		<!-- end: FOOTER -->
-
-		<!-- start: SETTINGS -->
-		<?php include('../include/setting.php'); ?>
-		<>
-			<!-- end: SETTINGS -->
-			</div>
-			<?php include_once("../include/body_scripts.php") ?>
-			<script>
-				jQuery(document).ready(function() {
-					Main.init();
-					FormElements.init();
-				});
-			</script>
-			<!-- end: JavaScript Event Handlers for this page -->
-			<!-- end: CLIP-TWO JAVASCRIPTS -->
 	</body>
 
+
+
 	</html>
+
 <?php } ?>

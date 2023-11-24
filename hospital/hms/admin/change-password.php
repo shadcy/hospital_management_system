@@ -42,7 +42,7 @@ if (!check_login_and_perms($userType)) {
 	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="./assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title> <?php echo $userTypeString; ?> | Dashboard</title>
+		<title> <?php echo $userTypeString; ?> | Password</title>
 		<script type="text/javascript">
 			function valid() {
 				if (document.chngpwd.cpass.value == "") {
