@@ -82,7 +82,7 @@ if (!check_login_and_perms($userType)) {
 			<div class="layout-container">
 				<!-- Menu -->
 				<?php include('../include/counter.php'); ?>
-				<?php include('../include/nav.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
 				<!-- / Menu -->
 
@@ -101,7 +101,10 @@ if (!check_login_and_perms($userType)) {
 							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>Change Password</h4>
 
 
-							<?php include_once("../templates/change-password.php") ?>
+
+
+
+
 
 							<div class="row">
 

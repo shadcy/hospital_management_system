@@ -1,3 +1,4 @@
+<?php $userTypeString = UserTypeAsString[$userType] ?>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
@@ -35,7 +36,7 @@
                     </g>
                 </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">admin</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2"><?php echo $userTypeString; ?></span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -46,209 +47,45 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <!-- Dashboard -->
-        <li class="menu-item active">
-            <a href="dashboard.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-            </a>
-        </li>
 
-        <!-- Layouts -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-terminal"></i>
-                <div data-i18n="Layouts">Pink Slip</div>
-            </a>
+        <?php
+        foreach ($navItems as $item) {
+            if (is_string($item)) {
+        ?>
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text"><?= $item ?></span>
+                </li>
+            <?php
+            } elseif (isset($item['href'])) {
+            ?>
+                <li class="menu-item">
+                    <a href="<?= $item['href'] ?>" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-<?= $item['icon'] ?>"></i>
+                        <div data-i18n="Analytics"><?= $item['name'] ?></div>
+                    </a>
+                </li>
+            <?php
+            } else {
+            ?>
+                <li class="menu-item">
+                    <div class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-<?= $item['icon'] ?>"></i>
+                        <div data-i18n="Layouts"><?= $item['name'] ?></div>
+                    </div>
 
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="maintenance.php" class="menu-link">
-                        <div data-i18n="Without menu">Verification</div>
-                    </a>
+                    <ul class="menu-sub">
+                        <?php foreach ($item['subitems'] as $subitem) { ?>
+                            <li class="menu-item">
+                                <a href="<?= $subitem['href'] ?>" class="menu-link">
+                                    <div data-i18n="Analytics"><?= $subitem['name'] ?></div>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
                 </li>
-                <li class="menu-item">
-                    <a href="maintenance.php" class="menu-link">
-                        <div data-i18n="Without navbar">Pink Slip V2.2.2</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="maintenance.php" class="menu-link">
-                        <div data-i18n="Container">Format</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Doctors</span>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Account Settings">Doctor</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="add-doctor.php" class="menu-link">
-                        <div data-i18n="Account">Add Doctor</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="manage-doctors.php" class="menu-link">
-                        <div data-i18n="Notifications">Manage Doctor</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Authentications</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="doctor-logs.php" class="menu-link">
-                        <div data-i18n="Basic">Doctor Session Logs</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="doctor-logs.php" class="menu-link">
-                        <div data-i18n="Basic">Attendence</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="#" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Specialization</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="doctor-specilization.php" class="menu-link">
-                        <div data-i18n="Error">Add Specialization</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="pages-misc-under-maintenance.html" class="menu-link">
-                        <div data-i18n="Under Maintenance">Under Maintenance</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <!-- Components -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Patients</span></li>
-        <!-- Cards -->
-        <li class="menu-item">
-            <a href="patient-search.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Patient Search</div>
-            </a>
-        </li>
-        <!-- User interface -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-lock"></i>
-                <div data-i18n="User interface">Appointments & Logs</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="user-logs.php" class="menu-link">
-                        <div data-i18n="Accordion">Patient Session Logs</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href=" appointment-history.php" class="menu-link">
-                        <div data-i18n="Accordion">Appointment History</div>
-                    </a>
-                </li>
-
-
-            </ul>
-        </li>
-
-        <!-- Extended components -->
-        <li class="menu-item">
-            <a href="javascript:void(0)" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div data-i18n="Extended UI">Reports</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="between-dates-reports.php" class="menu-link">
-                        <div data-i18n="Perfect Scrollbar">Date B/W Reports</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-
-
-
-        <!-- Forms & Tables -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Website &amp; Management</span></li>
-        <!-- Forms -->
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Web Pages</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="about-us.php" class="menu-link">
-                        <div data-i18n="Basic Inputs">About Us</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="contact.php" class="menu-link">
-                        <div data-i18n="Input groups">Contact Us</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-book"></i>
-                <div data-i18n="Form Layouts">Read Queries</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="read-query.php" class="menu-link">
-                        <div data-i18n="Vertical Form">Read Queries</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="unread-queries.php" class="menu-link">
-                        <div data-i18n="Horizontal Form">New Queries</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-        <!-- Tables -->
-        <li class="menu-item">
-            <a href="maintenance.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-car"></i>
-                <div data-i18n="Tables">Ambulance</div>
-            </a>
-        </li>
-        <!-- Misc -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Website</span></li>
-        <li class="menu-item">
-            <a href="http://nxt.nxtdevelopers.xyz/" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Support</div>
-            </a>
-        </li>
-        <li class="menu-item">
-            <a href="documentation.php" target="_blank" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Documentation</div>
-            </a>
-        </li>
+        <?php
+            }
+        }
+        ?>
     </ul>
 </aside>

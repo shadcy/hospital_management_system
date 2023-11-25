@@ -51,7 +51,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="change-password.php">
+                        <a class="dropdown-item" href="reset-password.php">
                             <i class="bx bx-terminal"></i>
                             <span class="align-middle">Change Password</span>
                         </a>

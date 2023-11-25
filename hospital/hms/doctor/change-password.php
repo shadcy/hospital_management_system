@@ -29,14 +29,17 @@ if (!check_login_and_perms($userType)) {
 		}
 	}
 ?>
+
+	<?php $userTypeString = UserTypeAsString[$userType] ?>
 	<!DOCTYPE html>
-	<html lang="en">
+
+
+	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title>Doctor | change Password</title>
+		<title> <?php echo $userTypeString; ?> | Doctor Specialization</title>
 
-		<?php include_once("../include/head_links.php");
-		echo generate_head_links(); ?>
+
 		<script type="text/javascript">
 			function valid() {
 				if (document.chngpwd.cpass.value == "") {
@@ -60,37 +63,75 @@ if (!check_login_and_perms($userType)) {
 			}
 		</script>
 
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+		<meta name="description" content="" />
+		<?php include('../include/csslinks.php'); ?>
+
 	</head>
 
 	<body>
-		<div id="app">
-			<?php include('include/sidebar.php'); ?>
-			<div class="app-content">
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<?php include('../include/counter.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
-				<?php include('../include/header.php'); ?>
+				<!-- / Menu -->
 
-				<!-- end: TOP NAVBAR -->
-				<?php include_once("../templates/change-password.php"); ?>
-			</div>
-			<!-- start: FOOTER -->
-			<?php include('../include/footer.php'); ?>
-			<!-- end: FOOTER -->
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
 
-			<!-- start: SETTINGS -->
-			<?php include('../include/setting.php'); ?>
-			<>
-				<!-- end: SETTINGS -->
-		</div>
-		<?php include_once("../include/body_scripts.php") ?>
-		<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				FormElements.init();
-			});
-		</script>
-		<!-- end: JavaScript Event Handlers for this page -->
-		<!-- end: CLIP-TWO JAVASCRIPTS -->
+					<?php include('../include/navbar.php'); ?>
+
+					<!-- / Navbar -->
+
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+						<!-- Content -->
+						<div class="container-xxl flex-grow-1 container-p-y">
+							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>Doctor Specialization</h4>
+
+
+
+
+							<div class="row">
+
+
+								<?php include_once("../templates/edit-doctor-specialization.php") ?>
+
+
+								<div class="content-backdrop fade"></div>
+							</div>
+							<!-- Content wrapper -->
+						</div>
+						<!-- / Layout page -->
+					</div>
+
+					<!-- Overlay -->
+					<div class="layout-overlay layout-menu-toggle"></div>
+				</div>
+				<!-- Main JS -->
+
+				<?php include('../include/links.php'); ?>
+
+				<?php include_once("../include/body_scripts.php") ?>
+				<script>
+					jQuery(document).ready(function() {
+						Main.init();
+						FormElements.init();
+					});
+				</script>
+
+
 	</body>
 
+
+
 	</html>
+
 <?php } ?>

@@ -45,7 +45,7 @@ if (!check_login_and_perms($userType)) {
 			<div class="layout-container">
 				<!-- Menu -->
 				<?php include('../include/counter.php'); ?>
-				<?php include('../include/nav.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
 				<!-- / Menu -->
 
@@ -68,79 +68,82 @@ if (!check_login_and_perms($userType)) {
 							<div class="col-xl">
 								<div class="card mb-4">
 									<div class="card-body">
-										<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Unread Queries</span></h5>
-										<table class="table table-hover" id="sample-table-1">
-											<thead>
-												<tr>
-													<th class="center">#</th>
-													<th>Name</th>
-													<th class="hidden-xs">Email</th>
-													<th>Contact No. </th>
-													<th>Message </th>
-													<th>Query Date</th>
-													<th>Action</th>
 
-												</tr>
-											</thead>
-											<tbody>
-												<?php
-												$sql = mysqli_query($con, "select * from contact_us where isRead=0;");
-												$cnt = 1;
-												while ($row = mysqli_fetch_array($sql)) {
-												?>
+										<div class="card">
+											<div class="table-responsive text-nowrap">
+												<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Unread Queries</span></h5>
+												<table class="table table-hover" id="sample-table-1">
+													<thead>
+														<tr>
+															<th class="center">#</th>
+															<th>Name</th>
+															<th class="hidden-xs">Email</th>
+															<th>Contact No. </th>
+															<th>Message </th>
+															<th>Query Date</th>
+															<th>Action</th>
 
-													<tr>
-														<td class="center"><?php echo $cnt; ?>.</td>
-														<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
-														<td><?php echo $row['email']; ?></td>
-														<td><?php echo $row['contactNumber']; ?></td>
-														<td><?php echo $row['message']; ?></td>
-														<td><?php echo $row['postingDate']; ?></td>
+														</tr>
+													</thead>
+													<tbody>
+														<?php
+														$sql = mysqli_query($con, "select * from contact_us where isRead=0;");
+														$cnt = 1;
+														while ($row = mysqli_fetch_array($sql)) {
+														?>
 
-														<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs">
-																<a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="bx bx-file"></i></a>
-															</div>
-															<div class="visible-xs visible-sm hidden-md hidden-lg">
+															<tr>
+																<td class="center"><?php echo $cnt; ?>.</td>
+																<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
+																<td><?php echo $row['email']; ?></td>
+																<td><?php echo $row['contactNumber']; ?></td>
+																<td><?php echo $row['message']; ?></td>
+																<td><?php echo $row['postingDate']; ?></td>
 
-															</div>
-														</td>
-													</tr>
+																<td>
+																	<div class="visible-md visible-lg hidden-sm hidden-xs">
+																		<a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="bx bx-file"></i></a>
+																	</div>
+																	<div class="visible-xs visible-sm hidden-md hidden-lg">
 
-												<?php
-													$cnt = $cnt + 1;
-												} ?>
+																	</div>
+																</td>
+															</tr>
+
+														<?php
+															$cnt = $cnt + 1;
+														} ?>
 
 
-											</tbody>
-										</table>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
 									</div>
+
+									<div class="content-backdrop fade"></div>
 								</div>
 
+								<!-- Content wrapper -->
 							</div>
-
-							<div class="content-backdrop fade"></div>
+							<!-- / Layout page -->
 						</div>
 
-						<!-- Content wrapper -->
+						<!-- Overlay -->
+						<div class="layout-overlay layout-menu-toggle"></div>
 					</div>
-					<!-- / Layout page -->
-				</div>
+					<!-- Main JS -->
 
-				<!-- Overlay -->
-				<div class="layout-overlay layout-menu-toggle"></div>
-			</div>
-			<!-- Main JS -->
+					<?php include('../include/links.php'); ?>
 
-			<?php include('../include/links.php'); ?>
-
-			<?php include_once("../include/body_scripts.php") ?>
-			<script>
-				jQuery(document).ready(function() {
-					Main.init();
-					FormElements.init();
-				});
-			</script>
+					<?php include_once("../include/body_scripts.php") ?>
+					<script>
+						jQuery(document).ready(function() {
+							Main.init();
+							FormElements.init();
+						});
+					</script>
 
 
 	</body>

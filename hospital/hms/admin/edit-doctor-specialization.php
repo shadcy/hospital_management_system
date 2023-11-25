@@ -46,7 +46,7 @@ if (!check_login_and_perms($userType)) {
 			<div class="layout-container">
 				<!-- Menu -->
 				<?php include('../include/counter.php'); ?>
-				<?php include('../include/nav.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
 				<!-- / Menu -->
 

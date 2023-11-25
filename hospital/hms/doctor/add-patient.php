@@ -29,160 +29,181 @@ if (!check_login_and_perms($userType)) {
 		}
 	}
 ?>
+
+	<?php $userTypeString = UserTypeAsString[$userType] ?>
 	<!DOCTYPE html>
-	<html lang="en">
+
+
+	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title>Doctor | Add Student</title>
+		<title> <?php echo $userTypeString; ?> | Generate Pink Slip</title>
 
-		<?php include_once("../include/head_links.php");
-		echo generate_head_links(); ?>
 
-		<script>
-			function userAvailability() {
-				$("#loaderIcon").show();
-				jQuery.ajax({
-					url: "check_availability.php",
-					data: 'email=' + $("#patemail").val(),
-					type: "POST",
-					success: function(data) {
-						$("#user-availability-status1").html(data);
-						$("#loaderIcon").hide();
-					},
-					error: function() {}
-				});
-			}
-		</script>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+		<meta name="description" content="" />
+		<?php include('../include/csslinks.php'); ?>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+		<!-- <link rel="stylesheet" href="./style.css"> -->
+
 	</head>
 
 	<body>
-		<div id="app">
-			<?php include('include/sidebar.php'); ?>
-			<div class="app-content">
-				<?php include('../include/header.php'); ?>
+		<!-- Layout wrapper -->
+		<div class="layout-wrapper layout-content-navbar">
+			<div class="layout-container">
+				<!-- Menu -->
+				<?php include('../include/counter.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
-				<div class="main-content">
-					<div class="wrap-content container" id="container">
-						<!-- start: PAGE TITLE -->
-						<section id="page-title">
-							<div class="row">
-								<div class="col-sm-8">
-									<h1 class="mainTitle">Student | Add Student</h1>
-								</div>
-								<ol class="breadcrumb">
-									<li>
-										<span>Student</span>
-									</li>
-									<li class="active">
-										<span>Add Student</span>
-									</li>
-								</ol>
-							</div>
-						</section>
-						<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="row margin-top-30">
-										<div class="col-lg-8 col-md-12">
-											<div class="panel panel-white">
-												<div class="panel-heading">
-													<h5 class="panel-title">Add Student</h5>
-												</div>
-												<div class="panel-body">
-													<form role="form" name="" method="post">
+				<!-- / Menu -->
 
-														<div class="form-group">
-															<label for="doctorname">
-																Student Name
-															</label>
-															<input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
-														</div>
-														<div class="form-group">
-															<label for="fess">
-																Student Contact no
-															</label>
-															<input type="text" name="patcontact" class="form-control" placeholder="Enter Patient Contact no" required="true" maxlength="10" pattern="[0-9]+">
-														</div>
-														<div class="form-group">
-															<label for="fess">
-																Student Email
-															</label>
-															<input type="email" id="patemail" name="patemail" class="form-control" placeholder="Enter Patient Email id" required="true" onBlur="userAvailability()">
-															<span id="user-availability-status1" style="font-size:12px;"></span>
-														</div>
-														<div class="form-group">
-															<label class="block">
-																Gender
-															</label>
-															<div class="clip-radio radio-primary">
-																<input type="radio" id="rg-female" name="gender" value="female">
-																<label for="rg-female">
-																	Female
-																</label>
-																<input type="radio" id="rg-male" name="gender" value="male">
-																<label for="rg-male">
-																	Male
-																</label>
-															</div>
-														</div>
-														<div class="form-group">
-															<label for="address">
-																Student Address
-															</label>
-															<textarea name="pataddress" class="form-control" placeholder="Enter Patient Address" required="true"></textarea>
-														</div>
-														<div class="form-group">
-															<label for="fess">
-																Student Age
-															</label>
-															<input type="text" name="patage" class="form-control" placeholder="Enter Patient Age" required="true">
-														</div>
-														<div class="form-group">
-															<label for="fess">
-																Medical History
-															</label>
-															<textarea type="text" name="medhis" class="form-control" placeholder="Enter Patient Medical History(if any)" required="true"></textarea>
-														</div>
+				<!-- Layout container -->
+				<div class="layout-page">
+					<!-- Navbar -->
 
-														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
-															Add
-														</button>
-													</form>
-												</div>
-											</div>
+					<?php include('../include/navbar.php'); ?>
+
+					<!-- / Navbar -->
+
+					<!-- Content wrapper -->
+					<div class="content-wrapper">
+						<!-- Content -->
+						<div class="container-xxl flex-grow-1 container-p-y">
+							<!-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span>Generate Pink Slip</h4> -->
+
+							<div class="col-xl">
+								<div class="card mb-4">
+									<div class="card-body">
+
+
+
+
+
+
+
+
+										<div class="panel-heading">
+											<h5 class="panel-title">Add Student</h5>
 										</div>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12">
-									<div class="panel panel-white">
+										<div class="panel-body">
+											<form role="form" name="" method="post">
+
+												<div class="form-group">
+													<label for="doctorname">
+														Student Name
+													</label>
+													<input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
+												</div>
+												<br>
+												<div class="form-group">
+													<label for="fess">
+														Student Contact no
+													</label>
+													<input type="text" name="patcontact" class="form-control" placeholder="Enter Patient Contact no" required="true" maxlength="10" pattern="[0-9]+">
+												</div><br>
+												<div class="form-group">
+													<label for="fess">
+														Student Email
+													</label>
+													<input type="email" id="patemail" name="patemail" class="form-control" placeholder="Enter Patient Email id" required="true" onBlur="userAvailability()">
+													<span id="user-availability-status1" style="font-size:12px;"></span>
+												</div><br>
+												<div class="form-group">
+													<label class="block">
+														Gender
+													</label>
+													<br><br>
+													<div class="clip-radio radio-primary">
+														<input type="radio" id="rg-female" name="gender" value="female">
+														<label for="rg-female">
+															Female
+														</label>
+														<input type="radio" id="rg-male" name="gender" value="male">
+														<label for="rg-male">
+															Male
+														</label>
+													</div>
+												</div><br>
+												<div class="form-group">
+													<label for="address">
+														Student Address
+													</label>
+													<textarea name="pataddress" class="form-control" placeholder="Enter Patient Address" required="true"></textarea>
+												</div>
+												<div class="form-group">
+													<label for="fess">
+														Student Age
+													</label>
+													<input type="text" name="patage" class="form-control" placeholder="Enter Patient Age" required="true">
+												</div><br>
+												<div class="form-group">
+													<label for="fess">
+														Medical History
+													</label>
+													<textarea type="text" name="medhis" class="form-control" placeholder="Enter Patient Medical History(if any)" required="true"></textarea>
+												</div><br>
+
+												<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+													Add
+												</button><br>
+											</form>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="col-lg-12 col-md-12">
+							<div class="panel panel-white">
+							</div>
+
+
+							<div class="content-backdrop fade"></div>
+
+							<!-- Content wrapper -->
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
-		<!-- start: FOOTER -->
-		<?php include('../include/footer.php'); ?>
-		<!-- end: FOOTER -->
+			<!-- / Layout page -->
 
-		<!-- start: SETTINGS -->
-		<?php include('../include/setting.php'); ?>
 
-		<!-- end: SETTINGS -->
+			<!-- Overlay -->
+			<div class="layout-overlay layout-menu-toggle"></div>
 		</div>
-		<?php include_once("../include/body_scripts.php") ?>
+
+		</div>
+		</div>
+		</div>
+		<!-- Main JS -->
+		<!-- start: PDF GEN JAVASCRIPTS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+		<!-- partial -->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js'></script>
+		<script src="./PinkSlip_Gen/script.js"></script>
+
+		<?php include('../include/links.php'); ?>
+
 		<script>
 			jQuery(document).ready(function() {
 				Main.init();
 				FormElements.init();
 			});
 		</script>
-		<!-- end: JavaScript Event Handlers for this page -->
-		<!-- end: CLIP-TWO JAVASCRIPTS -->
+
+
 	</body>
 
+
+
 	</html>
+
+
+
+	</var>
+
 <?php } ?>

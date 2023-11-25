@@ -70,7 +70,7 @@ if (!check_login_and_perms($userType)) {
 			<div class="layout-container">
 				<!-- Menu -->
 				<?php include('../include/counter.php'); ?>
-				<?php include('../include/nav.php'); ?>
+				<?php include('./include/nav.php'); ?>
 
 				<!-- / Menu -->
 
@@ -89,35 +89,33 @@ if (!check_login_and_perms($userType)) {
 							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>Manage Doctors</h4>
 
 
+							<div class="card">
+								<div class="table-responsive text-nowrap">
+
+									<?php include_once("../templates/manage-doctors.php") ?>
 
 
-							<div class="row">
-
-
-								<?php include_once("../templates/manage-doctors.php") ?>
-
-
-								<div class="content-backdrop fade"></div>
+									<div class="content-backdrop fade"></div>
+								</div>
+								<!-- Content wrapper -->
 							</div>
-							<!-- Content wrapper -->
+							<!-- / Layout page -->
 						</div>
-						<!-- / Layout page -->
+
+						<!-- Overlay -->
+						<div class="layout-overlay layout-menu-toggle"></div>
 					</div>
+					<!-- Main JS -->
 
-					<!-- Overlay -->
-					<div class="layout-overlay layout-menu-toggle"></div>
-				</div>
-				<!-- Main JS -->
+					<?php include('../include/links.php'); ?>
 
-				<?php include('../include/links.php'); ?>
-
-				<?php include_once("../include/body_scripts.php") ?>
-				<script>
-					jQuery(document).ready(function() {
-						Main.init();
-						FormElements.init();
-					});
-				</script>
+					<?php include_once("../include/body_scripts.php") ?>
+					<script>
+						jQuery(document).ready(function() {
+							Main.init();
+							FormElements.init();
+						});
+					</script>
 
 
 	</body>

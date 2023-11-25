@@ -1,4 +1,6 @@
 <div class="col-xl">
+
+
     <div class="card mb-4">
         <div class="card-body">
             <div class="row margin-top-30">
@@ -36,55 +38,57 @@
 
 
             <div>
-                <h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Docter Specialization</span></h5>
+                <div class="card">
+                    <div class="table-responsive text-nowrap">
+                        <h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Docter Specialization</span></h5>
 
-                <table class="table table-hover" id="sample-table-1">
-                    <thead>
-                        <tr>
-                            <th class="center">#</th>
-                            <th>Specialization</th>
-                            <th class="hidden-xs">Creation Date</th>
-                            <th>Updation Date</th>
-                            <th>Action</th>
+                        <table class="table table-hover" id="sample-table-1">
+                            <thead>
+                                <tr>
+                                    <th class="center">#</th>
+                                    <th>Specialization</th>
+                                    <th class="hidden-xs">Creation Date</th>
+                                    <th>Updation Date</th>
+                                    <th>Action</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql = mysqli_query($con, "select * from specializations;");
-                        $cnt = 1;
-                        while ($row = mysqli_fetch_array($sql)) {
-                        ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = mysqli_query($con, "select * from specializations;");
+                                $cnt = 1;
+                                while ($row = mysqli_fetch_array($sql)) {
+                                ?>
 
-                            <tr>
-                                <td class="center"><?php echo $cnt; ?>.</td>
-                                <td class="hidden-xs"><?php echo $row['name']; ?></td>
-                                <td><?php echo $row['creationDate']; ?></td>
-                                <td><?php echo $row['updationDate']; ?>
-                                </td>
+                                    <tr>
+                                        <td class="center"><?php echo $cnt; ?>.</td>
+                                        <td class="hidden-xs"><?php echo $row['name']; ?></td>
+                                        <td><?php echo $row['creationDate']; ?></td>
+                                        <td><?php echo $row['updationDate']; ?>
+                                        </td>
 
-                                <td>
-                                    <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                        <a href="edit-doctor-specialization.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="bx bx-pencil"></i></a>
+                                        <td>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                <a href="edit-doctor-specialization.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="bx bx-pencil"></i></a>
 
-                                        <a href="doctor-specilization.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class='bx bxs-message-minus'></i></a>
-                                    </div>
-                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                <a href="doctor-specilization.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class='bx bxs-message-minus'></i></a>
+                                            </div>
+                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
 
-                                    </div>
-                                </td>
-                            </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                        <?php
-                            $cnt = $cnt + 1;
-                        } ?>
+                                <?php
+                                    $cnt = $cnt + 1;
+                                } ?>
 
 
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-</div>
+    </div>

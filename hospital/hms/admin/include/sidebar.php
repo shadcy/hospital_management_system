@@ -8,7 +8,7 @@
 		'name' => 'Doctors',
 		'icon' => 'user',
 		'subitems' => [
-			['name' => 'Doctor Specialization', 'href' => 'doctor-specilization.php'],
+			['name' => 'Doctor Specialization', 'href' => 'doctor-specialization.php'],
 			['name' => 'Add Doctor', 'href' => 'add-doctor.php'],
 			['name' => 'Manage Doctors', 'href' => 'Manage-doctors.php'],
 		],

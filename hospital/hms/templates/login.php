@@ -5,71 +5,78 @@
 <head>
     <title><?= $userTypeString ?> Login</title>
 
-    <?php include_once("../include/head_links.php");
-    echo generate_head_links("3", true); ?>
+
+    <?php include_once("../include/csslinks.php");
+    ?>
 </head>
 
-<body class="login">
-    <div class="row">
-        <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-            <div class="logo margin-top-30">
-                <a href="../../index.php">
-                    <h2>IITB HMS | <?= $userTypeString ?> Login</h2>
-                </a>
-            </div>
+<body>
 
-            <div class="box-login">
-                <form class="form-login" method="post">
-                    <fieldset>
-                        <legend>
-                            Sign in to your account
-                        </legend>
-                        <p>
-                            Please enter your name and password to log in.<br />
-                            <span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg'] = ""; ?></span>
-                        </p>
-                        <div class="form-group">
-                            <span class="input-icon">
-                                <input type="text" class="form-control" name="username" placeholder="Username">
-                                <i class="fa fa-user"></i> </span>
-                        </div>
-                        <div class="form-group form-actions">
-                            <span class="input-icon">
-                                <input type="password" class="form-control password" name="password" placeholder="Password">
-                                <i class="fa fa-lock"></i>
-                            </span>
-                            <a href="forgot-password.php">
-                                Forgot Password ?
+    <!-- Register -->
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner">
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Hey <?= $userTypeString ?> ! 👋</h4>
+                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg'] = ""; ?></span>
+                        <form id="formAuthentication" class="form-login" method="post">
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email or Username</label>
+                                <input type="text" class="form-control" id="email" name="username" placeholder="Enter your username" autofocus />
+                            </div>
+                            <div class="form-group form-actions">
+                                <div class="d-flex justify-content-between">
+                                    <label class="form-label" for="password">Password</label>
+                                    <a href="forgot-password.php">
+                                        <small>Forgot Password?</small>
+                                    </a>
+                                </div>
+                                <div class="input-group input-group-merge">
+                                    <input type="password" id="password" class="form-control password" name="password" placeholder="Password" aria-describedby="password" />
+                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-primary d-grid w-100" type="submit" name="submit">Sign in</button>
+                            </div>
+                        </form>
+
+                        <p class="text-center">
+                            <span>New on our platform?</span>
+                            <a href="#">
+                                <span>Create an account</span>
                             </a>
-                        </div>
-                        <div class="form-actions">
-
-                            <button type="submit" class="btn btn-primary pull-right" name="submit">
-                                Login <i class="fa fa-arrow-circle-right"></i>
-                            </button>
-                        </div>
-
-
-                    </fieldset>
-                </form>
-
-                <div class="copyright">
-                    <span class="text-bold text-uppercase">IITB Hospital Management System</span>
+                        </p>
+                    </div>
                 </div>
+                <!-- /Register -->
 
+
+
+
+
+                <?php include_once("../include/links.php"); ?>
+
+                <script>
+                    jQuery(document).ready(function() {
+                        Main.init();
+                        Login.init();
+                    });
+                </script>
             </div>
-
         </div>
     </div>
-
-    <?php include_once("../include/login_body_scripts.php"); ?>
-
-    <script>
-        jQuery(document).ready(function() {
-            Main.init();
-            Login.init();
-        });
-    </script>
 
 </body>
 <!-- end: BODY -->
