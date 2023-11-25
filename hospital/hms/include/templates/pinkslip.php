@@ -73,3 +73,5 @@
 
 
 </div> <canvas id="pinkslip" width="800" height="600"></canvas>
+
+</div>

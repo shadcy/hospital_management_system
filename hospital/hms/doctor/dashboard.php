@@ -21,6 +21,12 @@ $userDetails = mysqli_fetch_array($sql);
 
 
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
+<link rel="stylesheet" href="chatapi.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Fonts Link For Icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+<script src="chatapi.js" defer></script>
 
 <head>
 	<title> <?php echo $userTypeString; ?> | Dashboard</title>
@@ -36,7 +42,44 @@ $userDetails = mysqli_fetch_array($sql);
 
 </head>
 
+
 <body>
+
+	<!-- Chat Bot API -->
+	<button class="chatbot-toggler">
+		<span class="material-symbols-rounded">robot</span>
+		<span class="material-symbols-outlined">close</span>
+	</button>
+	<div class="chatbot">
+		<header>
+
+			<h2 style="color: white;"><b> </b></h2>
+			<span class="close-btn material-symbols-outlined">close</span>
+		</header>
+		<ul class="chatbox">
+			<li class="chat incoming">
+				<span class="material-symbols-outlined">robot</span>
+				<p>Hi there 👋<br>How can I help you today?</p>
+			</li>
+			<li class="chat incoming">
+				<span class="material-symbols-outlined">smart_toy</span>
+				<p>Get AI support <a href="ai.php">Click Here</a> </p>
+
+			</li>
+			<li class="chat incoming">
+				<span class="material-symbols-outlined">smart_toy</span>
+
+				<p>Call Ambulance <a href="ambulance.php">Click Here</a> </p>
+			</li>
+		</ul>
+		<div class="chat-input">
+			<textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+			<span id="send-btn" class="material-symbols-rounded">send</span>
+		</div>
+	</div>
+
+	<!-- Chat Bot API -->
+
 	<!-- Layout wrapper -->
 	<div class="layout-wrapper layout-content-navbar">
 		<div class="layout-container">
@@ -75,7 +118,61 @@ $userDetails = mysqli_fetch_array($sql);
 													We got <span class="fw-bold"><?php echo $Appointments; ?></span> appointments today. Check doctors schedule
 												</p>
 
-												<a href="javascript:;" class="btn btn-sm btn-outline-primary">Appointments</a>
+												<!-- Enable Scrolling & Backdrop Offcanvas -->
+												<div class="col-lg-4 col-md-6">
+
+													<div class="mt-3">
+														<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth">
+															Appointments
+														</button>
+														<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasBoth" aria-labelledby="offcanvasBothLabel">
+															<div class="offcanvas-header">
+																<h5 id="offcanvasBothLabel" class="offcanvas-title">Appointments</h5>
+																<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+															</div>
+															<div class="offcanvas-body my-auto mx-0 flex-grow-0">
+																<p class="text-center">
+																	<!-- APPOINTMENTS -->
+
+
+																<div class="card-body">
+																	<div class="card-title d-flex align-items-start justify-content-between">
+																		<div class="avatar flex-shrink-0">
+																			<img src="/assets2/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+																		</div>
+																		<div class="dropdown">
+																			<button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																				<i class="bx bx-dots-vertical-rounded"></i>
+																			</button>
+																			<div class="dropdown-menu" aria-labelledby="cardOpt1">
+																				<a class="dropdown-item" href="javascript:void(0);">View More</a>
+																				<a class="dropdown-item" href="javascript:void(0);">Delete</a>
+																			</div>
+																		</div>
+																	</div>
+																	<span class="fw-semibold d-block mb-1">Appointments</span>
+																	<h3 class="card-title mb-2"><?php echo $Appointments; ?></h3>
+																	<small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>Get Schedule</small>
+																</div>
+
+
+																<!-- APPOINTMENTS -->
+
+																<!--  -->
+
+
+
+
+																</p>
+																<a href="appointment-history.php"><button type="button" class="btn btn-primary mb-2 d-grid w-100">Get Schedule</button></a>
+																<button type="button" class="btn btn-outline-secondary d-grid w-100" data-bs-dismiss="offcanvas">
+																	Cancel
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- Enable Scrolling & Backdrop Offcanvas -->
 											</div>
 										</div>
 										<div class="col-sm-5 text-center text-sm-left">
@@ -155,27 +252,32 @@ $userDetails = mysqli_fetch_array($sql);
 												<ul class="nav nav-pills mb-3" role="tablist">
 													<li class="nav-item">
 														<button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">
-															Home
+															<i class="bx bx-home" style="margin-top:-1.5px;"></i> Home
 														</button>
 													</li>
-													<li class="nav-item">
+													<li class=" nav-item">
 														<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false">
-															Pink Slip
+															<i class="bx bx-file" style="margin-top:-1.5px;"></i><span> Pink Slip</span>
 														</button>
 													</li>
 													<li class="nav-item">
 														<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages" aria-selected="false">
-															Appointments
+															<i class="bx bx-folder" style="margin-top:-1.5px;"></i><span> Mail</span>
+														</button>
+													</li>
+													<li class="nav-item">
+														<button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-appointments" aria-controls="navs-pills-top-messages" aria-selected="false">
+															<i class="bx bx-book" style="margin-top:-1.5px;"></i><span>Appointments</span>
 														</button>
 													</li>
 												</ul>
 												<div class="tab-content">
 													<div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
 														<p>
-															IIT Bombay's hospital system, a confection of efficiency, blends the richness of comprehensive care with the sweetness of advanced technology. Like a well-crafted pastry, it adapts to individual patient needs, ensuring a harmonious blend of medical expertise.
+															IIT Bombay Hospital Management System, Get AI Help <a href="ai.php"> Click Here </a>
 														</p>
 														<p class="mb-0">
-															Placing the patient at its core, this digital marvel prioritizes well-being through innovative solutions, akin to a donut's delightful center. It's the halvah of healthcare systems—balanced and satisfying for both professionals and patients.
+															NXT Gen's AI assistant<a href="ai.php"> NXT AI</a> will help you out whenever you get stucked.
 														</p>
 													</div>
 													<div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
@@ -188,13 +290,18 @@ $userDetails = mysqli_fetch_array($sql);
 													</div>
 													<div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
 														<p>
-															Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-															cupcake gummi bears cake chocolate.
+															IIT Bombay Hospital mail : no-reply@iitbhms.online
 														</p>
 														<p class="mb-0">
-															Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
-															roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
-															jelly-o tart brownie jelly.
+															Generate <a href="mail.php">Click Here</a>
+														</p>
+													</div>
+													<div class="tab-pane fade" id="navs-pills-top-appointments" role="tabpanel">
+														<p>
+															Get Appointment Calander <a href="appointment-calander.php">Click Here</a>
+														</p>
+														<p class="mb-0">
+															Google Calander Login <a href="#">Click Here</a>
 														</p>
 													</div>
 												</div>

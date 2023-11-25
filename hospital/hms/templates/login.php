@@ -15,7 +15,7 @@
     <!-- Register -->
     <div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
+            <div class="authentication-inner" style="padding: 10%;">
                 <div class="card">
                     <div class="card-body">
                         <!-- Logo -->

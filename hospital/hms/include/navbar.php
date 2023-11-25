@@ -13,6 +13,7 @@
                 <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
             </div>
         </div>
+
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">

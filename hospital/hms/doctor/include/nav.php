@@ -65,18 +65,18 @@ $navItems
             ],
         ],
         [
-            'icon' => 'cube-alt',
-            'name' => 'Management',
+            'icon' => 'bot',
+            'name' => 'AI Assistant',
             'subitems' => [
                 [
-                    'href' => 'search.php',
+                    'href' => 'ai.php',
                     'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Search Patient',
+                    'name' => 'Chat Bot',
                 ],
                 [
-                    'href' => 'maintenance.php',
+                    'href' => 'ai.php',
                     'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Under Maintenance',
+                    'name' => 'AI Assistant',
                 ],
             ],
         ],
@@ -96,9 +96,9 @@ $navItems
                     'name' => 'New Appointments',
                 ],
                 [
-                    'href' => 'appointment-history.php',
+                    'href' => 'appointment-calander.php',
                     'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Appointment History',
+                    'name' => 'Appointment Calander',
                 ],
             ],
         ],

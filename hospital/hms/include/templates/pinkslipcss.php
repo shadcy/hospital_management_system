@@ -2,7 +2,7 @@
 <!-- <link rel="stylesheet" href="./style.css"> -->
 <style>
     .mainContainer {
-        display: absolute;
+        display: relative;
         justify-content: left;
         background-color: #f0f0f0;
         padding: 0%;
@@ -22,11 +22,11 @@
     form {
 
         max-width: 450px;
-        margin: 0 auto;
+        /* margin: 0 auto;
         background-color: #fff;
         padding: 2%;
         border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
 
     }
 
@@ -59,12 +59,11 @@
 
     #pinkslip {
         display: block;
-        margin: 100px auto;
+        margin: 1.5% auto;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         background-image: url('pink_slip.png');
-        /* Replace 'path_to_your_image.jpg' with the actual path to your image */
         background-size: cover;
         background-position: center;
         padding: 1%;
@@ -113,7 +112,7 @@
         color: #888;
     }
 
-    #signatureContainer {
+    /* #signatureContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -121,7 +120,7 @@
         text-align: center;
 
 
-    }
+    } */
 
     #signatureCanvas {
         border: 1px solid #ccc;
