@@ -29,6 +29,7 @@
                                 <label for="email" class="form-label">Email or Username</label>
                                 <input type="text" class="form-control" id="email" name="username" placeholder="Enter your username" autofocus />
                             </div>
+                            <br>
                             <div class="form-group form-actions">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
@@ -36,11 +37,13 @@
                                         <small>Forgot Password?</small>
                                     </a>
                                 </div>
+
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control password" name="password" placeholder="Password" aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>
+                            <br>
                             <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember-me" />

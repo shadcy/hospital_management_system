@@ -45,9 +45,45 @@ if (!check_login_and_perms($userType)) {
 
 
         <meta name="description" content="" />
-        <?php include('../include/csslinks.php'); ?>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com/">
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
 
+        <?php include('../include/csslinks.php'); ?>
+        <!-- Icons -->
+        <link rel="stylesheet" href="./assets3/vendor/fonts/boxicons.css" />
+        <link rel="stylesheet" href="./assets3/vendor/fonts/fontawesome.css" />
+        <link rel="stylesheet" href="./assets3/vendor/fonts/flag-icons.css" />
+
+        <!-- Core CSS -->
+        <link rel="stylesheet" href="./assets3/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+        <link rel="stylesheet" href="./assets3/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+        <link rel="stylesheet" href="./assets3/css/demo.css" />
+
+        <!-- Vendors CSS -->
+        <link rel="stylesheet" href="./assets3/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/typeahead-js/typeahead.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/fullcalendar/fullcalendar.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/flatpickr/flatpickr.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/select2/select2.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/quill/editor.css" />
+        <link rel="stylesheet" href="./assets3/vendor/libs/%40form-validation/umd/styles/index.min.css" />
+
+        <!-- Page CSS -->
+
+        <link rel="stylesheet" href="./assets3/vendor/css/pages/app-calendar.css" />
+
+        <!-- Helpers -->
+        <script src="./assets3/vendor/js/helpers.js"></script>
+        <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+        <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+
+        <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+        <script src="./assets3/js/config.js"></script>
+        <?php include('../include/counter.php'); ?>
     </head>
+
 
     <body>
         <!-- Layout wrapper -->
@@ -73,37 +109,175 @@ if (!check_login_and_perms($userType)) {
                         <div class="container-xxl flex-grow-1 container-p-y">
                             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span>Appointment Calander</h4>
 
-                            <div class="col-xl">
-                                <div class="card mb-4">
-                                    <div class="card-body">
+
+                            <!-- <div class="col-xl"> -->
+                            <!-- <div class="card mb-4"> -->
+                            <!-- <div class="card-body"> -->
 
 
+                            <div class="card app-calendar-wrapper">
+                                <div class="row g-0">
+                                    <!-- Calendar Sidebar -->
+                                    <div class="col app-calendar-sidebar" id="app-calendar-sidebar">
+                                        <div class="border-bottom p-4 my-sm-0 mb-3">
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-toggle-sidebar" data-bs-toggle="offcanvas" data-bs-target="#addEventSidebar" aria-controls="addEventSidebar">
+                                                    <i class="bx bx-plus me-1"></i>
+                                                    <span class="align-middle">Add Event</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="p-4">
+                                            <!-- inline calendar (flatpicker) -->
+                                            <div class="ms-n2">
+                                                <div class="inline-calendar"></div>
+                                            </div>
 
+                                            <hr class="container-m-nx my-4">
 
+                                            <!-- Filter -->
+                                            <div class="mb-4">
+                                                <small class="text-small text-muted text-uppercase align-middle">Filter</small>
+                                            </div>
 
+                                            <div class="form-check mb-2">
+                                                <input class="form-check-input select-all" type="checkbox" id="selectAll" data-value="all" checked>
+                                                <label class="form-check-label" for="selectAll">View All</label>
+                                            </div>
 
-
-
-                                        <div class="content-backdrop fade"></div>
-
-                                        <!-- Content wrapper -->
+                                            <div class="app-calendar-events-filter">
+                                                <div class="form-check form-check-danger mb-2">
+                                                    <input class="form-check-input input-filter" type="checkbox" id="select-personal" data-value="personal" checked>
+                                                    <label class="form-check-label" for="select-personal">Personal</label>
+                                                </div>
+                                                <div class="form-check mb-2">
+                                                    <input class="form-check-input input-filter" type="checkbox" id="select-business" data-value="business" checked>
+                                                    <label class="form-check-label" for="select-business">Appointments</label>
+                                                </div>
+                                                <div class="form-check form-check-warning mb-2">
+                                                    <input class="form-check-input input-filter" type="checkbox" id="select-family" data-value="family" checked>
+                                                    <label class="form-check-label" for="select-family">Meetings</label>
+                                                </div>
+                                                <div class="form-check form-check-success mb-2">
+                                                    <input class="form-check-input input-filter" type="checkbox" id="select-holiday" data-value="holiday" checked>
+                                                    <label class="form-check-label" for="select-holiday">Holiday</label>
+                                                </div>
+                                                <div class="form-check form-check-info">
+                                                    <input class="form-check-input input-filter" type="checkbox" id="select-etc" data-value="etc" checked>
+                                                    <label class="form-check-label" for="select-etc">Surgery</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <!-- /Calendar Sidebar -->
+
+                                    <!-- Calendar & Modal -->
+                                    <div class="col app-calendar-content">
+                                        <div class="card shadow-none border-0">
+                                            <div class="card-body pb-0">
+                                                <!-- FullCalendar -->
+                                                <div id="calendar"></div>
+                                            </div>
+                                        </div>
+                                        <div class="app-overlay"></div>
+                                        <!-- FullCalendar Offcanvas -->
+                                        <div class="offcanvas offcanvas-end event-sidebar" tabindex="-1" id="addEventSidebar" aria-labelledby="addEventSidebarLabel">
+                                            <div class="offcanvas-header border-bottom">
+                                                <h5 class="offcanvas-title mb-2" id="addEventSidebarLabel">Add Event</h5>
+                                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                            </div>
+                                            <div class="offcanvas-body">
+                                                <form class="event-form pt-0" id="eventForm" onsubmit="return false">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventTitle">Title</label>
+                                                        <input type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="Event Title" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventLabel">Label</label>
+                                                        <select class="select2 select-event-label form-select" id="eventLabel" name="eventLabel">
+                                                            <option data-label="primary" value="Business" selected>Appointments</option>
+                                                            <option data-label="danger" value="Personal">Personal</option>
+                                                            <option data-label="warning" value="Family">Meetings</option>
+                                                            <option data-label="success" value="Holiday">Holiday</option>
+                                                            <option data-label="info" value="ETC">Surgery</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventStartDate">Start Date</label>
+                                                        <input type="text" class="form-control" id="eventStartDate" name="eventStartDate" placeholder="Start Date" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventEndDate">End Date</label>
+                                                        <input type="text" class="form-control" id="eventEndDate" name="eventEndDate" placeholder="End Date" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="switch">
+                                                            <input type="checkbox" class="switch-input allDay-switch" />
+                                                            <span class="switch-toggle-slider">
+                                                                <span class="switch-on"></span>
+                                                                <span class="switch-off"></span>
+                                                            </span>
+                                                            <span class="switch-label">All Day</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventURL">Event URL</label>
+                                                        <input type="url" class="form-control" id="eventURL" name="eventURL" placeholder="https://www.google.com/" />
+                                                    </div>
+                                                    <div class="mb-3 select2-primary">
+                                                        <label class="form-label" for="eventGuests">Add Guests</label>
+                                                        <select class="select2 select-event-guests form-select" id="eventGuests" name="eventGuests" multiple>
+                                                            <option data-avatar="1.png" value="Jane Foster">Jane Foster</option>
+                                                            <option data-avatar="3.png" value="Donna Frank">Donna Frank</option>
+                                                            <option data-avatar="5.png" value="Gabrielle Robertson">Gabrielle Robertson</option>
+                                                            <option data-avatar="7.png" value="Lori Spears">Lori Spears</option>
+                                                            <option data-avatar="9.png" value="Sandy Vega">Sandy Vega</option>
+                                                            <option data-avatar="11.png" value="Cheryl May">Cheryl May</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventLocation">Location</label>
+                                                        <input type="text" class="form-control" id="eventLocation" name="eventLocation" placeholder="Enter Location" />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="eventDescription">Description</label>
+                                                        <textarea class="form-control" name="eventDescription" id="eventDescription"></textarea>
+                                                    </div>
+                                                    <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Add</button>
+                                                            <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1" data-bs-dismiss="offcanvas">Cancel</button>
+                                                        </div>
+                                                        <div><button class="btn btn-label-danger btn-delete-event d-none">Delete</button></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Calendar & Modal -->
                                 </div>
                             </div>
+
+
+
+                            <div class="content-backdrop fade"></div>
+
+                            <!-- Content wrapper -->
                         </div>
-                        <!-- / Layout page -->
-
-
-                        <!-- Overlay -->
-                        <div class="layout-overlay layout-menu-toggle"></div>
                     </div>
-
                 </div>
             </div>
+            <!-- / Layout page -->
+
+
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle"></div>
         </div>
 
+        </div>
+        </div>
+        </div>
 
-        <?php include('../include/links.php'); ?>
 
         <script>
             jQuery(document).ready(function() {
@@ -113,6 +287,37 @@ if (!check_login_and_perms($userType)) {
         </script>
 
 
+
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+
+        <script src="./assets3/vendor/libs/jquery/jquery.js"></script>
+        <script src="./assets3/vendor/libs/popper/popper.js"></script>
+        <script src="./assets3/vendor/js/bootstrap.js"></script>
+        <script src="./assets3/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="./assets3/vendor/libs/hammer/hammer.js"></script>
+        <script src="./assets3/vendor/libs/i18n/i18n.js"></script>
+        <script src="./assets3/vendor/libs/typeahead-js/typeahead.js"></script>
+        <script src="./assets3/vendor/js/menu.js"></script>
+
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+        <script src="./assets3/vendor/libs/fullcalendar/fullcalendar.js"></script>
+        <script src="./assets3/vendor/libs/%40form-validation/umd/bundle/popular.min.js"></script>
+        <script src="./assets3/vendor/libs/%40form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+        <script src="./assets3/vendor/libs/%40form-validation/umd/plugin-auto-focus/index.min.js"></script>
+        <script src="./assets3/vendor/libs/select2/select2.js"></script>
+        <script src="./assets3/vendor/libs/flatpickr/flatpickr.js"></script>
+        <script src="./assets3/vendor/libs/moment/moment.js"></script>
+
+        <!-- Main JS -->
+        <script src="./assets3/js/main.js"></script>
+
+
+        <!-- Page JS -->
+        <script src="./assets3/js/app-calendar-events.js"></script>
+        <script src="./assets3/js/app-calendar.js"></script>
     </body>
 
 

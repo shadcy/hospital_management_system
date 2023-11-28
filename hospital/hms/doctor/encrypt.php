@@ -14,178 +14,145 @@ if (!check_login_and_perms($userType)) {
 } else {
 
 ?>
+
+
+
+
+
+
+    <?php $userTypeString = UserTypeAsString[$userType] ?>
     <!DOCTYPE html>
-    <html lang="en">
+
+
+    <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
+
 
     <head>
-        <title>Doctor | Encryption</title>
-
-        <?php include_once("../include/head_links.php");
-        echo generate_head_links(); ?>
-
-
-    </head>
-    <style>
-        .drag-drop-area {
-            width: 100%;
-            height: 100px;
-            border: 2px dashed #ccc;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .drag-drop-text {
-            color: #999;
-        }
-
-        .card {
-            /* float:right; */
-            margin-right: 300px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            max-width: 400px;
-            width: 90%;
-        }
-
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        input,
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-
-        .download-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
+        <title> <?php echo $userTypeString; ?> | Edit Doctor</title>
 
 
 
 
 
-        @media only screen and (min-width: 768px) {
-            .card {
-                max-width: 600px;
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+        <meta name="description" content="" />
+        <?php include('../include/csslinks.php'); ?>
+        <style>
+            .drag-drop-area {
+                width: 100%;
+                height: 100px;
+                border: 2px dashed #ccc;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
             }
-        }
-    </style>
+
+            .drag-drop-text {
+                color: #999;
+            }
+
+            .card {
+
+                margin-right: 300px;
+                background-color: #f9f9f9;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                margin: 10px;
+                max-width: 400px;
+                width: 90%;
+            }
+        </style>
+    </head>
 
     <body>
-        <div id="app">
-            <?php include('include/sidebar.php'); ?>
-            <div class="app-content">
+        <!-- Layout wrapper -->
+        <div class="layout-wrapper layout-content-navbar">
+            <div class="layout-container">
+                <!-- Menu -->
+                <?php include('../include/counter.php'); ?>
+                <?php include('./include/nav.php'); ?>
 
-                <?php include('../include/header.php'); ?>
+                <!-- / Menu -->
 
-                <!-- end: TOP NAVBAR -->
-                <div class="main-content">
-                    <div class="wrap-content container" id="container">
-                        <!-- start: PAGE TITLE -->
-                        <section id="page-title">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h1 class="mainTitle">Doctor | Encryption</h1>
-                                </div>
-                                <ol class="breadcrumb">
-                                    <li>
-                                        <span>User</span>
-                                    </li>
-                                    <li class="active">
-                                        <span>Encryption</span>
-                                    </li>
-                                </ol>
+                <!-- Layout container -->
+                <div class="layout-page">
+                    <!-- Navbar -->
+
+                    <?php include('../include/navbar.php'); ?>
+
+                    <!-- / Navbar -->
+
+                    <!-- Content wrapper -->
+                    <div class="content-wrapper">
+                        <!-- Content -->
+                        <div class="container-xxl flex-grow-1 container-p-y">
+                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span>Encryption </h4>
+
+
+
+
+                            <h1>Encryption</h1>
+                            <h2>Select an image file and enter a password to encrypt and decrypt the image.</h2>
+                            <div class="drag-drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                                <p class="drag-drop-text" id="drag-text"> <br><br></p>
+                                <input type="file" id="image" onchange="previewImage()" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
                             </div>
-                        </section>
-                        <!-- end: PAGE TITLE -->
-                        <!-- start: BASIC EXAMPLE -->
-                        <div class="container-fluid container-fullw bg-white">
-                            <div class="row">
-                                <div class="container">
-                                    <div style="display: flex;">
-                                        <div style="flex: 1;">
-                                            <div class="card">
-                                                <h1>Encryption</h1>
-                                                <h2>Select an image file and enter a password to encrypt and decrypt the image.</h2>
-                                                <div class="drag-drop-area" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                                    <p class="drag-drop-text" id="drag-text"> <br><br></p>
-                                                    <input type="file" id="image" onchange="previewImage()" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
-                                                </div>
-                                                <button onclick="encryptImage()">Encrypt</button>
-                                                <button onclick="decryptImage()">Decrypt</button>
-                                                <br>
-                                                <img id="encrypted-image" style="display:none;">
-                                                <a id="encrypted-link" download="encrypted.png" class="download-btn" style="display:none;">Download encrypted
-                                                    image</a>
-                                                <br>
-                                                <img id="decrypted-image" style="display:none;">
-                                                <a id="decrypted-link" download="decrypted.png" class="download-btn" style="display:none;">Download decrypted
-                                                    image</a>
-                                            </div>
-                                        </div>
+                            <br>
 
-                                        <div style="flex: 1;">
-                                            <div class="card">
-                                                <h1>Image Preview</h1>
-                                                <img id="preview" style="display:none; " alt="Default Image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="btn btn-primary" onclick="encryptImage()">Encrypt Image</button>
+                            <br><br>
+                            <button class="btn btn-secondary" onclick="decryptImage()">Decrypt Image</button>
+                            <br>
+                            <img id="encrypted-image" style="display:none;">
+                            <a id="encrypted-link" download="encrypted.png" class="download-btn" style="display:none;">Download encrypted
+                                image</a>
+                            <br>
+                            <img id="decrypted-image" style="display:none;">
+                            <a id="decrypted-link" download="decrypted.png" class="download-btn" style="display:none;">Download decrypted
+                                image</a>
                         </div>
                     </div>
+
+
+
+
+
+
+                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- start: FOOTER -->
-                <?php include('../include/footer.php'); ?>
-                <!-- end: FOOTER -->
-
-                <!-- start: SETTINGS -->
-                <?php include('../include/setting.php'); ?>
-
-                <!-- end: SETTINGS -->
+                <!-- Content wrapper -->
             </div>
-            <?php include_once("../include/body_scripts.php") ?>
-            <script src="/assets/js/encrypt.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+            <!-- / Layout page -->
+        </div>
 
-            <script>
-                jQuery(document).ready(function() {
-                    Main.init();
-                    FormElements.init();
-                });
-            </script>
-            <!-- end: JavaScript Event Handlers for this page -->
-            <!-- end: CLIP-TWO JAVASCRIPTS -->
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+        </div>
+        <!-- Main JS -->
+        <?php include_once("../include/body_scripts.php") ?>
+        <script src="/assets/js/encrypt.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <?php include('../include/links.php'); ?>
+
+        <?php include_once("../include/body_scripts.php") ?>
+        <script>
+            jQuery(document).ready(function() {
+                Main.init();
+                FormElements.init();
+            });
+        </script>
+
+
     </body>
 
+
+
     </html>
+
 <?php } ?>

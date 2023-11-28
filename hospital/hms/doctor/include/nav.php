@@ -18,7 +18,7 @@ $navItems
                 ],
 
                 [
-                    'href' => 'logs.php',
+                    'href' => 'attendance.php',
                     'icon' => 'some-icon', // Add the appropriate icon
                     'name' => 'Attendance',
                 ],
@@ -61,6 +61,11 @@ $navItems
                     'href' => '#',
                     'icon' => 'some-icon', // Add the appropriate icon
                     'name' => 'Format',
+                ],
+                [
+                    'href' => 'encrypt.php',
+                    'icon' => 'some-icon', // Add the appropriate icon
+                    'name' => 'Encryption',
                 ],
             ],
         ],

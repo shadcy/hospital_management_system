@@ -13,38 +13,9 @@ if (!check_login_and_perms($userType)) {
 	exit;
 }
 
-$dashItems = [
-	[
-		'icon' => 'smile-o',
-		'title' => 'My Profile',
-		'href' => 'edit-profile.php',
-		'linkText' => 'Update Profile',
-	],
-	[
-		'icon' => 'paperclip',
-		'title' => 'My Appointments',
-		'href' => 'appointment-history.php',
-		'linkText' => 'View Appointment History',
-	],
-	[
-		'icon' => 'terminal',
-		'title' => 'Book Appointment',
-		'href' => 'book-appointment.php',
-		'linkText' => 'Book Appointment',
-	],
-	[
-		'icon' => 'ambulance',
-		'title' => 'Ambulance',
-		'href' => 'ambulance.php',
-		'linkText' => 'Get Ambulance',
-	],
-	[
-		'icon' => 'book',
-		'title' => 'Mailer',
-		'href' => 'mail.php',
-		'linkText' => 'Mail Prof.',
-	],
-	// Add more items as needed
-];
 
-include_once("../templates/dashboard.php");
+
+
+include_once("./include/nav.php");
+
+include_once("../templates/patient-dashboard.php");
