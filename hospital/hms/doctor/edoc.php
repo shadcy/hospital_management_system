@@ -130,11 +130,11 @@ if (!check_login_and_perms($userType)) {
                                                             <li>
                                                                 <label for="strokeStyle">Line Colour</label>
                                                                 <div name="strokeStyle" class="color-selector">
-                                                                    <div class="color-preset" style="background-color: blue" onclick="setColor('blue')"></div>
-                                                                    <div class="color-preset" style="background-color: black" onclick="setColor('black')"></div>
-                                                                    <div class="color-preset" style="background-color: red" onclick="setColor('red')"></div>
+                                                                    <div class="color-preset" style="background-color: blue" onclick="setColor(event,'blue')"></div>
+                                                                    <div class="color-preset selected" style="background-color: black" onclick="setColor(event,'black')"></div>
+                                                                    <div class="color-preset" style="background-color: red" onclick="setColor(event,'red')"></div>
 
-                                                                    <input type="color" id="colorPicker" onchange="setColor(this.value)" />
+                                                                    <input type="color" id="colorPicker" onchange="setColor(event,this.value)" />
                                                                 </div>
                                                             </li>
                                                             <li>

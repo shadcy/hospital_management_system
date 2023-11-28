@@ -14,11 +14,20 @@ function setWidth(width) {
   inputRange.value = fabCanvas.myProps.width;
 }
 
-function setColor(color) {
+function setColor(event, color) {
   // Use the selected color
   fabCanvas.myProps.color = input.value;
   if (fabCanvas.myProps.mode === "draw")
     fabCanvas.freeDrawingBrush.color = color;
+
+  document.querySelectorAll(".color-preset").forEach(function (preset) {
+    preset.classList.remove("selected");
+  });
+
+  if (event.target.classList.contains("color-preset")) {
+    // Apply the selected class to the clicked color preset
+    event.target.classList.add("selected");
+  }
 }
 
 function setBackground(url) {
