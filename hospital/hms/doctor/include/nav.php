@@ -165,8 +165,8 @@ $navItems
         ],
         [
             'icon' => 'file',
-            'href' => 'maintenance.php',
-            'name' => 'Under Maintenance',
+            'href' => 'edoc.php',
+            'name' => 'Edoc Management',
         ],
     ];
 
