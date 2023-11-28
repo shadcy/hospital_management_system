@@ -1,6 +1,6 @@
 .canvas-container {
   /* grid-area: canvas; */
-  border: solid #161616 2px;
+  border-top: solid #161616 2px;
   border-radius: 5px;
   cursor: crosshair;
   /* background: url("prototyp.png"); */
@@ -57,9 +57,6 @@ input[type="range"] {
   width: 100%;
 }
 
-
-
-
 select {
   width: 100%;
   padding: 10px;
@@ -68,14 +65,18 @@ select {
   margin-bottom: 15px;
 }
 
+.modeBtn.current {
+  background-color: rgb(130, 133, 255);
+}
+
 /* Styling the options */
 select option {
   padding: 10px;
 }
 
-button.current {
+/* button.current {
   background-color: rgb(141, 73, 230);
-}
+} */
 
 .color-selector {
   display: flex;

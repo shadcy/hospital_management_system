@@ -1,5 +1,11 @@
 const input = document.querySelector('[type="color"]');
 const inputRange = document.querySelector('[type="range"]');
+const backgroundSelectorEditor = document.getElementById(
+  "background-select-editor"
+);
+const backgroundSelectorOuter = document.getElementById(
+  "background-select-outer"
+);
 // const selectLineCap = document.querySelector("select");
 
 function setWidth(width) {
@@ -17,24 +23,37 @@ function setColor(color) {
 
 function setBackground(url) {
   fabCanvas.cstmSetBackground(url);
+  backgroundSelectorOuter.value = url;
+  backgroundSelectorEditor.value = url;
 }
 
-// function changeBackground() {
-//   var select = document.getElementById("background-select");
-//   var canvas = document.getElementById("pageCanvas");
-//   var ctx = canvas.getContext("2d");
+const filenameInput = document.getElementById("filenameInput");
 
-//   var selectedValue = select.value;
-//   var imagePath = "";
+document.getElementById("exportForm")?.addEventListener("click", () => {
+  // Get the data URL of the canvas
+  const dataURL = fabCanvas.toDataURL({
+    format: "png",
+    multiplier: 2, // Increase the multiplier for higher resolution
+  });
 
-//   if (selectedValue === "img1") {
-//     imagePath = "prototyp.png";
-//   } else if (selectedValue === "img2") {
-//     imagePath = "prototype.png";
-//   } else if (selectedValue === "img3") {
-//     imagePath = "#";
-//   }
+  // Get the filename from the input field or use a default if not provided
+  const filename = filenameInput.value || "untitled";
 
-//   // canvas.style.backgroundImage = 'url(' + imagePath + ')';
-//   return imagePath;
-// }
+  // Create a link element
+  const link = document.createElement("a");
+
+  // Set the href attribute to the data URL
+  link.href = dataURL;
+
+  // Set the download attribute with the filename
+  link.download = `${filename}.png`;
+
+  // Append the link to the document
+  document.body.appendChild(link);
+
+  // Trigger a click on the link to start the download
+  link.click();
+
+  // Remove the link from the document
+  document.body.removeChild(link);
+});

@@ -11,7 +11,6 @@ const fabCanvas = new fabric.Canvas("pageCanvas", {
   },
 });
 
-
 fabCanvas.cstmSetBackground("edoc/prototyp.png");
 
 function redoState() {
@@ -34,29 +33,15 @@ function redoState() {
     .classList.add("current");
 }
 
-
-
-
-
-
-
 function resizeCanvas() {
-  const canvas = document.getElementById('pageCanvas');
+  const canvas = document.getElementById("pageCanvas");
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
   // Add your drawing/rendering logic here if needed
 }
 
 // Initial call to set canvas size
-resizeCanvas();
-
-
-
-
-
-
-
-
+// resizeCanvas();
 
 document.getElementById("drawBtn")?.addEventListener("click", () => {
   fabCanvas.isDrawingMode = true;
@@ -98,65 +83,15 @@ fabCanvas.on("mouse:move", function (options) {
   }
 });
 
-redoState(); //Set the initial value
-window.addEventListener('resize', resizeCanvas);
-
-// document.getElementById("exportForm")?.addEventListener("click", () => {
-//   // Get the data URL of the canvas
-//   const dataURL = fabCanvas.toDataURL({
-//     format: "png",
-//     multiplier: 2, // Increase the multiplier for higher resolution
-//   });
-
-//   // Create a link element
-//   const link = document.createElement("a");
-
-//   // Set the href attribute to the data URL
-//   link.href = dataURL;
-
-//   // Set the download attribute with a desired filename (e.g., drawing.png)
-//   link.download = "drawing.png";
-
-//   // Append the link to the document
-//   document.body.appendChild(link);
-
-//   // Trigger a click on the link to start the download
-//   link.click();
-
-//   // Remove the link from the document
-//   document.body.removeChild(link);
-// });
-
-
-
-// Add an input field for the filename
-const filenameInput = document.getElementById("filenameInput");
-
-document.getElementById("exportForm")?.addEventListener("click", () => {
-  // Get the data URL of the canvas
-  const dataURL = fabCanvas.toDataURL({
-    format: "png",
-    multiplier: 2, // Increase the multiplier for higher resolution
-  });
-
-  // Get the filename from the input field or use a default if not provided
-  const filename = filenameInput.value || "NoName";
-
-  // Create a link element
-  const link = document.createElement("a");
-
-  // Set the href attribute to the data URL
-  link.href = dataURL;
-
-  // Set the download attribute with the filename
-  link.download = `${filename}.png`;
-
-  // Append the link to the document
-  document.body.appendChild(link);
-
-  // Trigger a click on the link to start the download
-  link.click();
-
-  // Remove the link from the document
-  document.body.removeChild(link);
+document.addEventListener("keydown", function (event) {
+  if (event.ctrlKey || event.metaKey) {
+    if ((event.shiftKey && event.key === "z") || event.key === "y") {
+      event.preventDefault();
+      fabCanvas.cstmRedo();
+    } else if (event.key === "z") {
+      event.preventDefault();
+      fabCanvas.cstmUndo();
+    }
+  }
 });
+redoState(); //Set the initial value

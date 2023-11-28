@@ -93,38 +93,20 @@ if (!check_login_and_perms($userType)) {
                                     <h5>Document Editor</h5> <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBoth" aria-controls="offcanvasBoth">
                                         Editor
                                     </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-primary" type="button" id="drawBtn">
+                                    <button class="btn btn-primary modeBtn current" type="button" id="drawBtn">
                                         Draw
                                     </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button class="btn btn-primary" type="button" id="objecteraseBtn">
+                                    <button class="btn btn-primary modeBtn" type="button" id="objecteraseBtn">
                                         Stroke Eraser
                                     </button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <select id="background-select" onchange="setBackground(this.value) " style="width: 25%;">
+                                    <select id="background-select-editor" onchange="setBackground(this.value) " style="width: 25%;">
                                         <option value="edoc/prototyp.png">Medical Information</option>
                                         <option value="edoc/prototype2.png">Appointment Request</option>
                                     </select>
 
                                     <div class="grid-container">
                                         <canvas id="pageCanvas" width="1240%" height="1754%"> </canvas>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                         <!-- Enable Scrolling & Backdrop Offcanvas -->
                                         <div class="col-lg-4 col-md-6">
 
@@ -169,9 +151,7 @@ if (!check_login_and_perms($userType)) {
                                                                 </div>
                                                             </li>
                                                             <li>
-                                                                <button class="btn btn-primary" class="modeBtn current" id="drawBtn">Draw</button>
-                                                                <button class="btn btn-primary" class="modeBtn" id="eraseBtn">Simple Eraser</button>
-
+                                                                <button class="btn btn-primary modeBtn" id="eraseBtn">Simple Eraser</button>
                                                             </li>
                                                             <li>
                                                                 <button class="btn btn-outline-danger d-grid w-100" onclick="fabCanvas.cstmClearObjects()">Clear</button>
@@ -191,7 +171,7 @@ if (!check_login_and_perms($userType)) {
                                                                 <button class="btn btn-outline-danger d-grid w-100" id="exportForm">Download</button>
                                                             </li>
                                                             <li>
-                                                                <select id="background-select" onchange="setBackground(this.value)">
+                                                                <select id="background-select-outer" onchange="setBackground(this.value)">
                                                                     <option value="edoc/prototyp.png">Medical Information</option>
                                                                     <option value="edoc/prototype2.png">Appointment Request</option>
                                                                 </select>
