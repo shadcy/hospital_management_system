@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin:*");
+// header("Access-Control-Allow-Origin:*");
 // Other CORS headers as needed
 
 if (getenv('ENVIRONMENT') !== "development") {
