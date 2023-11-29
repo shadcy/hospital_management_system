@@ -6,8 +6,7 @@ if (getenv('ENVIRONMENT') !== "development") {
     error_reporting(0);
 }
 
-include("../../hms/include/config.php");
-
+include_once($_SERVER['DOCUMENT_ROOT'] . '/hms/include/config.php');
 $userType = UserTypeEnum::Patient->value;
 
 $puname = $_POST['username'];
