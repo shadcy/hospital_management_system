@@ -1,3 +1,25 @@
+<?php
+// Get the requested URL path
+$requestPath = $_SERVER['REQUEST_URI'];
+
+// Define the patterns for admin, doctor, and patient URLs
+$adminPattern = '/hms/admin/';
+$doctorPattern = '/hms/doctor/';
+$patientPattern = '/hms/patient/';
+
+$hmsMatch = true;
+// Check if the requested path matches any of the patterns
+if (strpos($requestPath, $adminPattern) === 0) {
+    $redirectURL = $adminPattern . 'dashboard.php';
+} elseif (strpos($requestPath, $doctorPattern) === 0) {
+    $redirectURL = $doctorPattern . 'dashboard.php';
+} elseif (strpos($requestPath, $patientPattern) === 0) {
+    $redirectURL = $patientPattern . 'dashboard.php';
+} else {
+    $redirectURL = '/';
+    $hmsMatch = false;
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en" class="light-style" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
@@ -47,8 +69,8 @@
     <div class="container-xxl container-p-y">
         <div class="misc-wrapper">
             <h2 class="mb-2 mx-2">Page Not Found :(</h2>
-            <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
-            <a href="dashboard.php" class="btn btn-primary">Back to home</a>
+            <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server. <?= $requestPath ?></p>
+            <a href="<?= $redirectURL ?>" class="btn btn-primary">Back <?= $hmsMatch ? 'to Dashboard' : 'Home' ?></a>
             <div class="mt-3">
                 <img src="/assets2/img/illustrations/page-misc-error-light.png" alt="page-misc-error-light" width="500" class="img-fluid" data-app-dark-img="illustrations/page-misc-error-dark.png" data-app-light-img="illustrations/page-misc-error-light.png" />
             </div>

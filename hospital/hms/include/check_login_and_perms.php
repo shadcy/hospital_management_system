@@ -5,7 +5,7 @@ function check_login_and_perms(int $userType): bool
         header("location:index.php");
         return false;
     } elseif ($_SESSION['userType'] !== $userType) {
-        header('location:/ERR404.php');
+        header('location:/logins.php');
         return false;
     }
     return true;

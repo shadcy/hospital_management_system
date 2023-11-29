@@ -26,18 +26,13 @@ if (!check_login_and_perms($userType)) {
 	}
 
 ?>
-
-
-
-
-	<?php $userTypeString = UserTypeAsString[$userType] ?>
 	<!DOCTYPE html>
 
 
 	<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
 	<head>
-		<title> <?php echo $userTypeString; ?> | About Us</title>
+		<title> <?php echo UserTypeAsString[$userType]; ?> | About Us</title>
 
 		<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -75,7 +70,7 @@ if (!check_login_and_perms($userType)) {
 					<div class="content-wrapper">
 						<!-- Content -->
 						<div class="container-xxl flex-grow-1 container-p-y">
-							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span>About Us</h4>
+							<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin /</span>About Us</h4>
 
 
 
