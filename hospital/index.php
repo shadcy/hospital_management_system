@@ -266,22 +266,23 @@ if (isset($_POST['submit'])) {
             <div class="hero-card" data-reveal="left">
 
               <p class="title-lg card-text">
-                Get location of hospital.
+                Get Our App Now !
               </p>
 
               <div class="wrapper">
 
                 <div class="input-wrapper title-lg">
-                  <input type="text" name="location" placeholder="IIT Bombay Hospital" class="input-field">
+                  <input type="text" name="location" placeholder="IIT Bombay Hospital Management System" class="input-field">
 
-                  <ion-icon name="location"></ion-icon>
+                  <ion-icon name="arrow-forward-outline"></ion-icon>
                 </div>
 
-                <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568">
+                <!-- <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568"> -->
+                <a href="getapp.php">
                   <button class="btn has-before">
-                    <ion-icon name="search"></ion-icon>
+                    <ion-icon name="phone-portrait-outline"></ion-icon>
 
-                    <span class="span title-md">Find Now</span>
+                    <span class="span title-md">Get App</span>
                   </button>
                 </a>
 

@@ -7,7 +7,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/hms/include/config.php');
 $userType = UserTypeEnum::Patient->value;
 
 
-$sql = mysqli_execute_query($con, "select users.fullName as docname, specializations.name as specializationName,appointments.*  from appointments join doctors on doctors.id=appointments.doctorId join specializations on specializations.id=doctors.specializationId join users on users.id=doctors.id where appointments.patientId = ?", [$_GET['user_id']]); #Done2
+$sql = mysqli_execute_query($con, "select users.fullName as docname, specializations.name as specializationName,appointments.*  from appointments join doctors on doctors.id=appointments.doctorId join specializations on specializations.id=doctors.specializationId join users on users.id=doctors.id where appointments.patientId = ?", [$_POST['user_id']]); #Done2
 
 $mappedData = array();
 
@@ -28,7 +28,7 @@ while ($row = mysqli_fetch_assoc($sql)) {
     $mappedRow = array(
         'doctor_name' => $row['docname'],
         // 'specialization' => $row['specializationName'],
-        'appointment_id' => $row['appointmentId'],
+        'appointment_id' => $row['id'],
         'date' => $row['date'],
         'time' => $row['time'],
         'fees' => $row['consultancyFees'],

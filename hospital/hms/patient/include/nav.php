@@ -10,6 +10,12 @@ $navItems = [
         'icon' => 'user',
         'name' => 'My Profile',
     ],
+
+    [
+        'href' => 'appointment-history.php',
+        'icon' => 'folder',
+        'name' => 'Appointment History',
+    ],
     'Appointments & AI Help', // This will create a menu header with the text 'Doctors'
     [
         'href' => 'ambulance.php',
