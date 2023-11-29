@@ -32,11 +32,11 @@ while ($row = mysqli_fetch_assoc($sql)) {
         'date' => $row['date'],
         'time' => $row['time'],
         'fees' => $row['consultancyFees'],
-        'status' => $row['patientStatus'] * $row['doctorStatus'] ? apptStatusEnum::from((2 << 2) + 3)->name : 'CANCELLED'
+        'appointment_status' => $row['patientStatus'] * $row['doctorStatus'] ? apptStatusEnum::from((2 << 2) + 3)->name : 'CANCELLED'
     );
 
     // Add the mapped row to the result array
     $mappedData[] = $mappedRow;
 }
 
-echo json_encode($mappedData);
+echo json_encode(['appointmentList' => $mappedData]);
