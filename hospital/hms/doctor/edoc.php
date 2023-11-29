@@ -62,7 +62,7 @@ if (!check_login_and_perms($userType)) {
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
                 <!-- Menu -->
-                <?php include('../include/counter.php'); ?>
+
                 <?php include('./include/nav.php'); ?>
 
                 <!-- / Menu -->

@@ -21,7 +21,7 @@ $UserCount = $userCount();
 
 $appointments = function () {
     global $con;
-    $result = mysqli_query($con, "SELECT COUNT(*) as appointmentCount FROM appointments;");
+    $result = mysqli_query($con, "SELECT COUNT(*) as appointmentCount FROM appointments where doctorStatus = 1 and patientStatus = 1;");
     $row = mysqli_fetch_array($result);
     return '' . htmlentities($row['appointmentCount']);
 };

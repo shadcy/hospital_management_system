@@ -5,27 +5,6 @@ $navItems = [
         'icon' => 'home-circle',
         'name' => 'Dashboard',
     ],
-    [
-        'icon' => 'terminal',
-        'name' => 'Pink Slip',
-        'subitems' => [
-            [
-                'href' => 'maintenance.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Verification',
-            ],
-            [
-                'href' => 'maintenance.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Pink Slip V2.2.2',
-            ],
-            [
-                'href' => 'maintenance.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Format',
-            ],
-        ],
-    ],
     'Doctors', // This will create a menu header with the text 'Doctors'
     [
         'icon' => 'user',
@@ -61,21 +40,16 @@ $navItems = [
     ],
     [
         'icon' => 'cube-alt',
-        'name' => 'Specialization',
-        'subitems' => [
-            [
-                'href' => 'doctor-specilization.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Add Specialization',
-            ],
-            [
-                'href' => 'maintenance.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Under Maintenance',
-            ],
-        ],
+        'name' => 'Specializations',
+        'href' => 'doctor-specilization.php',
+
     ],
     'Patients', // This will create a menu header with the text 'Patients'
+    [
+        'href' => 'add-user.php',
+        'icon' => 'user',
+        'name' => 'Add Patient',
+    ],
     [
         'href' => 'patient-search.php',
         'icon' => 'collection',
@@ -127,25 +101,25 @@ $navItems = [
     ],
     [
         'icon' => 'book',
-        'name' => 'Read Queries',
+        'name' => 'Customer Queries',
         'subitems' => [
-            [
-                'href' => 'read-query.php',
-                'icon' => 'some-icon', // Add the appropriate icon
-                'name' => 'Read Queries',
-            ],
             [
                 'href' => 'unread-queries.php',
                 'icon' => 'some-icon', // Add the appropriate icon
                 'name' => 'New Queries',
             ],
+            [
+                'href' => 'read-query.php',
+                'icon' => 'some-icon', // Add the appropriate icon
+                'name' => 'Read Queries',
+            ],
         ],
     ],
-    [
-        'icon' => 'car',
-        'name' => 'Ambulance',
-        'href' => 'maintenance.php',
-    ],
+    // [
+    //     'icon' => 'car',
+    //     'name' => 'Ambulance',
+    //     'href' => 'maintenance.php',
+    // ],
     'Website', // This will create a menu header with the text 'Website'
     [
         'icon' => 'support',

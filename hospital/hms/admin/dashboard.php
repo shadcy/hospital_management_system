@@ -19,17 +19,10 @@ if (!check_login_and_perms($userType)) {
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
 <head>
-	<title> Admin | Dashboard</title>
-
-
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-
-	<meta name="description" content="" />
-	<?php include('../include/csslinks.php'); ?>
-
+	<?php
+	$pageName = 'Dashboard';
+	include('../include/new-header.php');
+	?>
 </head>
 
 <body>
@@ -54,8 +47,7 @@ if (!check_login_and_perms($userType)) {
 				<div class="content-wrapper">
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Admin/</span> Dashboard</h4>
-
+						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?php echo UserTypeAsString[$userType]; ?> /</span> <?php echo $pageName; ?></h4>
 
 
 						<div class="row">
@@ -69,7 +61,7 @@ if (!check_login_and_perms($userType)) {
 													We got <span class="fw-bold"><?php echo $Appointments; ?></span> appointments today. Check doctors schedule
 												</p>
 
-												<a href="javascript:;" class="btn btn-sm btn-outline-primary">Appointments</a>
+												<a href="appointment-history.php" class="btn btn-sm btn-outline-primary">Appointments</a>
 											</div>
 										</div>
 										<div class="col-sm-5 text-center text-sm-left">

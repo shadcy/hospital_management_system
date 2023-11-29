@@ -115,7 +115,7 @@ $userTypeString = UserTypeAsString[$userType] ?>
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
-            <?php include('../include/counter.php'); ?>
+
             <?php include_once("./include/nav.php"); ?>
 
             <!-- / Menu -->

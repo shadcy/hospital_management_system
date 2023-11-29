@@ -81,7 +81,7 @@ if (!check_login_and_perms($userType)) {
 
         <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
         <script src="./assets3/js/config.js"></script>
-        <?php include('../include/counter.php'); ?>
+
     </head>
 
 
@@ -90,7 +90,7 @@ if (!check_login_and_perms($userType)) {
         <div class="layout-wrapper layout-content-navbar">
             <div class="layout-container">
                 <!-- Menu -->
-                <?php include('../include/counter.php'); ?>
+
                 <?php include('./include/nav.php'); ?>
 
                 <!-- / Menu -->
