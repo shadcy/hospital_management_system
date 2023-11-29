@@ -1,9 +1,12 @@
 <?php
+header("Access-Control-Allow-Origin:*");
+// Other CORS headers as needed
+
 if (getenv('ENVIRONMENT') !== "development") {
     error_reporting(0);
 }
 
-include("../include/config.php");
+include("../../hms/include/config.php");
 
 $userType = UserTypeEnum::Patient->value;
 
@@ -12,11 +15,11 @@ $ppwd = md5($_POST['password']);
 $sql = mysqli_execute_query($con, "SELECT * FROM users WHERE email=? and password=? and type = ? and isActive = 1;", [$puname, $ppwd, $userType]);
 $ret = mysqli_fetch_array($sql);
 if ($ret) {
-    $_SESSION['login'] = $_POST['username'];
-    $_SESSION['id'] = $num['id'];
-    $_SESSION['userType'] = $userType;
-    $_SESSION['name'] = $num['fullName'];
-    $pid = $num['id'];
+    // $_SESSION['login'] = $_POST['username'];
+    // $_SESSION['id'] = $ret['id'];
+    // $_SESSION['userType'] = $userType;
+    // $_SESSION['name'] = $ret['fullName'];
+    $pid = $ret['id'];
     $host = $_SERVER['HTTP_HOST'];
     $uip = $_SERVER['REMOTE_ADDR'];
     $status = 1;
