@@ -181,6 +181,7 @@ if (isset($_POST['submit'])) {
 
           <li class="navbar-item">
             <a href="./logins.php" class="navbar-link title-md">Logins</a>
+
           </li>
 
           <li class="navbar-item">
@@ -190,6 +191,7 @@ if (isset($_POST['submit'])) {
           <li class="navbar-item">
             <a href="#contact_us" class="navbar-link title-md">Contact Us</a>
           </li>
+
 
         </ul>
 
@@ -266,23 +268,22 @@ if (isset($_POST['submit'])) {
             <div class="hero-card" data-reveal="left">
 
               <p class="title-lg card-text">
-                Get Our App Now !
+                Get location of hospital.
               </p>
 
               <div class="wrapper">
 
                 <div class="input-wrapper title-lg">
-                  <input type="text" name="location" placeholder="IIT Bombay Hospital Management System" class="input-field">
+                  <input type="text" name="location" placeholder="IIT Bombay Hospital" class="input-field">
 
-                  <ion-icon name="arrow-forward-outline"></ion-icon>
+                  <ion-icon name="location"></ion-icon>
                 </div>
 
-                <!-- <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568"> -->
-                <a href="getapp.php">
+                <a href="https://maps.app.goo.gl/fUQQ9brUSShqoZ568">
                   <button class="btn has-before">
-                    <ion-icon name="phone-portrait-outline"></ion-icon>
+                    <ion-icon name="search"></ion-icon>
 
-                    <span class="span title-md">Get App</span>
+                    <span class="span title-md">Find Now</span>
                   </button>
                 </a>
 
@@ -942,16 +943,16 @@ if (isset($_POST['submit'])) {
 
         <div class="footer-list" data-reveal="bottom">
 
-          <p class="headline-sm footer-list-title">Subscribe</p>
+          <p class="headline-sm footer-list-title">Get Our App</p>
 
-          <form action="" class="footer-form">
-            <input type="email" name="email" placeholder="Email" class="input-field title-lg">
+          <form action="getapp.php" class="footer-form">
 
-            <button type="submit" class="btn has-before title-md">Subscribe</button>
+
+            <a href="/getapp.php"> <button href="/getapp.php" class="btn has-before title-md">Get Our App</button></a>
           </form>
 
           <p class="text">
-            Get the latest updates via email. Any time you may unsubscribe
+            Get Our HMS App Now !
           </p>
 
         </div>

@@ -2,7 +2,7 @@
 if (!isset($_POST['image'])) {
     exit;
 }
-include('./include/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/hms/include/config.php');
 
 // Decryption Function (if needed)
 function decryptData($encryptedData, $secret)

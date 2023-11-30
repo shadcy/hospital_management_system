@@ -48,7 +48,9 @@ include('hms/include/config.php');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iK+eaW/6Op6r7rJlkN5VbWZ5UV8ZlM+1vNH+I2Rs0weFt0tMz9IbNYYL" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy2n6pDVxzL+2W9M6vz0I8Zl/UnQlmh/jp" crossorigin="anonymous">
+    <!-- Other head elements -->
     <!-- 
     - custom css link
   -->
@@ -230,14 +232,44 @@ include('hms/include/config.php');
             padding: 60px 0;
         }
 
-        .btn-download {
-            font-size: 1.2rem;
+
+        /* Define a different shade of verdigris for hover effect */
+        :root {
+            --verdigris-hover: #3a6373;
         }
 
-        footer {
-            background-color: #343a40;
-            color: #ffffff;
+
+
+        .sectionf {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
         }
+
+
+
+        .rowf {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: -15px;
+            /* Adjust spacing between rows */
+        }
+
+        .colf {
+            width: calc(50% - 15px);
+            /* Adjust spacing between columns */
+            margin-bottom: 15px;
+        }
+
+        .col img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
     </style>
 </head>
 
@@ -392,19 +424,21 @@ include('hms/include/config.php');
                         <p class="lead">Get the latest and greatest features by downloading our app today!</p>
                         <br><br>
                         <div class="mt-4">
-                            <a href="#" class="btn btn-primary "><i class="fab fa-apple mr-2"></i>Download for iOS</a>
+                            <a href="#" class="btn has-before title-md" style="width: 40%;"><ion-icon name="logo-apple"></ion-icon>Download for iOS</a>
+
                             <br><br>
-                            <a href="#" class="btn btn-success "><i class="fab fa-android mr-2"></i>Download for Android</a>
+                            <a href="#" class="btn has-before title-md" style="width: 40%;"><ion-icon name="logo-android"></ion-icon>Download for Android</a>
+
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <!-- Add an image of your app or any relevant image here -->
-                        <img src="app-screenshot.png" alt="App Screenshot" class="img-fluid">
-                    </div>
+
+
+
+
+
+
                 </div>
             </section>
-
-
 
 
 
@@ -498,6 +532,9 @@ include('hms/include/config.php');
             <!-- 
     - ionicon link
   -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-d2hTcRE3/Z9AYbACJFjRUWJ4te1LZzMSpgAnzsBCmOpUGdIHI9yYWl9EOM8N" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy2n6pDVxzL+2W9M6vz0I8Zl/UnQlmh/jp" crossorigin="anonymous"></script>
             <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
             <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
             <script>
