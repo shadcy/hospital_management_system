@@ -12,6 +12,18 @@ include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
 	exit;
 }
+
+include_once("../include/appointments.php");
+
+if (isset($_GET['action'])) {
+	if ($_GET['action'] === 'cancel') {
+		mysqli_execute_query($con, "update appointments set status=0 where id =?", [$_GET['id']]);
+		$_SESSION['msg'] = "The appointment has been cancelled";
+	} elseif ($_GET['action'] === 'accept') {
+		mysqli_execute_query($con, "update appointments set status=2 where id =?", [$_GET['id']]);
+		$_SESSION['msg'] = "The appointment has been confirmed";
+	}
+}
 ?>
 <!DOCTYPE html>
 
@@ -87,34 +99,17 @@ if (!check_login_and_perms($userType)) {
 															<td class="hidden-xs"><?php echo $row['pname']; ?></td>
 															<td><?php echo $row['doctorSpecialization']; ?></td>
 															<td><?php echo $row['consultancyFees']; ?></td>
-															<td><?php echo $row['date']; ?> / <?php echo
-																								$row['time']; ?>
-															</td>
+															<td><?php echo $row['date']; ?> / <?php echo $row['time']; ?></td>
 															<td><?php echo $row['postingDate']; ?></td>
-															<td>
-																<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-																	echo "Active";
-																}
-																if (($row['patientStatus'] == 0) && ($row['doctorStatus'] == 1)) {
-																	echo "Cancel by Patient";
-																}
-																if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 0)) {
-																	echo "Cancel by Doctor";
-																}
-
-
-
-																?></td>
+															<td><?php echo getAppointmentStatus($row); ?></td>
 															<td>
 																<div class="visible-md visible-lg hidden-sm hidden-xs">
-																	<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-
-
-																		echo "No Action yet";
-																	} else {
-
-																		echo "Canceled";
-																	} ?>
+																	<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1) && ($row['status'] == 2 || $row['status'] == 1)) {
+																		if ($row['status'] == 1) { ?>
+																			<a href="appointment-history.php?id=<?php echo $row['id'] ?>&action=accept" onClick="return confirm('Are you sure you want to accept this appointment?')" class="btn btn-transparent btn-xs tooltips" title="Accept Appointment" tooltip-placement="top" tooltip="Remove"><i class="bx bx-check-square"></i></a>
+																		<?php } ?>
+																		<a href="appointment-history.php?id=<?php echo $row['id'] ?>&action=cancel" onClick="return confirm('Are you sure you want to cancel this appointment?')" class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove"><i class="bx bx-trash"></i></a>
+																	<?php } ?>
 																</div>
 																<div class="visible-xs visible-sm hidden-md hidden-lg">
 
