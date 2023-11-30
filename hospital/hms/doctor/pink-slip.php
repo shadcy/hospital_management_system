@@ -12,6 +12,7 @@ include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
     exit;
 }
+
 $doctorName = "";
 if (isset($_SESSION['id'])) {
     $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
@@ -21,11 +22,6 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 
-
-
-
-
-<?php $userTypeString = UserTypeAsString[$userType] ?>
 <!DOCTYPE html>
 
 
@@ -65,8 +61,7 @@ if (isset($_SESSION['id'])) {
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span>Generate Pink Slip</h4>
-
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?php echo UserTypeAsString[$userType]; ?> /</span> <?php echo $pageName; ?></h4>
                         <div class="col-xl">
                             <div class="card mb-4">
                                 <div class="card-body">

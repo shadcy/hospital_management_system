@@ -11,212 +11,182 @@ $userType = UserTypeEnum::Doctor->value;
 include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
     exit;
-} else {
-    $doctorName = "";
-    if (isset($_SESSION['id'])) {
-        $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
-        while ($row = mysqli_fetch_array($query)) {
-            $doctorName = $row['fullName']; // storing the value in the variable
-        }
+}
+
+$doctorName = "";
+if (isset($_SESSION['id'])) {
+    $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
+    while ($row = mysqli_fetch_array($query)) {
+        $doctorName = $row['fullName']; // storing the value in the variable
     }
+}
 ?>
 
 
 
 
 
-    <?php $userTypeString = UserTypeAsString[$userType] ?>
-    <!DOCTYPE html>
+<?php $userTypeString = UserTypeAsString[$userType] ?>
+<!DOCTYPE html>
 
 
-    <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
 
-    <head>
-        <title> <?php echo $userTypeString; ?> | Generate Pink Slip</title>
+<head>
+    <?php
+    $pageName = 'NXT AI';
+    include('../include/new-header.php');
+    ?>
 
-        <link rel="stylesheet" href="chatapi.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chatapi.css">
+    <script src="chatapi.js" defer></script>
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
-        <script src="chatapi.js" defer></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <style>
+        .chat-container {
+            max-width: 90%;
+            margin: 10% auto;
+            padding: 2%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
+        }
 
-        <meta name="description" content="" />
-        <?php include('../include/csslinks.php'); ?>
+        .chatbox {
+            list-style: none;
+            margin: 0;
+            padding: 10px;
 
-        <style>
-            .chat-container {
-                max-width: 90%;
-                margin: 10% auto;
-                padding: 2%;
-                background-color: #fff;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-            }
+        .chat {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
 
-            .chatbox {
-                list-style: none;
-                margin: 0;
-                padding: 10px;
+        .incoming {
+            flex-direction: row;
+        }
 
-            }
+        .material-symbols-outlined {
+            margin-right: 10px;
+            font-size: 24px;
+        }
 
-            .chat {
-                display: flex;
-                align-items: flex-start;
-                margin-bottom: 20px;
-            }
+        .chat p {
+            margin: 0;
+            padding: 10px;
+            background-color: #e6e6e6;
+            border-radius: 8px;
+        }
 
-            .incoming {
-                flex-direction: row;
-            }
+        .chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
 
-            .material-symbols-outlined {
-                margin-right: 10px;
-                font-size: 24px;
-            }
+        }
 
-            .chat p {
-                margin: 0;
-                padding: 10px;
-                background-color: #e6e6e6;
-                border-radius: 8px;
-            }
+        textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
 
-            .chat-input {
-                display: flex;
-                align-items: center;
-                padding: 10px;
-                border-top: 1px solid #ccc;
+        .material-symbols-rounded {
+            cursor: pointer;
+            font-size: 24px;
+            margin-left: 10px;
+            color: #007bff;
+        }
+    </style>
+    </style>
+</head>
 
-            }
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
 
-            textarea {
-                flex: 1;
-                padding: 8px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                resize: none;
-            }
+            <?php include('./include/nav.php'); ?>
 
-            .material-symbols-rounded {
-                cursor: pointer;
-                font-size: 24px;
-                margin-left: 10px;
-                color: #007bff;
-            }
-        </style>
-        </style>
-    </head>
+            <!-- / Menu -->
 
-    <body>
-        <!-- Layout wrapper -->
-        <div class="layout-wrapper layout-content-navbar">
-            <div class="layout-container">
-                <!-- Menu -->
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
 
-                <?php include('./include/nav.php'); ?>
+                <?php include('../include/navbar.php'); ?>
 
-                <!-- / Menu -->
+                <!-- / Navbar -->
 
-                <!-- Layout container -->
-                <div class="layout-page">
-                    <!-- Navbar -->
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?php echo UserTypeAsString[$userType]; ?> /</span> <?php echo $pageName; ?></h4>
+                        <div class="col-xl">
+                            <div class="card mb-4">
+                                <div class="card-body">
 
-                    <?php include('../include/navbar.php'); ?>
+                                    <ul class="chatbox">
+                                        <li class="chat incoming">
+                                            <span class="material-symbols-outlined">smart_toy</span>
+                                            <p>Hi there 👋<br>I am Doctor's AI health assistant <br>How can I help you?</p>
+                                        </li>
+                                        <li class="chat incoming">
+                                            <span class="material-symbols-outlined">smart_toy</span>
+                                            <p>Shall I manage appointments for you? <a href="appointment-history.php">Manage Appointments</a> </p>
 
-                    <!-- / Navbar -->
+                                        </li>
+                                        <li class="chat incoming">
+                                            <span class="material-symbols-outlined">smart_toy</span>
+                                            <p>Drugs Info <a href="ambulance.php"> Info</a> </p>
 
-                    <!-- Content wrapper -->
-                    <div class="content-wrapper">
-                        <!-- Content -->
-                        <div class="container-xxl flex-grow-1 container-p-y">
-                            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span> NXT AI</h4>
-
-                            <div class="col-xl">
-                                <div class="card mb-4">
-                                    <div class="card-body">
-
-
-
-
-
-
-
-
-
-
-
-
-                                        <ul class="chatbox">
-                                            <li class="chat incoming">
-                                                <span class="material-symbols-outlined">smart_toy</span>
-                                                <p>Hi there 👋<br>I am Doctor's AI health assistant <br>How can I help you?</p>
-                                            </li>
-                                            <li class="chat incoming">
-                                                <span class="material-symbols-outlined">smart_toy</span>
-                                                <p>Shall I manage appointments for you? <a href="ambulance.php">Manage Appointments</a> </p>
-
-                                            </li>
-                                            <li class="chat incoming">
-                                                <span class="material-symbols-outlined">smart_toy</span>
-                                                <p>Drugs Info <a href="ambulance.php"> Info</a> </p>
-
-                                            </li>
-                                        </ul>
-                                        <div class="chat-input">
-                                            <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
-                                            <span id="send-btn" class="material-symbols-rounded">send</span>
-                                        </div>
-
-
-
-
-
-
-
-                                        <div class="content-backdrop fade"></div>
-
-                                        <!-- Content wrapper -->
+                                        </li>
+                                    </ul>
+                                    <div class="chat-input">
+                                        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+                                        <span id="send-btn" class="material-symbols-rounded">send</span>
                                     </div>
+                                    <div class="content-backdrop fade"></div>
+                                    <!-- Content wrapper -->
                                 </div>
                             </div>
                         </div>
-                        <!-- / Layout page -->
-
-
-                        <!-- Overlay -->
-                        <div class="layout-overlay layout-menu-toggle"></div>
                     </div>
+                    <!-- / Layout page -->
 
+
+                    <!-- Overlay -->
+                    <div class="layout-overlay layout-menu-toggle"></div>
                 </div>
+
             </div>
         </div>
+    </div>
 
 
-        <?php include('../include/links.php'); ?>
+    <?php include('../include/links.php'); ?>
 
-        <script>
-            jQuery(document).ready(function() {
-                Main.init();
-                FormElements.init();
-            });
-        </script>
-
-
-    </body>
+    <script>
+        jQuery(document).ready(function() {
+            Main.init();
+            FormElements.init();
+        });
+    </script>
 
 
-
-    </html>
+</body>
 
 
 
-    </var>
-
-<?php } ?>
+</html>

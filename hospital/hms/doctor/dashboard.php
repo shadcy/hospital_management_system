@@ -29,16 +29,10 @@ $userDetails = mysqli_fetch_array($sql);
 <script src="chatapi.js" defer></script>
 
 <head>
-	<title> <?php echo $userTypeString; ?> | Dashboard</title>
-
-
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-
-	<meta name="description" content="" />
-	<?php include('../include/csslinks.php'); ?>
+	<?php
+	$pageName = 'Dashboard';
+	include('../include/new-header.php');
+	?>
 
 </head>
 
@@ -101,11 +95,7 @@ $userDetails = mysqli_fetch_array($sql);
 				<div class="content-wrapper">
 					<!-- Content -->
 					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Doctor/</span> Dashboard</h4>
-
-
-
-
+						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?php echo UserTypeAsString[$userType]; ?> /</span> <?php echo $pageName; ?></h4>
 
 						<div class="row">
 							<div class="col-lg-8 mb-4 order-0">
@@ -282,7 +272,7 @@ $userDetails = mysqli_fetch_array($sql);
 													</div>
 													<div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
 														<p>
-															IIT Bombay's hospital system, Pink slip Generator : <a href="gen.php">Generate Slip</a>
+															IIT Bombay's hospital system, Pink slip Generator : <a href="pink-slip.php">Generate Slip</a>
 														</p>
 														<p class="mb-0">
 															For Pink Slip Verification <a href="verification.php">Click Here</a>
