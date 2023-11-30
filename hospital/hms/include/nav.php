@@ -61,7 +61,7 @@
                 <li class="menu-item">
                     <a href="<?= $item['href'] ?>" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-<?= $item['icon'] ?>"></i>
-                        <div data-i18n="Analytics"><?= $item['name'] ?></div>
+                        <div data-i18n="<?= $item['name'] ?>"><?= $item['name'] ?></div>
                     </a>
                 </li>
             <?php
@@ -70,14 +70,14 @@
                 <li class="menu-item">
                     <div class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-<?= $item['icon'] ?>"></i>
-                        <div data-i18n="Layouts"><?= $item['name'] ?></div>
+                        <div data-i18n="<?= $item['name'] ?>"><?= $item['name'] ?></div>
                     </div>
 
                     <ul class="menu-sub">
                         <?php foreach ($item['subitems'] as $subitem) { ?>
                             <li class="menu-item">
                                 <a href="<?= $subitem['href'] ?>" class="menu-link">
-                                    <div data-i18n="Analytics"><?= $subitem['name'] ?></div>
+                                    <div data-i18n="<?= $subitem['name'] ?>"><?= $subitem['name'] ?></div>
                                 </a>
                             </li>
                         <?php } ?>

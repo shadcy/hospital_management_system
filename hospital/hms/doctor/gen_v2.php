@@ -91,7 +91,7 @@ if (!check_login_and_perms($userType)) {
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-                background-image: url('./assets/images/pink_slip.png');
+                background-image: url('/assets/images/pink_slip.png');
                 /* Replace 'path_to_your_image.jpg' with the actual path to your image */
                 background-size: 100% 100%;
                 background-position: center;
@@ -289,7 +289,7 @@ if (!check_login_and_perms($userType)) {
                                 <div id="signatureContainer">
                                     <canvas id="signatureCanvas" width="400" height="200"></canvas>
                                     <div id="signatureFooter">
-                                        <p id="signatureInstructions">Click and drag to draw your signature</p><button id="clearCanvas" type="button" onclick="clearSignatureCanvas()">Clear Signature</button>
+                                        <p id="signatureInstructions">Click and drag to sign</p><button id="clearCanvas" type="button" onclick="clearSignatureCanvas()">Clear Signature</button>
                                     </div>
                                 </div>
                             </div>

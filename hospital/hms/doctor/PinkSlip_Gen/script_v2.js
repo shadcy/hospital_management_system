@@ -250,7 +250,7 @@ async function downloadAsImage(format) {
 
   backgroundImage.crossOrigin = "anonymous";
   backgroundImage.src =
-    "https://storage.googleapis.com/iitbhms-test-bucket-123/assets/pink_slip.png";
+    "/assets/images/pink_slip.png";
 
   backgroundImage.onload = async function () {
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);

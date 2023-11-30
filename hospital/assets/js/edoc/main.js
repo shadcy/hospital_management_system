@@ -11,8 +11,6 @@ const fabCanvas = new fabric.Canvas("pageCanvas", {
   },
 });
 
-fabCanvas.cstmSetBackground("edoc/prototyp.png");
-
 function redoState() {
   fabCanvas.freeDrawingBrush =
     fabCanvas.myProps.mode === "erase"

@@ -66,3 +66,5 @@ document.getElementById("exportForm")?.addEventListener("click", () => {
   // Remove the link from the document
   document.body.removeChild(link);
 });
+
+fabCanvas.cstmSetBackground("edoc/prototyp.png");

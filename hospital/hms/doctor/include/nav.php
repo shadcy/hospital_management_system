@@ -8,6 +8,11 @@ $navItems
             'name' => 'Dashboard',
         ],
         [
+            'icon' => 'file',
+            'href' => 'edoc.php',
+            'name' => 'E-Doc Management',
+        ],
+        [
             'icon' => 'terminal',
             'name' => 'Login History',
             'subitems' => [
@@ -53,15 +58,15 @@ $navItems
             'name' => 'Medical Certificate',
             'subitems' => [
                 [
-                    'href' => 'gen.php',
+                    'href' => 'pink-slip.php',
                     'icon' => 'some-icon', // Add the appropriate icon
                     'name' => 'Pink Slip',
                 ],
-                [
-                    'href' => '#',
-                    'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Format',
-                ],
+                // [
+                //     'href' => '#',
+                //     'icon' => 'some-icon', // Add the appropriate icon
+                //     'name' => 'Format',
+                // ],
                 [
                     'href' => 'encrypt.php',
                     'icon' => 'some-icon', // Add the appropriate icon
@@ -72,18 +77,18 @@ $navItems
         [
             'icon' => 'bot',
             'name' => 'AI Assistant',
-            'subitems' => [
-                [
-                    'href' => 'ai.php',
-                    'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Chat Bot',
-                ],
-                [
-                    'href' => 'ai.php',
-                    'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'AI Assistant',
-                ],
-            ],
+            // 'subitems' => [
+            //     [
+            'href' => 'ai.php',
+            //         'icon' => 'some-icon', // Add the appropriate icon
+            //         'name' => 'Chat Bot',
+            //     ],
+            //     [
+            //         'href' => 'ai.php',
+            //         'icon' => 'some-icon', // Add the appropriate icon
+            //         'name' => 'AI Assistant',
+            //     ],
+            // ],
         ],
         'Patient Management', // This will create a menu header with the text 'Patients'
         [
@@ -103,7 +108,7 @@ $navItems
                 [
                     'href' => 'appointment-calander.php',
                     'icon' => 'some-icon', // Add the appropriate icon
-                    'name' => 'Appointment Calander',
+                    'name' => 'Appointment Calender',
                 ],
             ],
         ],
@@ -162,11 +167,6 @@ $navItems
             'icon' => 'support',
             'href' => 'http://nxt.nxtdevelopers.xyz/',
             'name' => 'Support',
-        ],
-        [
-            'icon' => 'file',
-            'href' => 'edoc.php',
-            'name' => 'Edoc Management',
         ],
     ];
 

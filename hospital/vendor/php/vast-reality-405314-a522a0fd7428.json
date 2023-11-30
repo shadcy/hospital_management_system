@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "vast-reality-405314",
+  "private_key_id": "a522a0fd742886d3087e10662b39026ab2978522",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCR5NqWnio1ONbv\nmPzRtrjOMH90UiMbrVQ3xq7Nf5rfz15hxBs3DU3ZtcJCJ/0+PLpIP6JUAkq5GNF1\n7bDduxl92zgHrT3nZkLdL5yGtHai0D1XKo9VxZ+fmExEpNfYRU8fKcBorXHcHxq1\n3a4PpPsHEHJklz6HR/ZgQBeH4ORnoU54Ic745PIay2t64LJkQd+QhqA65E7I9YYD\naMxfvWtnEHPr+4JBTmltdtuJRk+/1bwPmoMtmjGZtoe9h5q1lRMqQf69tGFqeN56\neNi4Ulu42ntskwt8z1Ar6j9wMPJ1SPqIQEs44Cz2mud2kg1xKZOk3jTyEw+u8pKE\nM0JmZLvjAgMBAAECggEAB9s8PtkklQ91r5sG8590gzykWGtl6EMkt7OIzUMpCr1c\nK+/yC+cOVqzNhF9/6Sk/BM38cVawQcMe4HayIWFGcFBs9ijeSQbo5IgAVKwE1CQE\n8ZvhR8anymHaquWk7p4I3TjpMMSKTvFpMFBQORfIIYDBZZOpcoKDDNAsFDfy73ZG\nQSxPkfGuc0Zjo4IhhOGcWE4S2KpRPABf+LIbJqeV0OA9a9IboVaVCLdqa8QDmzep\noVjfE4WYz6TNOZghMITc0OCPcvYmL3uucLvOeK0KCynq/OzeWtKgewuJq4FM6WOm\ndujQLB+ijfYscbKgxGhI0BNpSrmD9CgasxDVb3pALQKBgQDOGd/OPe5h8m5vBzEr\n1W3Y08nsI+KMtCOB8epjcDW1rhK+51cnnh9eJ7a7+wKI5OHa93gVo/4N4aBnU6C+\ngJ1AWNBTQObGHomiwsUpQjivuMS+tdXy3LaIFXkZFl8wOMs1zG8dswPZoB50NB0D\nKHyW9M+DW71AxNOusSNr4ndy1wKBgQC1N1ksXisWq9B8Tua2lus/EcUkqge/9GAu\nVDMEc3wFbtpPnf+DoCJDKnGEmcE0dMAx1Cp5HXqaRxZwObwaN2gKTgBadeemOm0X\nx+69rhx5DTR+mJjnRfgeCH02O9CXkemuD6OkWGe4Io5pCoAtZuiMnS5g3cmRCfX2\n7Q1oZ1hp1QKBgD1rBIDnf8R8hGBd2k9fuO5mnsPaJcccX4B34QtlAvxzNW7ibdyG\niH58gz4dnTHCU3P3TzfTuP/V/wELsNlUZogob1x/+MWNkCKKvEqBS3dCLo9OjMVk\n9Jg1HfNV8WPjaNtNYseM81bFGo4ygXrRc99gcP6KNim4/gQPEakywbndAoGBAKrg\npB+oNG1OWmu9YuRt7yorsYBfLKue3ksRboIV+66L1yQYUmZly6kWDrEA4yR5qvnR\nnLNUTtXHjqsIZg06jcqZvs+OOn+OvGweRUtrMMIc55Ewh44ddlernZZUVN934agW\nazJ/gl4ph6wZEMC/Ny3Q0XjZ6kXv5JWQ9oGqYb55AoGAPOfV+KqKfib2IKxCgW6C\naA5V3lhXg2U9XRWpp/eFfaORWgQTa/ev4B8dH6eJCdTogx8n/pSzRTzirsYojL66\nIR26l+u0W6cTFA6e70C3/xJJA12Kk4Y14TPGYuLdrUThrOSt5fWAomGRVc3RrAbt\nm1QmbwhwyxbkrT/5iBJBqCE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "files-256@vast-reality-405314.iam.gserviceaccount.com",
+  "client_id": "107337012765615839772",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/files-256%40vast-reality-405314.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

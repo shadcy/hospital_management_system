@@ -11,12 +11,15 @@ $userType = UserTypeEnum::Patient->value;
 include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
 	exit;
-} else {
-	if (isset($_GET['cancel'])) {
-		mysqli_execute_query($con, "update appointments set patientStatus='0' where id = ?", [$_GET['id']]); #Done2
-		$_SESSION['msg'] = "Your appointment canceled !!";
-	}
 }
+
+include_once("../include/appointments.php");
+
+if (isset($_GET['action'])) {
+	mysqli_execute_query($con, "update appointments set patientStatus='0' where id = ? AND patientId = ?", [$_GET['id'], $_SESSION['id']]); #Done2
+	$_SESSION['msg'] = "Your appointment has been cancelled!";
+}
+
 
 $userTypeString = UserTypeAsString[$userType] ?>
 <!DOCTYPE html>
@@ -105,31 +108,14 @@ $userTypeString = UserTypeAsString[$userType] ?>
 
 															<td><?php echo $row['specializationName']; ?></td>
 															<td><?php echo $row['consultancyFees']; ?></td>
-															<td><?php echo $row['date']; ?> / <?php echo $row['time']; ?>
-															</td>
+															<td><?php echo $row['date']; ?> / <?php echo $row['time']; ?></td>
 															<td><?php echo $row['postingDate']; ?></td>
-															<td>
-																<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-																	echo "Active";
-																}
-																if (($row['patientStatus'] == 0) && ($row['doctorStatus'] == 1)) {
-																	echo "Cancelled by You";
-																}
-
-																if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 0)) {
-																	echo "Cancelled by Doctor";
-																}
-																?></td>
+															<td><?php echo getAppointmentStatus($row); ?></td>
 															<td>
 																<div class="visible-md visible-lg hidden-sm hidden-xs">
-																	<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1)) { ?>
-
-
-																		<a href="appointment-history.php?id=<?php echo $row['id'] ?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment?')" class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove"><i class="bx bx-trash"></i></a>
-																	<?php } else {
-
-																		echo "Canceled";
-																	} ?>
+																	<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1) && ($row['status'] == 2 || $row['status'] == 1)) { ?>
+																		<a href="appointment-history.php?id=<?php echo $row['id'] ?>&action=cancel" onClick="return confirm('Are you sure you want to cancel this appointment?')" class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove"><i class="bx bx-trash"></i></a>
+																	<?php } ?>
 																</div>
 																<div class="visible-xs visible-sm hidden-md hidden-lg">
 
