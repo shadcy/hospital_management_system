@@ -20,3 +20,14 @@ function getAppointmentStatus($row)
         return "Cancelled by Doctor";
     }
 }
+
+function getFilterValue($defaultFilterValue)
+{
+    global $FILTER_OPTIONS;
+
+    if (isset($_GET['filter']) && (array_key_exists($_GET['filter'], $FILTER_OPTIONS) || $_GET['filter'] === '')) {
+        return $_GET['filter'];
+    } else {
+        return $defaultFilterValue;
+    }
+}
