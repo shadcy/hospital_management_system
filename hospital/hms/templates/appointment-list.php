@@ -81,7 +81,7 @@
 
                                                                 $offset = ($current_page - 1) * $ITEMS_PER_PAGE;
 
-                                                                $queryStr .=  $whereClause . " LIMIT {$offset}, {$ITEMS_PER_PAGE}";
+                                                                $queryStr .=  $whereClause . " ORDER BY appointments.id DESC LIMIT {$offset}, {$ITEMS_PER_PAGE}";
                                                                 $sql = mysqli_execute_query($con, $queryStr, $queryParams);
 
                                                                 $cnt = 1;
@@ -99,7 +99,7 @@
                                                                                     echo '<td>';
                                                                                     foreach ($rowCell as $action) {
                                                                         ?>
-                                                                                        <a href="<?php echo $action['href'] ?>" onClick="return confirm('<?php echo $action['prompt'] ?>')" class="btn btn-transparent btn-xs tooltips" title="<?php echo $action['title'] ?>" tooltip-placement="top" tooltip="Remove"><i class="bx bx-<?php echo $action['icon'] ?>"></i></a>';
+                                                                                        <a href="<?php echo $action['href'] ?>" onClick="return confirm('<?php echo $action['prompt'] ?>')" class="btn btn-transparent btn-xs tooltips" title="<?php echo $action['title'] ?>" tooltip-placement="top" tooltip="Remove"><i class="bx bx-<?php echo $action['icon'] ?>"></i></a>
                                                                         <?php
                                                                                     }
                                                                                     echo '</td>';

@@ -20,146 +20,68 @@ if (isset($_GET['action'])) {
 	$_SESSION['msg'] = "Your appointment has been cancelled!";
 }
 
+$FILTER_OPTIONS = ['pnd' => 'Pending', 'acc' => 'Accepted', 'cmp' => 'Completed', 'cnca' => 'Cancelled by Admin', 'cncd' => 'Cancelled by Doctor', 'cncp' => 'Cancelled by Patient'];
+$filter_value = getFilterValue('acc');
 
-$userTypeString = UserTypeAsString[$userType] ?>
-<!DOCTYPE html>
+$queryStr = "select users.fullName as docname, specializations.name as specializationName,appointments.*  from appointments join doctors on doctors.id=appointments.doctorId join specializations on specializations.id=doctors.specializationId join users on users.id=doctors.id";
+$countStr = "select COUNT(*) from appointments";
+$whereClause = " where appointments.patientId = ?";
+$queryParams = [$_SESSION['id']];
 
+switch ($filter_value) {
+	case 'pnd':
+		$whereClause .= " AND appointments.status = 1 AND appointments.patientStatus = 1";
+		break;
+	case 'acc':
+		$whereClause .= " AND appointments.status = 2 AND appointments.patientStatus = 1 AND appointments.doctorStatus = 1";
+		break;
+	case 'cnca':
+		$whereClause .= " AND appointments.status = 0";
+		break;
+	case 'cncd':
+		$whereClause .= " AND appointments.doctorStatus = 0";
+		break;
+	case 'cncp':
+		$whereClause .= " AND appointments.patientStatus = 0";
+		break;
+	case 'cmp':
+		$whereClause .= " AND appointments.status = 3";
+		break;
+}
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets2/" data-template="vertical-menu-template-free">
+$ITEMS_PER_PAGE = 20;
+$tableColCount = 9;
+$tableHeadRow = '<th class="center">#</th>
+<th class="hidden-xs">Doctor Name</th>
+<th>Specialization</th>
+<th>Consultancy Fee</th>
+<th>Appointment Date / Time </th>
+<th>Appointment Creation Date </th>
+<th>Current Status</th>
+<th>Action</th>';
 
+function getTableRowContents($row)
+{
+	$rowContents = [
+		['class' => 'hidden-xs', 'value' => $row['docname']],
+		$row['specializationName'],
+		$row['consultancyFees'],
+		$row['date'] . ' / ' . $row['time'],
+		$row['postingDate'],
+		getAppointmentStatus($row)
+	];
 
-<head>
-	<title> <?php echo $userTypeString; ?> | Appointment History</title>
+	if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1) && ($row['status'] == 2 || $row['status'] == 1)) {
+		$rowContents[] = [[
+			'href' => 'appointment-history.php?id=' . $row['id'] . '&action=cancel',
+			'prompt' => 'Are you sure you want to cancel this appointment?',
+			'title' => 'Cancel Appointment', 'icon' => 'trash'
+		]];
+	} else {
+		$rowContents[] = '';
+	}
 
+	return $rowContents;
+}
 
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
-
-	<meta name="description" content="" />
-	<?php include('../include/csslinks.php'); ?>
-
-</head>
-
-<body>
-	<!-- Layout wrapper -->
-	<div class="layout-wrapper layout-content-navbar">
-		<div class="layout-container">
-			<!-- Menu -->
-
-			<?php include_once("./include/nav.php"); ?>
-
-
-			<!-- / Menu -->
-
-			<!-- Layout container -->
-			<div class="layout-page">
-				<!-- Navbar -->
-
-				<?php include('../include/navbar.php'); ?>
-
-				<!-- / Navbar -->
-
-				<!-- Content wrapper -->
-				<div class="content-wrapper">
-					<!-- Content -->
-					<div class="container-xxl flex-grow-1 container-p-y">
-						<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Student/</span>Appointment History</h4>
-
-
-
-						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
-						<div class="container-fluid container-fullw bg-white">
-
-							<div class="card">
-								<div class="table-responsive text-nowrap">
-									<div class="row">
-										<div class="col-md-12">
-
-											<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-												<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-											<table class="table table-hover" id="sample-table-1">
-												<thead>
-													<tr>
-														<th class="center">#</th>
-														<th class="hidden-xs">Doctor Name</th>
-														<th>Specialization</th>
-														<th>Consultancy Fee</th>
-														<th>Appointment Date / Time </th>
-														<th>Appointment Creation Date </th>
-														<th>Current Status</th>
-														<th>Action</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<?php
-													$sql = mysqli_execute_query($con, "select users.fullName as docname, specializations.name as specializationName,appointments.*  from appointments join doctors on doctors.id=appointments.doctorId join specializations on specializations.id=doctors.specializationId join users on users.id=doctors.id where appointments.patientId = ?", [$_SESSION['id']]); #Done2
-													$cnt = 1;
-													while ($row = mysqli_fetch_array($sql)) {
-													?>
-
-														<tr>
-															<td class="center"><?php echo $cnt; ?>.</td>
-															<td class="hidden-xs"><?php echo $row['docname']; ?></td>
-
-															<td><?php echo $row['specializationName']; ?></td>
-															<td><?php echo $row['consultancyFees']; ?></td>
-															<td><?php echo $row['date']; ?> / <?php echo $row['time']; ?></td>
-															<td><?php echo $row['postingDate']; ?></td>
-															<td><?php echo getAppointmentStatus($row); ?></td>
-															<td>
-																<div class="visible-md visible-lg hidden-sm hidden-xs">
-																	<?php if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1) && ($row['status'] == 2 || $row['status'] == 1)) { ?>
-																		<a href="appointment-history.php?id=<?php echo $row['id'] ?>&action=cancel" onClick="return confirm('Are you sure you want to cancel this appointment?')" class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove"><i class="bx bx-trash"></i></a>
-																	<?php } ?>
-																</div>
-																<div class="visible-xs visible-sm hidden-md hidden-lg">
-
-																</div>
-															</td>
-														</tr>
-
-													<?php
-														$cnt = $cnt + 1;
-													} ?>
-
-
-												</tbody>
-											</table>
-										</div>
-
-
-										<div class="content-backdrop fade"></div>
-									</div>
-									<!-- Content wrapper -->
-								</div>
-								<!-- / Layout page -->
-							</div>
-
-							<!-- Overlay -->
-							<div class="layout-overlay layout-menu-toggle"></div>
-						</div>
-						<!-- Main JS -->
-
-						<?php include('../include/links.php'); ?>
-
-						<?php include_once("../include/body_scripts.php") ?>
-						<script>
-							jQuery(document).ready(function() {
-								Main.init();
-								FormElements.init();
-							});
-						</script>
-
-
-</body>
-
-
-
-</html>
-
-<?php  ?>
+include_once("../templates/appointment-list.php");
