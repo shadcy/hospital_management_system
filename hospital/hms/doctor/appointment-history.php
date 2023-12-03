@@ -24,11 +24,19 @@ if (isset($_GET['action'])) {
 		$row = mysqli_fetch_assoc($sql);
 
 		if ($row) {
+			$toAppointmentPage = true; # Set false if needed
+
 			if ($isset($_SESSION['current_appt_id'])) {
-				if ($_SESSION['current_appt_id'] === $_GET['id']) {
-				} else {
+				if(isset($_SESSION['current_appt_overwrite_time']) && $_SERVER['REQUEST_TIME']-$_SESSION['current_appt_overwrite_time']>15e3){
+					unset($_SESSION['current_appt_overwrite_time']);
+				}else{
+					echo "<script>alert('It would seem that you are already in an active appointment.\n\nTo switch to this appointment, redo the start action within 15 seconds.');</script>";
+					$_SESSION['current_appt_overwrite_time'] = $_SERVER['REQUEST_TIME'];
+					$toAppointmentPage = false;
 				}
-			} else {
+			}
+
+			if($toAppointmentPage){
 				$_SESSION['current_appt_id'] = $_GET['id'];
 				$_SESSION['current_appt_pId'] = $row['patientId'];
 				$_SESSION['current_appt_timestamp'] = $_SERVER['REQUEST_TIME'];

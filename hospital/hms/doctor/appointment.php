@@ -12,6 +12,13 @@ include_once("../include/check_login_and_perms.php");
 if (!check_login_and_perms($userType)) {
     exit;
 }
+
+if(!isset($_SESSION['current_appt_id'])){
+    echo "<script>alert('You do not have an ongoing appointment.');</script>";
+    echo "<script>window.location.href = 'appointment-history.php'</script>";
+    exit;
+}
+
 $doctorName = "";
 if (isset($_SESSION['id'])) {
     $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
@@ -33,7 +40,11 @@ if (isset($_SESSION['id'])) {
     ?>
     <link rel="stylesheet" href="/assets/css/edoc.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <script>
+        var appointmentId = <?php echo $_SESSION['current_appt_id']?>;
+        var patientId = <?php echo $_SESSION['current_appt_pId']?>;
+        var apptTimestamp = <?php echo $_SESSION['current_appt_timestamp']?>;
+    </script>
     <style>
         #pageCanvas {
             width: 100%;

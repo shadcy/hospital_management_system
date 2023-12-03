@@ -15,6 +15,11 @@ fabric.Canvas.prototype.historyInit = function (addInitial) {
   }
 };
 
+fabric.Canvas.prototype.saveToLocal = function () {
+  localStorage.setItem('apptCanvasHistory', JSON.stringify({hn:this.historyNextState, hu: this.historyUndo, hr: this.historyRedo}));
+  localStorage.setItem('apptVars', JSON.stringify(this.myProps.localVars));
+};
+
 fabric.Canvas.prototype.historyNext = function () {
   return JSON.stringify(this.toDatalessJSON(this.extraProps));
 };
@@ -26,6 +31,8 @@ fabric.Canvas.prototype.historySaveAction = function (mode, ...params) {
   const json = this.historyNextState;
   if (json) this.historyUndo.push(json);
   this.historyNextState = this.historyNext();
+
+  if(this.myProps.toLocal) this.saveToLocal();
 };
 
 fabric.Canvas.prototype.cstmUndo = function () {
@@ -41,6 +48,8 @@ fabric.Canvas.prototype.cstmUndo = function () {
     fabCanvas.once("after:render", () => {
       fabCanvas.historyProcessing = false;
     });
+
+    if(this.myProps.toLocal) this.saveToLocal();
   } else {
     this.historyProcessing = false;
   }
@@ -59,6 +68,8 @@ fabric.Canvas.prototype.cstmRedo = function () {
     fabCanvas.once("after:render", () => {
       fabCanvas.historyProcessing = false;
     });
+
+    if(this.myProps.toLocal) this.saveToLocal();
   } else {
     this.historyProcessing = false;
   }
@@ -101,5 +112,7 @@ fabric.Canvas.prototype.cstmClearObjects = function () {
       _this.historyProcessing = false;
     });
     _this.renderAll();
+
+    if(this.myProps.toLocal) this.saveToLocal();
   });
 };

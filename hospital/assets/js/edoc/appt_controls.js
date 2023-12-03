@@ -37,15 +37,13 @@ document.getElementById("exportForm")?.addEventListener("click", () => {
 
 // Function to upload to Google Cloud Storage
 function uploadToGoogleCloud(dataURL) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const apptId = urlParams.get('id');
-
   // Make an AJAX request to your PHP API endpoint
   $.ajax({
     type: "POST",
     url: '/api/doctor/submit_prescription.php',
     data: {
-      id: apptId, // Replace with the actual value
+      id: fabCanvas.myProps.localVars.appointmentId, // Replace with the actual value
+      timestamp: fabCanvas.myProps.localVars.apptTimestamp,
       data: dataURL,
     },
     dataType: "json",
@@ -65,6 +63,6 @@ function uploadToGoogleCloud(dataURL) {
     });
 }
 
-
+fabCanvas.myProps.toLocal = true;
+fabCanvas.myProps.localVars = { appointmentId,  patientId,  apptTimestamp};
 fabCanvas.cstmSetBackground("edoc/prescription-sheet.png");
-fabCanvas.toLocal = true;
