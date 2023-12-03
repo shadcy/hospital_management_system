@@ -50,7 +50,7 @@ function uploadToGoogleCloud(dataURL) {
     },
     dataType: "json",
     success: function (response) {
-      if(response.success) {
+      if (response.success) {
         confirmationMessage = 'The appointment has ended.';
         window.location.href = 'dashboard.php';
       } else {
@@ -59,11 +59,12 @@ function uploadToGoogleCloud(dataURL) {
       }
     },
   })
-  .catch(error => {
-    // Handle errors
-    console.error('Error:', error);
-  });
+    .catch(error => {
+      // Handle errors
+      console.error('Error:', error);
+    });
 }
 
 
 fabCanvas.cstmSetBackground("edoc/prescription-sheet.png");
+fabCanvas.toLocal = true;

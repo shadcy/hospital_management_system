@@ -132,17 +132,17 @@
                                                                     <li>
                                                                         <button type="button" class="btn btn-primary" onclick="window.location.href='?page=1&filter=<?php echo urlencode($filter_value); ?>';" <?php echo $current_page == 1 ? 'disabled' : ''; ?>>First</button>
                                                                     </li>
-
+                                                                    &nbsp; &nbsp;
                                                                     <!-- Previous page button -->
                                                                     <li>
                                                                         <button type="button" class="btn btn-primary" onclick="window.location.href='?page=<?php echo max($current_page - 1, 1); ?>&filter=<?php echo urlencode($filter_value); ?>';" <?php echo $current_page == 1 ? 'disabled' : ''; ?>>&laquo; Previous</button>
                                                                     </li>
-
+                                                                    &nbsp; &nbsp;
                                                                     <!-- Next page button -->
                                                                     <li>
                                                                         <button type="button" class="btn btn-primary" onclick="window.location.href='?page=<?php echo min($current_page + 1, $total_pages); ?>&filter=<?php echo urlencode($filter_value); ?>';" <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>>Next &raquo;</button>
                                                                     </li>
-
+                                                                    &nbsp; &nbsp;
                                                                     <!-- Last page button -->
                                                                     <li>
                                                                         <button type="button" class="btn btn-primary" onclick="window.location.href='?page=<?php echo $total_pages; ?>&filter=<?php echo urlencode($filter_value); ?>';" <?php echo $current_page == $total_pages ? 'disabled' : ''; ?>>Last</button>

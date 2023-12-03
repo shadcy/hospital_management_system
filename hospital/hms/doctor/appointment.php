@@ -100,11 +100,6 @@ if (isset($_SESSION['id'])) {
                                                 <div class="offcanvas-body my-auto mx-0 flex-grow-0">
                                                     <p class="text-center">
                                                         <!-- Options -->
-
-
-
-
-
                                                         <!-- <section class="options" style="padding: 1%"> -->
                                                     <ul>
                                                         <li>
@@ -165,28 +160,6 @@ if (isset($_SESSION['id'])) {
                                         </div>
                                     </div>
                                     <!-- Enable Scrolling & Backdrop Offcanvas -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 </div>
                             </div>
 

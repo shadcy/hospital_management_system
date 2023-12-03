@@ -19,6 +19,27 @@ if (isset($_GET['action'])) {
 	if ($_GET['action'] === 'cancel') {
 		mysqli_execute_query($con, "update appointments set doctorStatus=0 where id =? AND doctorId=?", [$_GET['id'], $_SESSION['id']]);
 		$_SESSION['msg'] = "The appointment has been cancelled!";
+	} elseif ($_GET['action'] === 'start') {
+		$sql = mysqli_execute_query($con, "select * from appointments where id =? AND doctorId=? AND status = 2 AND doctorStatus = 1 AND userStatus = 1", [$_GET['id'], $_SESSION['id']]);
+		$row = mysqli_fetch_assoc($sql);
+
+		if ($row) {
+			if ($isset($_SESSION['current_appt_id'])) {
+				if ($_SESSION['current_appt_id'] === $_GET['id']) {
+				} else {
+				}
+			} else {
+				$_SESSION['current_appt_id'] = $_GET['id'];
+				$_SESSION['current_appt_pId'] = $row['patientId'];
+				$_SESSION['current_appt_timestamp'] = $_SERVER['REQUEST_TIME'];
+				echo "<script>window.location.href = 'appointment.php'</script>";
+				exit;
+			}
+		} else {
+			echo "<script>alert('No appointment matching the given details was found.');</script>";
+			// echo "<script>window.location.href = 'index.php'</script>";
+			$_SESSION['msg'] = "The appointment was not found";
+		}
 	}
 }
 
@@ -68,7 +89,7 @@ function getTableRowContents($row)
 
 	if (($row['patientStatus'] == 1) && ($row['doctorStatus'] == 1) && ($row['status'] == 2)) {
 		$rowContents[] = [[
-			'href' => 'appointment.php?id=' . $row['id'],
+			'href' => 'appointment-history.php?id=' . $row['id'] . '&action=start',
 			'prompt' => "Are you sure you want to start this appointment scheduled for" . $row['date'] . ' / ' . $row['time'] . '?',
 			'title' => 'Start Appointment', 'icon' => 'flag'
 		], [

@@ -26,7 +26,7 @@ $ret = mysqli_fetch_assoc($sql);
 
 // Replace these values with your own
 $bucketName = 'iitbhms-test-bucket-123';
-$fileName = 'prescriptions/' . $_POST['id'] . '_' . $ret['patientId'] . '.png';
+$fileName = 'prescriptions/' . $ret['patientId'] . '/' .  $_POST['id']  . '.png';
 $dataUrl = $_POST['data']; // Your PNG data URL
 
 // Decode the data URL to get the binary data
@@ -46,6 +46,6 @@ $object = $bucket->upload($data, [
 ]);
 
 mysqli_execute_query($con, "update appointments set status=3 where id =? AND doctorId=?", [$_POST['id'], $_SESSION['id']]);
-mysqli_execute_query($con, "insert into prescriptions(appointmentId,patientId,fileName) value(?,?,?)", [$_POST['id'], $ret['patientId'], $fileName]); #Done2
+mysqli_execute_query($con, "insert into files(userId,type,location,appointmentId) value(?,2,?,?)", [$ret['patientId'], $fileName, $_POST['id']]); #Done2
 
 echo json_encode(['success' => true, 'answer' => 420]);
