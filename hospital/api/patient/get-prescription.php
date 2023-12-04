@@ -21,21 +21,12 @@ if (!isset($_POST['id'])) {
     exit;
 }
 
-if ($_POST['id'] != $_SESSION['current_appt_id'] || $_POST['timestamp'] != $_SESSION['current_appt_timestamp']) {
-    echo json_encode(['success' => false, 'error' => 'This appointment has been invalidated.']);
-    exit;
-}
-
 // $sql = mysqli_execute_query($con, "select patientId from appointments where id =? AND doctorId=?", [$_POST['id'], $_SESSION['id']]);
 // $ret = mysqli_fetch_assoc($sql);
 
 // Replace these values with your own
 $bucketName = 'iitbhms-test-bucket-123';
-$fileName = 'prescriptions/' . $_SESSION['current_appt_pId'] . '/' .  $_POST['id']  . '.png';
-$dataUrl = $_POST['data']; // Your PNG data URL
-
-// Decode the data URL to get the binary data
-$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $dataUrl));
+$fileName = 'prescriptions/' . $_SESSION['id'] . '/' .  $_POST['id']  . '.png';
 
 // Create a StorageClient
 $storage = new StorageClient([
@@ -45,14 +36,18 @@ $storage = new StorageClient([
 // Get the bucket
 $bucket = $storage->bucket($bucketName);
 
-// Upload the file
-$object = $bucket->upload($data, [
-    'name' => $fileName,
+// Define the duration for the signed URL (in seconds)
+$expiration = time() + 60 * 1; // 10 minutes from now
+
+// Generate a signed URL
+$bucket = $storage->bucket($bucketName);
+$object = $bucket->object($fileName);
+$signedUrl = $object->signedUrl($expiration, [
+    'version' => 'v4',
+    'method' => 'GET',
 ]);
 
-mysqli_execute_query($con, "update appointments set status=3 where id =? AND doctorId=?", [$_POST['id'], $_SESSION['id']]);
-mysqli_execute_query($con, "insert into files(userId,type,name,appointmentId) value(?,2,?,?)", [$ret['patientId'], $fileName, $_POST['id']]); #Done2
+// echo "Signed URL for file '$fileName':<br>";
+// echo "<a href='$signedUrl' target='_blank'>$signedUrl</a>";
 
-
-echo json_encode(['success' => true, 'answer' => 420]);
-unset($_SESSION['current_appt_id'], $_SESSION['current_appt_pId'], $_SESSION['current_appt_timestamp']);
+echo json_encode(['success' => true, 'url' => $signedUrl]);

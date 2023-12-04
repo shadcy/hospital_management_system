@@ -60,6 +60,24 @@ $tableHeadRow = '<th class="center">#</th>
 <th>Current Status</th>
 <th>Action</th>';
 
+require $_SERVER['DOCUMENT_ROOT'] . '/vendor/php/vendor/autoload.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/hms/include/config.php');
+
+use Google\Cloud\Storage\StorageClient;
+
+// Replace these values with your own
+$bucketName = 'iitbhms-test-bucket-123';
+
+// Create a StorageClient
+$storage = new StorageClient([
+	'keyFilePath' => $_SERVER['DOCUMENT_ROOT'] . '/vendor/php/vast-reality-405314-a522a0fd7428.json'
+]);
+
+// Get the bucket
+$bucket = $storage->bucket($bucketName);
+// Define the duration for the signed URL (in seconds)
+$expiration = time() + 60 * 1; // 10 minutes from now
+
 function getTableRowContents($row)
 {
 	$rowContents = [
@@ -76,6 +94,18 @@ function getTableRowContents($row)
 			'href' => 'appointment-history.php?id=' . $row['id'] . '&action=cancel',
 			'prompt' => 'Are you sure you want to cancel this appointment?',
 			'title' => 'Cancel Appointment', 'icon' => 'trash'
+		]];
+	} elseif ($row['status'] == 3) {
+		global $bucket, $expiration;
+		$object = $bucket->object('prescriptions/' . $_SESSION['id'] . '/' .  $row['id']  . '.png');
+		$signedUrl = $object->signedUrl($expiration, [
+			'version' => 'v4',
+			'method' => 'GET',
+		]);
+
+		$rowContents[] =  [[
+			'href' => $signedUrl,
+			'title' => 'View Prescription', 'icon' => 'note'
 		]];
 	} else {
 		$rowContents[] = '';

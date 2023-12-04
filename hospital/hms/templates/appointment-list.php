@@ -99,7 +99,7 @@
                                                                                     echo '<td>';
                                                                                     foreach ($rowCell as $action) {
                                                                         ?>
-                                                                                        <a href="<?php echo $action['href'] ?>" onClick="return confirm('<?php echo $action['prompt'] ?>')" class="btn btn-transparent btn-xs tooltips" title="<?php echo $action['title'] ?>" tooltip-placement="top" tooltip="Remove"><i class="bx bx-<?php echo $action['icon'] ?>"></i></a>
+                                                                                        <a href="<?php echo $action['href'] ?>" <?php if (isset($action['prompt'])) { ?>onClick="return confirm('<?php echo $action['prompt'] ?>')" <?php } ?>class="btn btn-transparent btn-xs tooltips" title="<?php echo $action['title'] ?>" tooltip-placement="top" tooltip="Remove"><i class="bx bx-<?php echo $action['icon'] ?>"></i></a>
                                                                         <?php
                                                                                     }
                                                                                     echo '</td>';

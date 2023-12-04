@@ -35,8 +35,8 @@ if (isset($_POST['submit'])) {
 	$docstatus = 1;
 	$query = mysqli_execute_query($con, "insert into appointments(doctorId,patientId,consultancyFees,date,time) values(?,?,?,?,?)", [$doctorid, $userid, $fees, $appdate, $time]);
 	if ($query) {
-		echo "<script>alert('Your appointment successfully booked');</script>";
-		echo "<script>window.location.href ='appointment-history.php'</script>";
+		echo "<script>alert('Your appointment was booked successfully.');</script>";
+		echo "<script>window.location.href ='appointment-history.php?filter=pnd'</script>";
 	}
 }
 
@@ -60,6 +60,8 @@ if (isset($_POST['submit'])) {
 	<!-- Google Fonts Link For Icons -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+	<link href="/vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
+	<link href="/vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">'
 	<script src="chatapi.js" defer></script>
 	<meta name="description" content="" />
 	<?php include('../include/csslinks.php'); ?>
@@ -249,7 +251,7 @@ if (isset($_POST['submit'])) {
 																					Time
 
 																				</label>
-																				<input class="form-control" name="apptime" id="timepicker1" required="required">eg : 10:00 PM
+																				<input class="form-control timepicker" name="apptime" required="required">eg : 10:00 PM
 																			</div>
 																			<br>
 																			<button type="submit" name="submit" class="btn btn-o btn-primary">
@@ -492,10 +494,18 @@ if (isset($_POST['submit'])) {
 					</div>
 					<!-- Main JS -->
 
-
-
 					<?php include('../include/links.php'); ?>
+					<script src="/assets/js/form-elements.js"></script>
+					<script src="/vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+					<script src="/vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+					<script>
+						$('.datepicker').datepicker({
+							format: 'yyyy-mm-dd',
+							startDate: '-3d'
+						});
 
+						$('.timepicker').timepicker();
+					</script>
 
 
 

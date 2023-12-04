@@ -20,23 +20,23 @@ if (isset($_GET['action'])) {
 		mysqli_execute_query($con, "update appointments set doctorStatus=0 where id =? AND doctorId=?", [$_GET['id'], $_SESSION['id']]);
 		$_SESSION['msg'] = "The appointment has been cancelled!";
 	} elseif ($_GET['action'] === 'start') {
-		$sql = mysqli_execute_query($con, "select * from appointments where id =? AND doctorId=? AND status = 2 AND doctorStatus = 1 AND userStatus = 1", [$_GET['id'], $_SESSION['id']]);
+		$sql = mysqli_execute_query($con, "select * from appointments where id =? AND doctorId=? AND status = 2 AND doctorStatus = 1 AND patientStatus = 1", [$_GET['id'], $_SESSION['id']]);
 		$row = mysqli_fetch_assoc($sql);
 
 		if ($row) {
 			$toAppointmentPage = true; # Set false if needed
 
-			if ($isset($_SESSION['current_appt_id'])) {
-				if(isset($_SESSION['current_appt_overwrite_time']) && $_SERVER['REQUEST_TIME']-$_SESSION['current_appt_overwrite_time']>15e3){
+			if (isset($_SESSION['current_appt_id'])) {
+				if (isset($_SESSION['current_appt_overwrite_time']) && $_SERVER['REQUEST_TIME'] - $_SESSION['current_appt_overwrite_time'] < 15) {
 					unset($_SESSION['current_appt_overwrite_time']);
-				}else{
-					echo "<script>alert('It would seem that you are already in an active appointment.\n\nTo switch to this appointment, redo the start action within 15 seconds.');</script>";
+				} else {
+					echo "<script>alert('It would seem that you are already in an active appointment.\\n\\nTo switch to this appointment, redo the start action within 15 seconds.');</script>";
 					$_SESSION['current_appt_overwrite_time'] = $_SERVER['REQUEST_TIME'];
 					$toAppointmentPage = false;
 				}
 			}
 
-			if($toAppointmentPage){
+			if ($toAppointmentPage) {
 				$_SESSION['current_appt_id'] = $_GET['id'];
 				$_SESSION['current_appt_pId'] = $row['patientId'];
 				$_SESSION['current_appt_timestamp'] = $_SERVER['REQUEST_TIME'];

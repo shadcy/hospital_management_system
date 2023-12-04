@@ -13,19 +13,21 @@ if (!check_login_and_perms($userType)) {
     exit;
 }
 
-if(!isset($_SESSION['current_appt_id'])){
+if (!isset($_SESSION['current_appt_id'])) {
     echo "<script>alert('You do not have an ongoing appointment.');</script>";
     echo "<script>window.location.href = 'appointment-history.php'</script>";
     exit;
 }
 
 $doctorName = "";
-if (isset($_SESSION['id'])) {
-    $query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
-    while ($row = mysqli_fetch_array($query)) {
-        $doctorName = $row['fullName']; // storing the value in the variable
-    }
+
+$query = mysqli_execute_query($con, "select fullName from users where id=?", [$_SESSION['id']]);
+while ($row = mysqli_fetch_array($query)) {
+    $doctorName = $row['fullName']; // storing the value in the variable
 }
+
+$query = mysqli_execute_query($con, "select * from users where id=?", [$_SESSION['current_appt_pId']]);
+$row = mysqli_fetch_array($query);
 ?>
 
 <!DOCTYPE html>
@@ -41,9 +43,11 @@ if (isset($_SESSION['id'])) {
     <link rel="stylesheet" href="/assets/css/edoc.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
     <script>
-        var appointmentId = <?php echo $_SESSION['current_appt_id']?>;
-        var patientId = <?php echo $_SESSION['current_appt_pId']?>;
-        var apptTimestamp = <?php echo $_SESSION['current_appt_timestamp']?>;
+        var appointmentId = <?php echo $_SESSION['current_appt_id'] ?>;
+        var patientId = <?php echo $_SESSION['current_appt_pId'] ?>;
+        var apptTimestamp = <?php echo $_SESSION['current_appt_timestamp'] ?>;
+        var patientInfo = <?php echo json_encode($row); ?>;
+        var warnOnLeaving = true;
     </script>
     <style>
         #pageCanvas {
@@ -53,6 +57,44 @@ if (isset($_SESSION['id'])) {
             /* Optional: set a maximum width if needed */
             display: block;
             /* Removes any default whitespace/spacing */
+        }
+
+        .loading-indicator {
+            display: none;
+            /* Initially hide the loading indicator */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent background */
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            /* Light gray border */
+            border-top: 5px solid #3498db;
+            /* Blue border on top */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -77,6 +119,11 @@ if (isset($_SESSION['id'])) {
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
+                    <div id="loadingIndicator" class="loading-indicator">
+                        <div class="loader"></div>
+                        <p>Loading...</p>
+                    </div>
+
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><?php echo UserTypeAsString[$userType]; ?> /</span> <?php echo $pageName; ?></h4>
@@ -213,13 +260,14 @@ if (isset($_SESSION['id'])) {
         var confirmationMessage = 'Are you sure you want to leave? Your changes will not be saved.';
 
         window.addEventListener('beforeunload', function(e) {
-            // Display a warning message
+            // Display a warning message, if needed
+            if (warnOnLeaving) {
+                // Standard for most browsers
+                (e || window.event).returnValue = confirmationMessage;
 
-            // Standard for most browsers
-            (e || window.event).returnValue = confirmationMessage;
-
-            // For some older browsers
-            return confirmationMessage;
+                // For some older browsers
+                return confirmationMessage;
+            }
         });
     </script>
 

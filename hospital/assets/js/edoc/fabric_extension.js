@@ -13,11 +13,22 @@ fabric.Canvas.prototype.historyInit = function (addInitial) {
     });
     this.addedListeners = true;
   }
+
+  if (this.myProps.toLocal && !this.savedVars) {
+    localStorage.setItem('apptVars', JSON.stringify(this.myProps.localVars));
+    localStorage.setItem('apptTimestamp', this.myProps.localVars.apptTimestamp);
+    this.savedVars = true;
+  }
 };
 
 fabric.Canvas.prototype.saveToLocal = function () {
-  localStorage.setItem('apptCanvasHistory', JSON.stringify({hn:this.historyNextState, hu: this.historyUndo, hr: this.historyRedo}));
-  localStorage.setItem('apptVars', JSON.stringify(this.myProps.localVars));
+  if (this.authLocalSession?.() ?? true) {
+    localStorage.setItem('apptCanvasHistory', JSON.stringify({ hn: this.historyNextState, hu: this.historyUndo, hr: this.historyRedo }));
+  } else {
+    alert('This canvas has been invalidated, likely due to the start of another session.');
+    warnOnLeaving = false;
+    window.location.href = 'appointment-history.php';
+  }
 };
 
 fabric.Canvas.prototype.historyNext = function () {
@@ -32,7 +43,7 @@ fabric.Canvas.prototype.historySaveAction = function (mode, ...params) {
   if (json) this.historyUndo.push(json);
   this.historyNextState = this.historyNext();
 
-  if(this.myProps.toLocal) this.saveToLocal();
+  if (this.myProps.toLocal) this.saveToLocal();
 };
 
 fabric.Canvas.prototype.cstmUndo = function () {
@@ -45,11 +56,11 @@ fabric.Canvas.prototype.cstmUndo = function () {
     }
     this.historyNextState = history;
     this.loadFromJSON(history).renderAll();
-    fabCanvas.once("after:render", () => {
-      fabCanvas.historyProcessing = false;
+    this.once("after:render", () => {
+      this.historyProcessing = false;
     });
 
-    if(this.myProps.toLocal) this.saveToLocal();
+    if (this.myProps.toLocal) this.saveToLocal();
   } else {
     this.historyProcessing = false;
   }
@@ -65,25 +76,30 @@ fabric.Canvas.prototype.cstmRedo = function () {
     }
     this.historyNextState = history;
     this.loadFromJSON(history).renderAll();
-    fabCanvas.once("after:render", () => {
-      fabCanvas.historyProcessing = false;
+    this.once("after:render", () => {
+      this.historyProcessing = false;
     });
 
-    if(this.myProps.toLocal) this.saveToLocal();
+    if (this.myProps.toLocal) this.saveToLocal();
   } else {
     this.historyProcessing = false;
   }
 };
 
-fabric.Canvas.prototype.cstmSetBackground = function (url) {
-  this.historyProcessing = true;
-  this.clear();
-  this.historyProcessing = false;
+fabric.Canvas.prototype.cstmSetBackground = function (url, clearAll = true) {
+  if (clearAll) {
+    this.historyProcessing = true;
+    this.clear();
+    this.historyProcessing = false;
+  }
 
   this.historyInit(false);
 
   const _this = this;
   fabric.Image.fromURL(url, function (img) {
+    img.scaleToWidth(_this.width);
+    img.scaleToHeight(_this.height);
+
     _this.backImage = img;
     _this.setBackgroundImage(img, () => {
       _this.historySaveAction("added");
@@ -96,6 +112,11 @@ fabric.Canvas.prototype.cstmSetBackground = function (url) {
     });
   });
 };
+
+fabric.Canvas.prototype.resetHistory = function () {
+  this.historyUndo = [];
+  this.historyRedo = [];
+}
 
 fabric.Canvas.prototype.cstmClearObjects = function () {
   // Remove all objects on the canvas
@@ -113,6 +134,6 @@ fabric.Canvas.prototype.cstmClearObjects = function () {
     });
     _this.renderAll();
 
-    if(this.myProps.toLocal) this.saveToLocal();
+    if (this.myProps.toLocal) this.saveToLocal();
   });
 };
