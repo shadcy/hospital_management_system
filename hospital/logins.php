@@ -432,7 +432,7 @@ include_once('hms/include/config.php');
                                 </div>
 
                                 <h3 class="headline-sm card-title">
-                                    <a href="#">Staff's Login</a>
+                                    <a href="./hms/staff">Staff's Login</a>
                                 </h3>
 
                                 <p class="card-text">
@@ -440,10 +440,11 @@ include_once('hms/include/config.php');
 
                                     REGISTER/SIGN UP TO LOGIN
                                 </p>
-
-                                <button class="btn-circle" aria-label="read more about Orthopedics">
-                                    <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                                </button>
+                                <a href="./hms/staff">
+                                    <button class="btn-circle" aria-label="read more about Orthopedics">
+                                        <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                                    </button>
+                                </a>
 
                             </div>
                         </li>

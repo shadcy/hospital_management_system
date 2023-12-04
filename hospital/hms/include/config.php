@@ -14,10 +14,14 @@ enum UserTypeEnum: int
     case Admin = 1;
     case Doctor = 2;
     case Patient = 0;
+    case LabTechnician = 4;
+    case Pharmacist = 6;
 }
 
 const UserTypeAsString = [
     0 => "Student",
     1 => "Admin",
-    2 => "Doctor"
+    2 => "Doctor",
+    4 => "Staff",
+    6 => "Staff"
 ];
