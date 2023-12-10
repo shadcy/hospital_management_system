@@ -1,4 +1,4 @@
-<link rel="icon" type="image/x-icon" href="/assets2/img/favicon/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/assets/images/favicon.svg" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
